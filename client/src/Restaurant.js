@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import axios from "axios"
+import axios from 'axios'
+import Map from './Map'
 
-function LandingPage() {
-    const [address, setAddress] = useState("")
+function Restaurant() {
+    const [restaurantAddress, setRestaurantAddress] = useState("")
+    const [restaurantName, setRestaurantName] = useState("")
+    const [restaurantPhoneNumber, setRestaurantPhoneNumber] = useState("")
+    const [restaurantPrice, setRestaurantPrice] = useState("")
+    const [restaurantRating, setRestaurantRating] = useState("")
+    const [restaurantReviewCount, setRestaurantReviewCount] = useState("")
+    const [restaurantHours, setRestaurantHours] = useState("")
+    const [isOpen, setIsOpen] = useState("")
+    const [restaurantID, setRestaurantID] = useState("")
 
     useEffect(() => {
         async function fetchRestaurantData() {
@@ -31,40 +40,35 @@ function LandingPage() {
             const randomRestaurant = allRestaurants[Math.ceil(Math.random() * allRestaurants.length)]
             const randomRestaurantInfo = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${randomRestaurant.id}`)
             // categories
-            // display_phone
-            // hours
-            // id 
-            // is_closed
-            // location.display_address
-            setAddress(randomRestaurantInfo.data.location.display_address)
-            // name
+            setRestaurantPhoneNumber(randomRestaurantInfo.data.display_phone)
+            setRestaurantHours(randomRestaurantInfo.data.hours[0].open)
+            setIsOpen(randomRestaurantInfo.data.hours[0].is_open_now)
+            setRestaurantID(randomRestaurantInfo.data.id)
+            setRestaurantName(randomRestaurantInfo.data.name)
+            setRestaurantAddress(randomRestaurantInfo.data.location.display_address)
+            setRestaurantPrice(randomRestaurantInfo.data.price)
+            setRestaurantRating(randomRestaurantInfo.data.rating)
+            setRestaurantReviewCount(randomRestaurantInfo.data.review_count)
             // photos
-            // price
-            // rating
-            // review_count
             // url (scrape the url from Yelp)
 
             // const findRecipe = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${REACT_APP_SPOONACULAR}&includeIngredients=${arrOfIngredients}&fillIngredients=true`
             // const recipeInformation = `https://api.spoonacular.com/recipes/${findRecipe[selectedRecipe].id}`/information?apiKey=${REACT_APP_SPOONACULAR}`
             // const recipeInstructions = `https://api.spoonacular.com/recipes/${findRecipe[selectedRecipe].id}/analyzedInstructions?apiKey=${REACT_APP_SPOONACULAR}`
         }
-        // fetchRestaurantData()
+        fetchRestaurantData()
     }, [])
-
 
     return (
         <>
-            <div>Landing Page</div>
-            <iframe
-                title="map"
-                width="600"
-                height="450"
-                style={{ border: "0" }}
-                loading="lazy"
-                src={`https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_GOOGLE_API_KEY}&q=${address}`}
-            />
+            <h3>{restaurantName}</h3>
+            <p>{restaurantPhoneNumber}</p>
+            <p>{restaurantPrice}</p>
+            <p>{restaurantRating} Reviews: {restaurantReviewCount}</p>
+            {/* {restaurantHours.map(item => <p>{item.day} Hours: {item.start}-{item.end}</p>)} */}
+            <Map restaurantAddress={restaurantAddress} />
         </>
     )
 }
 
-export default LandingPage
+export default Restaurant
