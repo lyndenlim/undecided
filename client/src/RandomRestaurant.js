@@ -9,10 +9,12 @@ function RandomRestaurant() {
     const [restaurantPrice, setRestaurantPrice] = useState("")
     const [restaurantRating, setRestaurantRating] = useState("")
     const [restaurantReviewCount, setRestaurantReviewCount] = useState("")
-    const [restaurantHours, setRestaurantHours] = useState("")
     const [isOpen, setIsOpen] = useState("")
     const [restaurantID, setRestaurantID] = useState("")
-    const [restaurantsInfo, setRestaurantsInfo] = useState("")
+    const [restaurantURL, setRestaurantURL] = useState("")
+    const [restaurantHours, setRestaurantHours] = useState([])
+    const [restaurantCategories, setRestaurantCategories] = useState([])
+    const [restaurantPhotos, setRestaurantPhotos] = useState([])
 
     useEffect(() => {
         async function getRestaurantData() {
@@ -40,10 +42,8 @@ function RandomRestaurant() {
 
             const randomRestaurant = allRestaurants[Math.ceil(Math.random() * allRestaurants.length)]
             const randomRestaurantInfo = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${randomRestaurant.id}`)
-            // categories
-            // setRestaurantsInfo(allRestaurants)
+            console.log(randomRestaurantInfo)
             setRestaurantPhoneNumber(randomRestaurantInfo.data.display_phone)
-            setRestaurantHours(randomRestaurantInfo.data.hours[0].open)
             setIsOpen(randomRestaurantInfo.data.hours[0].is_open_now)
             setRestaurantID(randomRestaurantInfo.data.id)
             setRestaurantName(randomRestaurantInfo.data.name)
@@ -51,7 +51,10 @@ function RandomRestaurant() {
             setRestaurantPrice(randomRestaurantInfo.data.price)
             setRestaurantRating(randomRestaurantInfo.data.rating)
             setRestaurantReviewCount(randomRestaurantInfo.data.review_count)
-            // photos
+            setRestaurantHours(randomRestaurantInfo.data.hours[0].open)
+            setRestaurantCategories(randomRestaurantInfo.data.categories)
+            setRestaurantPhotos(randomRestaurantInfo.data.photos)
+            setRestaurantURL(randomRestaurantInfo.data.url)
             // url (scrape the url from Yelp)
 
             // const findRecipe = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${REACT_APP_SPOONACULAR}&includeIngredients=${arrOfIngredients}&fillIngredients=true`
@@ -62,15 +65,21 @@ function RandomRestaurant() {
         getRestaurantData()
     }, [])
 
+    console.log(restaurantHours)
+
     return (
-        <>
+        <div>
             <h3>{restaurantName}</h3>
             <p>{restaurantPhoneNumber}</p>
             <p>{restaurantPrice}</p>
-            <p>{restaurantRating} Reviews: {restaurantReviewCount}</p>
-            {/* {restaurantHours.map(item => <p>{item.day} Hours: {item.start}-{item.end}</p>)} */}
+            <p>{restaurantRating} {restaurantReviewCount} reviews</p>
+            <p>{isOpen ? "OPEN" : "CLOSED"}</p>
+            <a href={restaurantURL}>{restaurantURL}</a>
+            {/* <p>{restaurantCategories.map(categories => categories)}</p> */}
+            {/* {restaurantHours.map(day => <p>{day.start}</p>)}  */}
+            {restaurantPhotos.map(photo => <img src={photo} height="300" width="300" alt="restaurant-photos" />)}
             <Map restaurantAddress={restaurantAddress} />
-        </>
+        </div>
     )
 }
 
