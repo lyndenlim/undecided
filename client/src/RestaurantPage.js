@@ -1,13 +1,13 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import Map from "./Map"
 
 function RestaurantPage() {
     return (
         <>
-            Restaurants here
+            <p>Restaurants here</p>
         </>
     )
 }
-
 
 export default RestaurantPage

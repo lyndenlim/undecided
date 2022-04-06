@@ -1,8 +1,14 @@
 import React from 'react'
+import { Link } from "react-router-dom"
+import getRestaurantData from "./RandomRestaurant"
 
 function HomePage() {
     return (
-        <>Home Page</>
+        <>
+            <Link to="/random">
+                <button>CHOOSE FOR ME</button>
+            </Link>
+        </>
     )
 }
 

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import Map from './Map'
+import Map from "./Map"
 
-function Restaurant() {
+function RandomRestaurant() {
     const [restaurantAddress, setRestaurantAddress] = useState("")
     const [restaurantName, setRestaurantName] = useState("")
     const [restaurantPhoneNumber, setRestaurantPhoneNumber] = useState("")
@@ -12,9 +12,10 @@ function Restaurant() {
     const [restaurantHours, setRestaurantHours] = useState("")
     const [isOpen, setIsOpen] = useState("")
     const [restaurantID, setRestaurantID] = useState("")
+    const [restaurantsInfo, setRestaurantsInfo] = useState("")
 
     useEffect(() => {
-        async function fetchRestaurantData() {
+        async function getRestaurantData() {
             const axiosInstance = axios.create({
                 headers: {
                     Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
@@ -40,6 +41,7 @@ function Restaurant() {
             const randomRestaurant = allRestaurants[Math.ceil(Math.random() * allRestaurants.length)]
             const randomRestaurantInfo = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${randomRestaurant.id}`)
             // categories
+            // setRestaurantsInfo(allRestaurants)
             setRestaurantPhoneNumber(randomRestaurantInfo.data.display_phone)
             setRestaurantHours(randomRestaurantInfo.data.hours[0].open)
             setIsOpen(randomRestaurantInfo.data.hours[0].is_open_now)
@@ -55,8 +57,9 @@ function Restaurant() {
             // const findRecipe = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${REACT_APP_SPOONACULAR}&includeIngredients=${arrOfIngredients}&fillIngredients=true`
             // const recipeInformation = `https://api.spoonacular.com/recipes/${findRecipe[selectedRecipe].id}`/information?apiKey=${REACT_APP_SPOONACULAR}`
             // const recipeInstructions = `https://api.spoonacular.com/recipes/${findRecipe[selectedRecipe].id}/analyzedInstructions?apiKey=${REACT_APP_SPOONACULAR}`
+
         }
-        fetchRestaurantData()
+        getRestaurantData()
     }, [])
 
     return (
@@ -71,4 +74,4 @@ function Restaurant() {
     )
 }
 
-export default Restaurant
+export default RandomRestaurant
