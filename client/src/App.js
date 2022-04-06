@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom"
 import HomePage from "./HomePage";
 import RestaurantPage from "./RestaurantPage"
-import Restaurant from "./Restaurant"
+import RandomRestaurant from "./RandomRestaurant"
 
 function App() {
   return (
@@ -13,11 +13,11 @@ function App() {
         <Route exact path="/">
           <HomePage />
         </Route>
-        <Route path="/restaurants/:id">
-          <Restaurant />
-        </Route>
         <Route path="/restaurants">
           <RestaurantPage />
+        </Route>
+        <Route path="/random">
+          <RandomRestaurant />
         </Route>
       </Switch>
     </div>
