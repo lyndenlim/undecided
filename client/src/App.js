@@ -1,9 +1,10 @@
 import { Route, Switch } from "react-router-dom"
+import { useState } from "react"
+import NavBar from "./NavBar"
 import HomePage from "./HomePage";
 import RestaurantPage from "./RestaurantPage"
 import RandomRestaurant from "./RandomRestaurant"
-import NavBar from "./NavBar"
-import {useState} from "react"
+import RestaurantInfo from "./RestaurantInfo"
 
 function App() {
   const [address, setAddress] = useState("")
@@ -16,10 +17,13 @@ function App() {
           <h1>Test Route</h1>
         </Route>
         <Route exact path="/">
-          <HomePage setAddress={setAddress}/>
+          <HomePage setAddress={setAddress} />
         </Route>
-        <Route path="/restaurants">
-          <RestaurantPage address={address}/>
+        <Route exact path="/restaurants">
+          <RestaurantPage address={address} />
+        </Route>
+        <Route path="/restaurants/:id">
+          <RestaurantInfo />
         </Route>
         <Route path="/random">
           <RandomRestaurant />

@@ -42,7 +42,6 @@ function RandomRestaurant() {
 
             const randomRestaurant = allRestaurants[Math.ceil(Math.random() * allRestaurants.length)]
             const randomRestaurantInfo = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${randomRestaurant.id}`)
-            console.log(randomRestaurantInfo)
             setRestaurantPhoneNumber(randomRestaurantInfo.data.display_phone)
             setIsOpen(randomRestaurantInfo.data.hours[0].is_open_now)
             setRestaurantID(randomRestaurantInfo.data.id)
