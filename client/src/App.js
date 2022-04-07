@@ -7,6 +7,7 @@ import RandomRestaurant from "./RandomRestaurant"
 import RestaurantInfo from "./RestaurantInfo"
 import LogIn from "./LogIn"
 import SignUp from "./SignUp"
+import WriteReview from "./WriteReview"
 
 function App() {
   const [address, setAddress] = useState("")
@@ -44,6 +45,9 @@ function App() {
         </Route>
         <Route path="/signup"  >
           <SignUp setUser={setUser} />
+        </Route>
+        <Route path="/writereview/:id">
+          <WriteReview user={user}/>
         </Route>
       </Switch >
     </>
