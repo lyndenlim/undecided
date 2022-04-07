@@ -15,25 +15,14 @@ function RestaurantPage({ address }) {
             const geocodedResult = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
             const locationLat = geocodedResult.data.results[0].geometry.location.lat
             const locationLng = geocodedResult.data.results[0].geometry.location.lng
-            const restaurantRequests = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=1&latitude=${locationLat}&longitude=${locationLng}&radius=805&open_now=true&categories=restaurants`)
+            const restaurantRequests = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=10&latitude=${locationLat}&longitude=${locationLng}&radius=805&open_now=true&categories=restaurants`)
             const allRestaurants = restaurantRequests.data.businesses
 
             setAllRestaurantsInfo(allRestaurants)
-            // console.log(allRestaurants)
-            // categories
-            // display_phone
-            // distanceinmeters => distanceinmeters/1609
-            // image_url
-            // is_closed
-            // location.display_address
-            // name
-            // price
-            // rating
-            // review_count
-            // url (scrape the url from Yelp)
+            
         }
         getRestaurantsData()
-    }, [])
+    }, [address])
 
     return (
         <>
