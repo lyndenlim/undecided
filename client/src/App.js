@@ -2,10 +2,12 @@ import { Route, Switch } from "react-router-dom"
 import HomePage from "./HomePage";
 import RestaurantPage from "./RestaurantPage"
 import RandomRestaurant from "./RandomRestaurant"
+import NavBar from "./NavBar"
 
 function App() {
   return (
-    <div className="App">
+    <>
+      <NavBar />
       <Switch>
         <Route path="/testing">
           <h1>Test Route</h1>
@@ -20,7 +22,7 @@ function App() {
           <RandomRestaurant />
         </Route>
       </Switch>
-    </div>
+    </>
   );
 }
 
