@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
-  get '/hello', to: 'application#hello_world'
+  resources :restaurants, only: [:index, :show]
+  resources :reviews
+  resources :users
 
-  get '*path',
-      to: 'fallback#index',
+  # get "/hello", to: "application#hello_world"
+  
+  post "/signup", to: "users#create"
+  get "/me", to: "users#show"
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
+
+  get "*path",
+      to: "fallback#index",
       constraints: ->(req) { !req.xhr? && req.format.html? }
 end

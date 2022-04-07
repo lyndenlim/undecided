@@ -8,7 +8,7 @@ function HomePage({ setAddress }) {
     function handleSubmit(e) {
         e.preventDefault()
         setAddress(userInput)
-        history.push({ pathname: "/restaurants" })
+        history.push("/restaurants")
     }
 
     return (
