@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import axios from 'axios'
 import Map from './Map'
-import Review from "./Review"
+import YelpReview from "./YelpReview"
+import UserReview from "./UserReview"
 
 function RestaurantInfo() {
     const { id } = useParams()
@@ -18,10 +19,17 @@ function RestaurantInfo() {
     const [restaurantPhotos, setRestaurantPhotos] = useState([])
     const [restaurantHours, setRestaurantHours] = useState([])
     const [restaurantReviews, setRestaurantReviews] = useState([])
+    const [userRestaurantReviews, setUserRestaurantReviews] = useState([])
 
     useEffect(() => {
         // const today = new Date
         // console.log(today.getDay())
+
+        async function getUserReviews() {
+            const userReviews = await axios.get("/reviews")
+            setUserRestaurantReviews(userReviews.data.filter(review => review.restaurant_id === id)
+            )
+        }
 
         async function getRestaurantData() {
             const axiosInstance = axios.create({
@@ -48,9 +56,10 @@ function RestaurantInfo() {
             setRestaurantPhotos(restaurantInfo.data.photos)
             setRestaurantURL(restaurantInfo.data.url)
         }
+
+        getUserReviews()
         getRestaurantData()
     }, [])
-    console.log(restaurantCategories)
 
     return (
         <div>
@@ -67,9 +76,12 @@ function RestaurantInfo() {
             <br />
             <Map restaurantAddress={restaurantAddress} />
             <br />
-            <button>Write a Review</button>
+            <Link to={`/writereview/${id}`}>
+                <button>Write a Review</button>
+            </Link>
             <br />
-            {restaurantReviews.map(review => <Review key={review.id} review={review} />)}
+            {restaurantReviews.map(review => <YelpReview key={review.id} review={review} />)}
+            {userRestaurantReviews.map(review => <UserReview key={review.id} review={review} />)}
         </div>
     )
 }
