@@ -3,8 +3,11 @@ import HomePage from "./HomePage";
 import RestaurantPage from "./RestaurantPage"
 import RandomRestaurant from "./RandomRestaurant"
 import NavBar from "./NavBar"
+import {useState} from "react"
 
 function App() {
+  const [address, setAddress] = useState("")
+
   return (
     <>
       <NavBar />
@@ -13,10 +16,10 @@ function App() {
           <h1>Test Route</h1>
         </Route>
         <Route exact path="/">
-          <HomePage />
+          <HomePage setAddress={setAddress}/>
         </Route>
         <Route path="/restaurants">
-          <RestaurantPage />
+          <RestaurantPage address={address}/>
         </Route>
         <Route path="/random">
           <RandomRestaurant />
