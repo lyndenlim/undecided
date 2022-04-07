@@ -15,7 +15,7 @@ function RestaurantPage({ address }) {
             const geocodedResult = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
             const locationLat = geocodedResult.data.results[0].geometry.location.lat
             const locationLng = geocodedResult.data.results[0].geometry.location.lng
-            const restaurantRequests = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=20&latitude=${locationLat}&longitude=${locationLng}&radius=805&open_now=true&categories=restaurants`)
+            const restaurantRequests = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=1&latitude=${locationLat}&longitude=${locationLng}&radius=805&open_now=true&categories=restaurants`)
             const allRestaurants = restaurantRequests.data.businesses
 
             setAllRestaurantsInfo(allRestaurants)
@@ -37,7 +37,7 @@ function RestaurantPage({ address }) {
 
     return (
         <>
-            {allRestaurantsInfo.map(restaurant => <RestaurantCard key={restaurant.id} restaurant={restaurant}/>)}
+            {allRestaurantsInfo.map(restaurant => <RestaurantCard key={restaurant.id} restaurant={restaurant} />)}
         </>
     )
 }
