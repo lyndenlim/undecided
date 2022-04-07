@@ -55,17 +55,13 @@ function RandomRestaurant() {
             setRestaurantCategories(randomRestaurantInfo.data.categories)
             setRestaurantPhotos(randomRestaurantInfo.data.photos)
             setRestaurantURL(randomRestaurantInfo.data.url)
-            // url (scrape the url from Yelp)
 
             // const findRecipe = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${REACT_APP_SPOONACULAR}&includeIngredients=${arrOfIngredients}&fillIngredients=true`
             // const recipeInformation = `https://api.spoonacular.com/recipes/${findRecipe[selectedRecipe].id}`/information?apiKey=${REACT_APP_SPOONACULAR}`
             // const recipeInstructions = `https://api.spoonacular.com/recipes/${findRecipe[selectedRecipe].id}/analyzedInstructions?apiKey=${REACT_APP_SPOONACULAR}`
-
         }
         getRestaurantData()
     }, [])
-
-    console.log(restaurantHours)
 
     return (
         <div>
