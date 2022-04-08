@@ -16,7 +16,11 @@ code {
   width: 300px;
 }
 
-.link {
+.link, .navbar-navlink {
   text-decoration: none;
   color: black;
+}
+
+.navbar-navlink {
+  margin: 5px;
 }
