@@ -19,7 +19,6 @@ function NavBar({ user, setUser }) {
         fetch("/logout", { method: "DELETE" }).then((r) => {
             if (r.ok) {
                 setUser(null);
-                history.push("/")
             }
         });
     }
@@ -28,11 +27,11 @@ function NavBar({ user, setUser }) {
         <Navbar>
             <Container>
                 <div>
-                    <NavLink to="/">Home</NavLink>
-                    <NavLink to="/recipes">Recipes</NavLink>
+                    <NavLink to="/" className="navbar-navlink">Home</NavLink>
+                    <NavLink to="/recipes" className="navbar-navlink">Recipes</NavLink>
                 </div>
                 <div>
-                    {user ? <div><span>Account</span><span onClick={handleLogoutClick}>Log Out</span></div> : <NavLink to="/login">Log In</NavLink>}
+                    {user ? <div><NavLink to="/account" className="navbar-navlink">Account</NavLink><NavLink to="/" onClick={handleLogoutClick} className="navbar-navlink">Log Out</NavLink></div> : <NavLink to="/login" className="navbar-navlink">Log In</NavLink>}
                 </div>
             </Container>
         </Navbar>

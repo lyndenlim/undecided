@@ -8,6 +8,8 @@ import RestaurantInfo from "./RestaurantInfo"
 import LogIn from "./LogIn"
 import SignUp from "./SignUp"
 import WriteReview from "./WriteReview"
+import AccountPage from "./AccountPage"
+import Recipe from "./Recipe";
 
 function App() {
   const [address, setAddress] = useState("")
@@ -31,14 +33,20 @@ function App() {
         <Route exact path="/">
           <HomePage setAddress={setAddress} />
         </Route>
+        <Route path="/recipes">
+          <Recipe />
+        </Route>
         <Route exact path="/restaurants">
           <RestaurantPage address={address} />
         </Route>
         <Route path="/restaurants/:id">
-          <RestaurantInfo user={user}/>
+          <RestaurantInfo user={user} />
         </Route>
         <Route path="/random">
           <RandomRestaurant />
+        </Route>
+        <Route path="/account">
+          <AccountPage />
         </Route>
         <Route path="/login" >
           <LogIn setUser={setUser} />
@@ -47,7 +55,7 @@ function App() {
           <SignUp setUser={setUser} />
         </Route>
         <Route path="/writereview/:id">
-          <WriteReview user={user}/>
+          <WriteReview user={user} />
         </Route>
       </Switch >
     </>
