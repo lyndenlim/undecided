@@ -6,7 +6,7 @@ function WriteReview({ user }) {
     const { id } = useParams()
     const history = useHistory()
     const [restaurantName, setRestaurantName] = useState("")
-    const [rating, setRating] = useState("")
+    const [rating, setRating] = useState(5)
     const [comment, setComment] = useState("")
 
     useEffect(() => {

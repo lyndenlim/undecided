@@ -4,7 +4,7 @@ import NavBar from "./NavBar"
 import HomePage from "./HomePage";
 import RestaurantPage from "./RestaurantPage"
 import RandomRestaurant from "./RandomRestaurant"
-import RestaurantInfo from "./RestaurantInfo"
+import SelectedRestaurant from "./SelectedRestaurant"
 import LogIn from "./LogIn"
 import SignUp from "./SignUp"
 import WriteReview from "./WriteReview"
@@ -14,6 +14,8 @@ import Recipe from "./Recipe";
 function App() {
   const [address, setAddress] = useState("")
   const [user, setUser] = useState("")
+  const [currentLat, setCurrentLat] = useState("")
+  const [currentLng, setCurrentLng] = useState("")
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -21,6 +23,14 @@ function App() {
         r.json().then((user) => setUser(user));
       }
     });
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const { latitude, longitude } = position.coords;
+        setCurrentLat(latitude)
+        setCurrentLng(longitude)
+      });
+    }
   }, [])
 
   return (
@@ -40,10 +50,10 @@ function App() {
           <RestaurantPage address={address} />
         </Route>
         <Route path="/restaurants/:id">
-          <RestaurantInfo user={user} />
+          <SelectedRestaurant user={user} />
         </Route>
         <Route path="/random">
-          <RandomRestaurant />
+          <RandomRestaurant currentLat={currentLat} currentLng={currentLng} user={user} />
         </Route>
         <Route path="/account">
           <AccountPage />

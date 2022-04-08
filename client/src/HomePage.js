@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from "react-router-dom"
 
 function HomePage({ setAddress }) {
-    const [userInput, setUserInput] = useState("")
     const history = useHistory()
+    const [userInput, setUserInput] = useState("")
 
     function handleSubmit(e) {
         e.preventDefault()
