@@ -35,7 +35,7 @@ function App() {
           <RestaurantPage address={address} />
         </Route>
         <Route path="/restaurants/:id">
-          <RestaurantInfo />
+          <RestaurantInfo user={user}/>
         </Route>
         <Route path="/random">
           <RandomRestaurant />

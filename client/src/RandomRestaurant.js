@@ -72,7 +72,7 @@ function RandomRestaurant() {
             <a href={restaurantURL}>{restaurantURL}</a>
             {/* <p>{restaurantCategories.map(categories => categories)}</p> */}
             {/* {restaurantHours.map(day => <p>{day.start}</p>)}  */}
-            {restaurantPhotos.map(photo => <img src={photo} height="300" width="300" alt="restaurant-photos" />)}
+            {restaurantPhotos.map(photo => <img key={photo} src={photo} height="300" width="300" alt="restaurant-photos" />)}
             <Map restaurantAddress={restaurantAddress} />
         </div>
     )
