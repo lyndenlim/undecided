@@ -60,7 +60,7 @@ function App() {
           <RandomRestaurant currentLat={currentLat} currentLng={currentLng} user={user} />
         </Route>
         <Route path="/account">
-          <AccountPage />
+          <AccountPage user={user}/>
         </Route>
         <Route path="/login" >
           <LogIn setUser={setUser} />
