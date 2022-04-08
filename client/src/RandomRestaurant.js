@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import Map from "./Map"
+import { useParams } from "react-router-dom"
+import RestaurantInfo from "./RestaurantInfo"
 
-function RandomRestaurant() {
+function RandomRestaurant({ user }) {
+    const { id } = useParams()
     const [restaurantAddress, setRestaurantAddress] = useState("")
     const [restaurantName, setRestaurantName] = useState("")
     const [restaurantPhoneNumber, setRestaurantPhoneNumber] = useState("")
@@ -10,41 +12,38 @@ function RandomRestaurant() {
     const [restaurantRating, setRestaurantRating] = useState("")
     const [restaurantReviewCount, setRestaurantReviewCount] = useState("")
     const [isOpen, setIsOpen] = useState("")
-    const [restaurantID, setRestaurantID] = useState("")
     const [restaurantURL, setRestaurantURL] = useState("")
     const [restaurantHours, setRestaurantHours] = useState([])
     const [restaurantCategories, setRestaurantCategories] = useState([])
     const [restaurantPhotos, setRestaurantPhotos] = useState([])
+    const [restaurantReviews, setRestaurantReviews] = useState([])
+    const [userRestaurantReviews, setUserRestaurantReviews] = useState([])
+    const [randomRestaurantID, setRandomRestaurantID] = useState("")
 
     useEffect(() => {
         async function getRestaurantData() {
+            const userReviews = await axios.get("/reviews")
+            setUserRestaurantReviews(userReviews.data.filter(review => review.restaurant_id === id)
+            )
+
             const axiosInstance = axios.create({
                 headers: {
                     Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
                 }
             })
             const geocodedResult = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=9-Maiden-Ln-New-York,NY-10038-Broadway-&-Cortlandt-St&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
-            const locationLat = (geocodedResult.data.results[0].geometry.location.lat)
-            const locationLng = (geocodedResult.data.results[0].geometry.location.lng)
+            const locationLat = geocodedResult.data.results[0].geometry.location.lat
+            const locationLng = geocodedResult.data.results[0].geometry.location.lng
             const restaurantRequests = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=50&latitude=${locationLat}&longitude=${locationLng}&radius=805&open_now=true&categories=restaurants`)
             const allRestaurants = restaurantRequests.data.businesses
-            // categories
-            // display_phone
-            // distanceinmeters => distanceinmeters/1609
-            // image_url
-            // is_closed
-            // location.display_address
-            // name
-            // price
-            // rating
-            // review_count
-            // url (scrape the url from Yelp)
-
             const randomRestaurant = allRestaurants[Math.ceil(Math.random() * allRestaurants.length)]
             const randomRestaurantInfo = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${randomRestaurant.id}`)
+            const randomRestaurantReviews = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${randomRestaurant.id}/reviews`)
+
+            setRandomRestaurantID(randomRestaurant.id)
+            setRestaurantReviews(randomRestaurantReviews.data.reviews)
             setRestaurantPhoneNumber(randomRestaurantInfo.data.display_phone)
             setIsOpen(randomRestaurantInfo.data.hours[0].is_open_now)
-            setRestaurantID(randomRestaurantInfo.data.id)
             setRestaurantName(randomRestaurantInfo.data.name)
             setRestaurantAddress(randomRestaurantInfo.data.location.display_address)
             setRestaurantPrice(randomRestaurantInfo.data.price)
@@ -54,26 +53,34 @@ function RandomRestaurant() {
             setRestaurantCategories(randomRestaurantInfo.data.categories)
             setRestaurantPhotos(randomRestaurantInfo.data.photos)
             setRestaurantURL(randomRestaurantInfo.data.url)
-
-            // const findRecipe = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${REACT_APP_SPOONACULAR}&includeIngredients=${arrOfIngredients}&fillIngredients=true`
-            // const recipeInformation = `https://api.spoonacular.com/recipes/${findRecipe[selectedRecipe].id}`/information?apiKey=${REACT_APP_SPOONACULAR}`
-            // const recipeInstructions = `https://api.spoonacular.com/recipes/${findRecipe[selectedRecipe].id}/analyzedInstructions?apiKey=${REACT_APP_SPOONACULAR}`
         }
         getRestaurantData()
     }, [])
 
+    function removeDeletedReview(reviewID) {
+        setUserRestaurantReviews(userRestaurantReviews.filter(review => review.id !== reviewID))
+    }
+
     return (
         <div>
-            <h3>{restaurantName}</h3>
-            <p>{restaurantPhoneNumber}</p>
-            <p>{restaurantPrice}</p>
-            <p>{restaurantRating} {restaurantReviewCount} reviews</p>
-            <p>{isOpen ? "OPEN" : "CLOSED"}</p>
-            <a href={restaurantURL}>{restaurantURL}</a>
-            {/* <p>{restaurantCategories.map(categories => categories)}</p> */}
-            {/* {restaurantHours.map(day => <p>{day.start}</p>)}  */}
-            {restaurantPhotos.map(photo => <img key={photo} src={photo} height="300" width="300" alt="restaurant-photos" />)}
-            <Map restaurantAddress={restaurantAddress} />
+            <RestaurantInfo
+                removeDeletedReview={removeDeletedReview}
+                restaurantName={restaurantName}
+                restaurantReviews={restaurantReviews}
+                restaurantRating={restaurantRating}
+                restaurantAddress={restaurantAddress}
+                restaurantReviewCount={restaurantReviewCount}
+                restaurantPrice={restaurantPrice}
+                restaurantCategories={restaurantCategories}
+                restaurantHours={restaurantHours}
+                restaurantPhoneNumber={restaurantPhoneNumber}
+                userRestaurantReviews={userRestaurantReviews}
+                restaurantPhotos={restaurantPhotos}
+                restaurantURL={restaurantURL}
+                isOpen={isOpen}
+                user={user}
+                id={randomRestaurantID}
+            />
         </div>
     )
 }
