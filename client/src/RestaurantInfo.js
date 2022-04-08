@@ -5,7 +5,7 @@ import Map from './Map'
 import YelpReview from "./YelpReview"
 import UserReview from "./UserReview"
 
-function RestaurantInfo() {
+function RestaurantInfo({ user }) {
     const { id } = useParams()
     const [restaurantName, setRestaurantName] = useState("")
     const [restaurantRating, setRestaurantRating] = useState("")
@@ -61,6 +61,10 @@ function RestaurantInfo() {
         getRestaurantData()
     }, [])
 
+    function removeDeletedReview(reviewID) {
+        setUserRestaurantReviews(userRestaurantReviews.filter(review => review.id !== reviewID))
+    }
+
     return (
         <div>
             <h3>{restaurantName}</h3>
@@ -81,7 +85,7 @@ function RestaurantInfo() {
             </Link>
             <br />
             {restaurantReviews.map(review => <YelpReview key={review.id} review={review} />)}
-            {userRestaurantReviews.map(review => <UserReview key={review.id} review={review} />)}
+            {userRestaurantReviews.map(review => <UserReview key={review.id} review={review} user={user} removeDeletedReview={removeDeletedReview} />)}
         </div>
     )
 }

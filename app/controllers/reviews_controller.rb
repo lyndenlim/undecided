@@ -12,8 +12,10 @@ class ReviewsController < ApplicationController
     render json: review, status: :created
   end
 
-#   def update
-#   end
+  def update
+      review = find_review.update!(review_params)
+      render json: review
+  end
 
   def destroy
     find_review.destroy
