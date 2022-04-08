@@ -9,7 +9,8 @@ import LogIn from "./LogIn"
 import SignUp from "./SignUp"
 import WriteReview from "./WriteReview"
 import AccountPage from "./AccountPage"
-import Recipe from "./Recipe";
+import RecipePage from "./RecipePage";
+import RecipeInfo from "./RecipeInfo"
 
 function App() {
   const [address, setAddress] = useState("")
@@ -43,8 +44,11 @@ function App() {
         <Route exact path="/">
           <HomePage setAddress={setAddress} />
         </Route>
-        <Route path="/recipes">
-          <Recipe />
+        <Route exact path="/recipes">
+          <RecipePage />
+        </Route>
+        <Route path="/recipes/:id">
+          <RecipeInfo />
         </Route>
         <Route exact path="/restaurants">
           <RestaurantPage address={address} />
