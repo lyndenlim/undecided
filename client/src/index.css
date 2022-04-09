@@ -84,8 +84,7 @@ code {
   justify-content: center;
   display: grid;
   z-index: 1;
-  position:relative
-  /* transform: translate(0%, -225%); */
+  transform: translate(0%, 120%);
 }
 
 .recipe-container {
@@ -144,6 +143,7 @@ input {
   text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
   text-align: center;
   transition: all 0.2s;
+  box-shadow: 10px 5px 5px black;
 }
 
 .search-button:hover {
