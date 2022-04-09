@@ -59,7 +59,7 @@ code {
   width: 375px;
 }
 
-li {
+.hour-list {
   list-style-type: none;
 }
 
@@ -79,7 +79,44 @@ li {
   justify-content: center;
   display: grid;
   z-index: 1;
-  
+}
+
+.recipe-container {
+  text-align: center;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.recipe-search {
+  text-align: center;
+  justify-content: center;
+  display: grid;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.recipe-card {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.recipe-image {
+  width: 300px;
+  height: 300px;
+}
+
+.recipe-header {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.recipe-info {
+  text-align: center;
+  justify-content: center;
+  display: grid;
 }
 
 input {

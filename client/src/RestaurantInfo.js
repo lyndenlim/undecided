@@ -18,7 +18,7 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                 <p>{restaurantPhoneNumber}</p>
                 {restaurantCategories.map(category => <p key={category.title} className="category">{category.title} </p>)}
                 HOURS
-                {restaurantHours.map(day => <li key={day.day}>{day.day} {day.start} - {day.end}</li>)}
+                {restaurantHours.map(day => <li key={day.day} className="hour-list">{day.day} {day.start} - {day.end}</li>)}
                 {/* <a href={restaurantURL}>{restaurantURL}</a> */}
                 <br />
                 <Map restaurantAddress={restaurantAddress} />

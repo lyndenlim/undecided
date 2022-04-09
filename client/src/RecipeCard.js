@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from "react-router-dom"
+import Card from "react-bootstrap/Card"
+import ListGroup from "react-bootstrap/ListGroup"
+import ListGroupItem from 'react-bootstrap/esm/ListGroupItem'
 
 function RecipeCard({ recipe }) {
     const [recipeInfo, setRecipeInfo] = useState([])
@@ -19,17 +22,25 @@ function RecipeCard({ recipe }) {
     }, [])
 
     return (
-        <div>
-            <Link to={`/recipes/${recipe.id}`} className="link">
-                <h3>{recipe.title}</h3>
-                <img src={recipe.image} />
-                <h5>Takes {recipeInfo.readyInMinutes} minutes to make</h5>
-                Ingredients not on hand: {recipe.missedIngredients.map((ingredient, index) => <li key={index}>{ingredient.original}</li>)}
-                <br />
-                Cuisine(s): {recipeCuisines.map((cuisine, index) => <p key={index}>{cuisine}</p>)}
-                {recipeDiets.map((diet, index) => <p key={index}>{diet}</p>)}
-            </Link>
-        </div >
+        <>
+            <Card className="recipe-card">
+                <Link to={`/recipes/${recipe.id}`} className="link">
+                    <Card.Header className="recipe-header">{recipe.title}</Card.Header>
+                    <Card.Img src={recipe.image} className="recipe-image" />
+                    <Card.Body>Takes <strong>{recipeInfo.readyInMinutes}</strong> minutes to make</Card.Body>
+                    Ingredients not on hand:
+                    <ListGroup className="list-group-flush">
+                        <ListGroupItem>{recipe.missedIngredients.map((ingredient, index) => <ListGroupItem key={index}>{ingredient.original}</ListGroupItem>)}</ListGroupItem>
+                    </ListGroup>
+                    <Card.Body>
+                        {/* revisit */}
+                        <strong>Cuisine(s):</strong> {recipeCuisines.map((cuisine, index) => <p key={index} className="category">{cuisine}</p>)}
+                        <br />
+                        <strong>Diet Type(s):</strong>  {recipeDiets.map((diet, index) => <p key={index} className="category">{diet}</p>)}
+                    </Card.Body>
+                </Link>
+            </Card >
+        </>
     )
 }
 

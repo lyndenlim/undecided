@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import Card from "react-bootstrap/Card"
 
 function RecipeInfo() {
     const { id } = useParams()
@@ -22,10 +23,13 @@ function RecipeInfo() {
     }, [])
 
     return (
-        <div>
-            <h3>{title}</h3>
-            <img src={image} alt="recipe" />
-            {recipeSteps.map((step, index) => <li key={index}>{step.step}</li>)}
+        // Fix uneven sizing of cards due to different img szs
+        <div className="recipe-info">
+            <Card className="recipe-info">
+                <Card.Header className="recipe-header">{title}</Card.Header>
+                <Card.Img src={image} alt="recipe" />
+                <Card.Body>{recipeSteps.map((step, index) => <li key={index}>{step.step}</li>)}</Card.Body>
+            </Card>
         </div>
     )
 }
