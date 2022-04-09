@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import RestaurantCard from "./RestaurantCard"
+import Card from "react-bootstrap/Card"
 
 function HomePage() {
     const history = useHistory()
@@ -48,16 +49,21 @@ function HomePage() {
     return (
         <>
             <div className="homepage-background">
-                <img src={background} alt="background" className="homepage-image" />
-            </div>
-            <div className="homepage-search">
-                <form onSubmit={handleSubmit}>
-                    <input placeholder="Enter an address" defaultValue={userInput} onChange={e => setUserInput(e.target.value)} required></input>
-                    {/* on submit scroll down to results */}
-                    <button type="submit">Search</button>
-                </form>
-                <br />
-                <button className="search-button bouncy" onClick={() => history.push("/random")}>CHOOSE FOR ME</button>
+                <Card>
+                    <Card.Img src={background} alt="background" className="homepage-image" />
+                    <Card.ImgOverlay>
+                        <div className="homepage-search">
+                            <form onSubmit={handleSubmit}>
+                                <input placeholder="Enter an address" defaultValue={userInput} onChange={e => setUserInput(e.target.value)} required></input>
+                                {/* on submit scroll down to results */}
+                                <button type="submit">Search</button>
+                            </form>
+                            {/* placeholder */}
+                            OR
+                            <button className="search-button bouncy" onClick={() => history.push("/random")}>CHOOSE FOR ME</button>
+                        </div>
+                    </Card.ImgOverlay>
+                </Card>
             </div>
             <br />
             <div>
