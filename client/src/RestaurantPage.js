@@ -19,14 +19,17 @@ function RestaurantPage({ address }) {
             const allRestaurants = restaurantRequests.data.businesses
 
             setAllRestaurantsInfo(allRestaurants)
-            
+
         }
         getRestaurantsData()
     }, [address])
 
     return (
         <>
-            {allRestaurantsInfo.map(restaurant => <RestaurantCard key={restaurant.id} restaurant={restaurant} />)}
+            <h4 className="header">Results for <strong>{address}</strong></h4>
+            <div className="restaurant-container">
+                {allRestaurantsInfo.map(restaurant => <RestaurantCard key={restaurant.id} restaurant={restaurant} />)}
+            </div>
         </>
     )
 }

@@ -14,8 +14,6 @@ function AccountPage({ user }) {
         getUserReviews()
     }, [])
 
-    console.log(reviews)
-
     return (
         <div>
             {<img height="200px" width="200px" src={user.profile_picture !== null ? user.profile_picture : "https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png"} alt="profile-picture" />}

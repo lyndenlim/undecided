@@ -36,6 +36,7 @@ function UserReview({ review, user, removeDeletedReview }) {
     return (
         <>
             <img
+                className="profile-picture"
                 height="75px"
                 width="75px"
                 src={review.user.profile_picture !== null ? review.user.profile_picture : "https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png"}

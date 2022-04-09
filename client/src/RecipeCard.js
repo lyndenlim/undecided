@@ -19,8 +19,8 @@ function RecipeCard({ recipe }) {
     }, [])
 
     return (
-        <Link to={`/recipes/${recipe.id}`} className="link">
-            <div>
+        <div>
+            <Link to={`/recipes/${recipe.id}`} className="link">
                 <h3>{recipe.title}</h3>
                 <img src={recipe.image} />
                 <h5>Takes {recipeInfo.readyInMinutes} minutes to make</h5>
@@ -28,8 +28,8 @@ function RecipeCard({ recipe }) {
                 <br />
                 Cuisine(s): {recipeCuisines.map((cuisine, index) => <p key={index}>{cuisine}</p>)}
                 {recipeDiets.map((diet, index) => <p key={index}>{diet}</p>)}
-            </div>
-        </Link>
+            </Link>
+        </div >
     )
 }
 
