@@ -2,7 +2,6 @@ import { Route, Switch } from "react-router-dom"
 import { useState, useEffect } from "react"
 import NavBar from "./NavBar"
 import HomePage from "./HomePage";
-import RestaurantPage from "./RestaurantPage"
 import RandomRestaurant from "./RandomRestaurant"
 import SelectedRestaurant from "./SelectedRestaurant"
 import LogIn from "./LogIn"
@@ -42,16 +41,13 @@ function App() {
           <h1>Test Route</h1>
         </Route>
         <Route exact path="/">
-          <HomePage setAddress={setAddress} />
+          <HomePage />
         </Route>
         <Route exact path="/recipes">
           <RecipePage />
         </Route>
         <Route path="/recipes/:id">
           <RecipeInfo />
-        </Route>
-        <Route exact path="/restaurants">
-          <RestaurantPage address={address} />
         </Route>
         <Route path="/restaurants/:id">
           <SelectedRestaurant user={user} />
@@ -60,7 +56,7 @@ function App() {
           <RandomRestaurant currentLat={currentLat} currentLng={currentLng} user={user} />
         </Route>
         <Route path="/account">
-          <AccountPage user={user}/>
+          <AccountPage user={user} />
         </Route>
         <Route path="/login" >
           <LogIn setUser={setUser} />
