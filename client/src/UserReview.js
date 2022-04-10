@@ -6,6 +6,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
 import { faXmark } from "@fortawesome/free-solid-svg-icons"
 import Tooltip from "react-bootstrap/Tooltip"
 import OverlayTrigger from "react-bootstrap/OverlayTrigger"
+import Form from "react-bootstrap/Form"
 
 function UserReview({ review, user, removeDeletedReview }) {
     const [dateCreated, setDateCreated] = useState("")
@@ -73,18 +74,20 @@ function UserReview({ review, user, removeDeletedReview }) {
                 <>
                     <form onSubmit={handleEdit}>
                         <div>
-                            <select defaultValue={newRating} onChange={e => setNewRating(e.target.value)}>
+                            <Form.Select style={{ width: "fit-content" }} defaultValue={newRating} onChange={e => setNewRating(e.target.value)}>
                                 <option>5</option>
                                 <option>4</option>
                                 <option>3</option>
                                 <option>2</option>
                                 <option>1</option>
-                            </select>
+                            </Form.Select>
                         </div>
+                        <br />
                         <div>
                             {/* revisit for height autosizing to content */}
-                            <textarea className="edit-textarea" value={newComment} onChange={e => setNewComment(e.target.value)}>{review.comment}</textarea>
+                            <Form.Control as="textarea" className="edit-textarea" value={newComment} onChange={e => setNewComment(e.target.value)}>{review.comment}</Form.Control>
                         </div>
+                        <br />
                         <button type="submit">SUBMIT CHANGES</button>
                     </form>
                     <br />
