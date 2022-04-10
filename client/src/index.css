@@ -29,10 +29,17 @@ code {
 }
 
 .restaurant-search-button,
-.recipe-search-button {
+.recipe-search-button,
+.login-button,
+.signup-button {
   background-color: #d32322 !important;
   border-color: #d32322 !important;
   box-shadow: none;
+}
+
+.login-button,
+.signup-button {
+  margin-bottom: 10px;
 }
 
 .link,
@@ -274,9 +281,6 @@ input {
 .signup-label {
   margin: auto;
   width: fit-content !important;
-  text-align: center !important;
+  text-align: left !important;
 }
 
-/* .name-inputs {
-  display: flex;
-} */
