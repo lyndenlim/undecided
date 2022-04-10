@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useHistory, Link } from "react-router-dom"
 import Form from "react-bootstrap/Form"
 import FloatingLabel from "react-bootstrap/FloatingLabel"
+import Button from "react-bootstrap/Button"
 
 function LogIn({ setUser }) {
     const [email, setEmail] = useState("")
@@ -35,16 +36,18 @@ function LogIn({ setUser }) {
             {/* https://www.lironboylston.com/wp-content/uploads/2020/12/WBC_7095.jpg */}
             <div className="col-8"><img height="100%" width="100%" src="https://static.onecms.io/wp-content/uploads/sites/9/2022/02/15/guide-to-homemade-pizza-FT-MAG0322.jpg" alt="login-display" /> </div>
             <div className="col-4 login-column">
+                <h4>Log In</h4>
+                <br />
                 <form onSubmit={handleSubmit}>
                     <FloatingLabel label="Email" className="login-label">
-                        <Form.Control className="login-input" placeholder="email" autoComplete="off" defaultValue={email} onChange={e => setEmail(e.target.value)} />
+                        <Form.Control className="login-input" placeholder="email" type="email" required autoComplete="new-password" defaultValue={email} onChange={e => setEmail(e.target.value)} />
                     </FloatingLabel>
                     <br />
                     <FloatingLabel label="Password" className="login-label">
-                    <Form.Control className="login-input" placeholder="password" autoComplete="off" type="password" defaultValue={password} onChange={e => setPassword(e.target.value)} />
+                        <Form.Control className="login-input" placeholder="password" required autoComplete="new-password" type="password" defaultValue={password} onChange={e => setPassword(e.target.value)} />
                     </FloatingLabel>
                     <br />
-                    <button type="submit">Log In</button>
+                    <Button size="lg" className="login-button" type="submit">Log In</Button>
                 </form>
                 Don't have an account? <Link to="/signup">Sign up</Link>
             </div>
