@@ -3,6 +3,7 @@ import { useHistory, Link } from "react-router-dom"
 import Form from "react-bootstrap/Form"
 import FloatingLabel from "react-bootstrap/FloatingLabel"
 import Button from "react-bootstrap/Button"
+import signup from "./signup_image/signup.jpg"
 
 function SignUp({ setUser }) {
     const [firstName, setFirstName] = useState("")
@@ -30,7 +31,7 @@ function SignUp({ setUser }) {
 
     return (
         <div className="signup-container">
-            <div className="col-8"><img height="100%" width="100%" src="https://www.lironboylston.com/wp-content/uploads/2020/12/WBC_7095.jpg" alt="signup-display" /></div>
+            <div className="col-8"><img height="100%" width="100%" src={signup} alt="signup-display" /></div>
             <div className="col-4 signup-column">
                 <h4>Sign Up</h4>
                 <br/>

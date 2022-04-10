@@ -8,28 +8,24 @@ import Button from "react-bootstrap/Button"
 import InputGroup from "react-bootstrap/InputGroup"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUtensils } from "@fortawesome/free-solid-svg-icons"
+import Carousel from "react-bootstrap/Carousel"
+import homepage1 from "./homepage_images/homepage1.jpeg"
+import homepage2 from "./homepage_images/homepage2.png"
+import homepage3 from "./homepage_images/homepage3.jpg"
+import homepage4 from "./homepage_images/homepage4.png"
+import homepage5 from "./homepage_images/homepage5.jpg"
 
 function HomePage() {
     const history = useHistory()
     const [userInput, setUserInput] = useState("")
-    const [background, setBackground] = useState("")
+    const [background, setBackground] = useState([])
     const [allRestaurantsInfo, setAllRestaurantsInfo] = useState([])
 
 
     useEffect(() => {
         async function setPhotos() {
-            // const axiosInstance = axios.create({
-            //     headers: {
-            //         Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
-            //     }
-            // })
-            // const restaurantPhotos = await axiosInstance.get("https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=20&latitude=40.768163594&longitude=-73.959329496&radius=805&open_now=true&categories=restaurants")
-            // const photoArray = restaurantPhotos.data.businesses.map(business => business.image_url)
-
-            // possibly make carousel
-            const photoArray = ['https://s3-media2.fl.yelpcdn.com/bphoto/q5vevyMl8FEO-mly8hh1wA/o.jpg', 'https://s3-media4.fl.yelpcdn.com/bphoto/yzPxoukJ3s3JEf8nXyv_VA/o.jpg', 'https://s3-media4.fl.yelpcdn.com/bphoto/HSkTWFTItJRe398Yla56rQ/o.jpg', 'https://s3-media2.fl.yelpcdn.com/bphoto/czFsUoHr28QTi9LHCp634A/o.jpg', 'https://s3-media1.fl.yelpcdn.com/bphoto/jkOeBmGbclLyY3zbOa7COw/o.jpg', 'https://s3-media2.fl.yelpcdn.com/bphoto/uBhe_gNq53jqkdtPmBM_Lw/o.jpg', 'https://s3-media2.fl.yelpcdn.com/bphoto/P_AnRsbxTllXQ-S6hWh-Xw/o.jpg', 'https://s3-media2.fl.yelpcdn.com/bphoto/nnAk1txBE_-5EDggdBMbSQ/o.jpg', 'https://s3-media1.fl.yelpcdn.com/bphoto/V53Pgx8EOsiMIYIsOvoYSw/o.jpg', 'https://s3-media3.fl.yelpcdn.com/bphoto/78u5SWauEV0nu9Tus3bf6g/o.jpg', 'https://s3-media3.fl.yelpcdn.com/bphoto/WymEpZCm4CPRTeVHXVyzXQ/o.jpg', 'https://s3-media1.fl.yelpcdn.com/bphoto/xCDta7sEvT-YD-6yyWSOQw/o.jpg', 'https://s3-media2.fl.yelpcdn.com/bphoto/bnUM__4VCcEQOsulwHx_4A/o.jpg', 'https://s3-media2.fl.yelpcdn.com/bphoto/TXfqMXlF2VfghYzVvO2Lxg/o.jpg', 'https://s3-media3.fl.yelpcdn.com/bphoto/FOPr-jqeJWnw3vivAFv_Uw/o.jpg', 'https://s3-media2.fl.yelpcdn.com/bphoto/_5f7gMLWkdXuldBsVQZJDA/o.jpg', 'https://s3-media4.fl.yelpcdn.com/bphoto/x1MI0QnfesftqWX-B-wAHA/o.jpg', 'https://s3-media3.fl.yelpcdn.com/bphoto/lJuUFXTyQ5Q3yu3_oE-8Mg/o.jpg', 'https://s3-media1.fl.yelpcdn.com/bphoto/y7dHqyyCQRg5rSfJ5grAjQ/o.jpg']
-            const randomPhoto = Math.ceil(Math.random(photoArray) * photoArray.length) - 1
-            setBackground(photoArray[randomPhoto])
+            const photoArray = [homepage1, homepage2, homepage3, homepage4, homepage5]
+            setBackground(photoArray)
         }
 
         setPhotos()
@@ -55,7 +51,9 @@ function HomePage() {
         <>
             <div className="homepage-background">
                 <Card>
-                    <Card.Img src={background} alt="background" className="homepage-image" />
+                    <Carousel interval="10000" controls={false}>
+                        {background.map(image => <Carousel.Item key={image}><img src={image} alt="background" className="homepage-image" /></Carousel.Item>)}
+                    </Carousel>
                     <Card.ImgOverlay>
                         <div className="homepage-search">
                             <form onSubmit={handleSubmit}>
@@ -66,8 +64,8 @@ function HomePage() {
                                 </InputGroup>
                             </form>
                             {/* placeholder */}
-                            OR
-                            <button className="search-button bouncy" onClick={() => history.push("/random")}>CHOOSE FOR ME</button>
+                            <span style={{color:"white"}}>OR</span>
+                            <Button size="lg" className="search-button bouncy" onClick={() => history.push("/random")}>CHOOSE FOR ME</Button>
                         </div>
                     </Card.ImgOverlay>
                 </Card>

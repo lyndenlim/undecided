@@ -7,6 +7,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons"
 import Tooltip from "react-bootstrap/Tooltip"
 import OverlayTrigger from "react-bootstrap/OverlayTrigger"
 import Form from "react-bootstrap/Form"
+import default_profile_picture from "./default_profile_picture/default_profile_picture.png"
 
 function UserReview({ review, user, removeDeletedReview }) {
     const [dateCreated, setDateCreated] = useState("")
@@ -64,7 +65,7 @@ function UserReview({ review, user, removeDeletedReview }) {
                 className="profile-picture"
                 height="75px"
                 width="75px"
-                src={review.user.profile_picture !== null ? review.user.profile_picture : "https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png"}
+                src={review.user.profile_picture !== null ? review.user.profile_picture : default_profile_picture}
                 alt="user-avatar" />
             <h5>
                 {review.user.first_name.slice(0, 1).toUpperCase()}{review.user.first_name.slice(1, review.user.first_name.length)} {review.user.last_name.slice(0, 1).toUpperCase()}.
