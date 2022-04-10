@@ -169,10 +169,10 @@ input {
   }
 }
 
-.bouncy {
+/* .bouncy {
   animation: bouncy 5s infinite linear;
   position: relative;
-}
+} */
 
 @keyframes bouncy {
   0% {
@@ -257,3 +257,26 @@ input {
   border: none;
   font-size: 18px;
 }
+
+.login-container,
+.signup-container {
+  display: flex;
+}
+
+.login-column,
+.signup-column {
+  text-align: center;
+}
+
+.login-input,
+.login-label,
+.signup-input,
+.signup-label {
+  margin: auto;
+  width: fit-content !important;
+  text-align: center !important;
+}
+
+/* .name-inputs {
+  display: flex;
+} */

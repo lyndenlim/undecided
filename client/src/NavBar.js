@@ -31,7 +31,25 @@ function NavBar({ user, setUser }) {
                     <NavLink to="/recipes" className="navbar-navlink">Recipes</NavLink>
                 </div>
                 <div>
-                    {user ? <div><NavLink to="/account" className="navbar-navlink">Account</NavLink><NavLink to="/" onClick={handleLogoutClick} className="navbar-navlink">Log Out</NavLink></div> : <NavLink to="/login" className="navbar-navlink">Log In</NavLink>}
+                    {user ?
+                        <div>
+                            <NavLink to="/account" className="navbar-navlink">
+                                Account
+                            </NavLink>
+                            <NavLink to="/" onClick={handleLogoutClick} className="navbar-navlink">
+                                Log Out
+                            </NavLink>
+                        </div>
+                        :
+                        <>
+                            <NavLink to="/login" className="navbar-navlink">
+                                Log In
+                            </NavLink>
+                            <NavLink to="/signup" className="navbar-navlink">
+                                Sign Up
+                            </NavLink>
+                        </>
+                    }
                 </div>
             </Container>
         </Navbar>

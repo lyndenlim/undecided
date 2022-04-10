@@ -28,7 +28,7 @@ function RecipeInfo() {
             <Card className="recipe-info">
                 <Card.Header className="recipe-header">{title}</Card.Header>
                 <Card.Img src={image} alt="recipe" />
-                <Card.Body>{recipeSteps.map((step, index) => <li key={index}>{step.step}</li>)}</Card.Body>
+                <Card.Body><ol>{recipeSteps.map((step, index) => <li key={index}>{step.step}</li>)}</ol></Card.Body>
             </Card>
         </div>
     )
