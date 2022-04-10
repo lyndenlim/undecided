@@ -1,5 +1,11 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons"
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
+import { faXmark } from "@fortawesome/free-solid-svg-icons"
+import Tooltip from "react-bootstrap/Tooltip"
+import OverlayTrigger from "react-bootstrap/OverlayTrigger"
 
 function UserReview({ review, user, removeDeletedReview }) {
     const [dateCreated, setDateCreated] = useState("")
@@ -33,6 +39,24 @@ function UserReview({ review, user, removeDeletedReview }) {
         })
     }
 
+    const renderTooltipDelete = (props) => (
+        <Tooltip id="delete-button-tooltip" {...props}>
+            Delete
+        </Tooltip>
+    );
+
+    const renderTooltipEdit = (props) => (
+        <Tooltip id="edit-button-tooltip" {...props}>
+            Edit
+        </Tooltip>
+    );
+
+    const renderTooltipCancel = (props) => (
+        <Tooltip id="cancel-button-tooltip" {...props}>
+            Cancel
+        </Tooltip>
+    );
+
     return (
         <>
             <img
@@ -48,16 +72,22 @@ function UserReview({ review, user, removeDeletedReview }) {
             {isEditable ?
                 <>
                     <form onSubmit={handleEdit}>
-                        <select defaultValue={newRating} onChange={e => setNewRating(e.target.value)}>
-                            <option>5</option>
-                            <option>4</option>
-                            <option>3</option>
-                            <option>2</option>
-                            <option>1</option>
-                        </select>
-                        <textarea value={newComment} onChange={e => setNewComment(e.target.value)}>{review.comment}</textarea>
+                        <div>
+                            <select defaultValue={newRating} onChange={e => setNewRating(e.target.value)}>
+                                <option>5</option>
+                                <option>4</option>
+                                <option>3</option>
+                                <option>2</option>
+                                <option>1</option>
+                            </select>
+                        </div>
+                        <div>
+                            {/* revisit for height autosizing to content */}
+                            <textarea className="edit-textarea" value={newComment} onChange={e => setNewComment(e.target.value)}>{review.comment}</textarea>
+                        </div>
                         <button type="submit">SUBMIT CHANGES</button>
                     </form>
+                    <br />
                 </>
                 :
                 <>
@@ -65,7 +95,43 @@ function UserReview({ review, user, removeDeletedReview }) {
                     <p>{review.comment}</p>
                 </>
             }
-            {user.id === review.user_id ? <><button onClick={handleDelete}>DELETE</button>{isEditable ? <><button onClick={handleCancel}>CANCEL</button></> : <button onClick={() => setIsEditable(true)}>EDIT</button>}</> : null}
+            {user.id === review.user_id ?
+                <>
+                    <OverlayTrigger
+                        placement="bottom"
+                        delay={{ show: 100, hide: 0 }}
+                        overlay={renderTooltipDelete}
+                    >
+                        <button className="delete-button" onClick={handleDelete}>
+                            <FontAwesomeIcon icon={faTrashAlt} />
+                        </button>
+                    </OverlayTrigger>
+                    {isEditable ?
+                        <>
+                            <OverlayTrigger
+                                placement="bottom"
+                                delay={{ show: 0, hide: 0 }}
+                                overlay={renderTooltipCancel}
+                            >
+                                <button className="cancel-button" onClick={handleCancel}>
+                                    <FontAwesomeIcon icon={faXmark} />
+                                </button>
+                            </OverlayTrigger>
+                        </>
+                        :
+                        <OverlayTrigger
+                            placement="bottom"
+                            delay={{ show: 0, hide: 0 }}
+                            overlay={renderTooltipEdit}
+                        >
+                            <button className="edit-button" onClick={() => setIsEditable(true)}>
+                                <FontAwesomeIcon icon={faPenToSquare} />
+                            </button>
+                        </OverlayTrigger>
+                    }
+                </>
+                :
+                null}
             <hr />
         </>
     )

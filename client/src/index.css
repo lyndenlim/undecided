@@ -16,7 +16,12 @@ code {
   height: fit-content;
   justify-content: center;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto;
+}
+
+.restaurant-centering {
+  display: grid;
+  justify-content: center;
 }
 
 .restaurant-card {
@@ -50,14 +55,12 @@ code {
 
 
 .restaurant-info-container {
-  display: grid;
-  justify-content: center;
+  width: 1200px;
 }
 
 .restaurant-photos {
   display: flex;
   height: 300px;
-  width: 375px;
 }
 
 .hour-list {
@@ -66,6 +69,8 @@ code {
 
 .profile-picture {
   border-radius: 50%;
+  height: 75px;
+  width: 75px;
 }
 
 .homepage-background {
@@ -190,4 +195,58 @@ input {
   100% {
     top: 0em;
   }
+}
+
+.hours {
+  width: fit-content;
+}
+
+.location-hours {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.restaurant-info-card {
+  margin-top: 20px;
+  border: none !important;
+}
+
+.restaurant-header {
+  font-weight: bold;
+}
+
+.restaurant-overlay {
+  height: fit-content;
+  width: fit-content;
+  transform: translate(0%, 65%);
+  color: white;
+}
+
+.status {
+  font-size: 20px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+
+.review-button {
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+.edit-textarea {
+  box-sizing: content-box;
+  width: 100%;
+}
+
+.edit-button,
+.delete-button,
+.cancel-button {
+  margin-left: 5px;
+  margin-right: 5px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
 }
