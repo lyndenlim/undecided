@@ -8,6 +8,7 @@ import Button from "react-bootstrap/Button"
 import InputGroup from "react-bootstrap/InputGroup"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUtensils } from "@fortawesome/free-solid-svg-icons"
+import { faShuffle } from "@fortawesome/free-solid-svg-icons"
 import Carousel from "react-bootstrap/Carousel"
 import homepage1 from "./homepage_images/homepage1.jpeg"
 import homepage2 from "./homepage_images/homepage2.png"
@@ -64,8 +65,8 @@ function HomePage() {
                                 </InputGroup>
                             </form>
                             {/* placeholder */}
-                            <span style={{color:"white"}}>OR</span>
-                            <Button size="lg" className="search-button bouncy" onClick={() => history.push("/random")}>CHOOSE FOR ME</Button>
+                            <span style={{ color: "white" }}>OR</span>
+                            <Button size="lg" className="search-button bouncy" onClick={() => history.push("/random")}>CHOOSE FOR ME &nbsp;<FontAwesomeIcon icon={faShuffle} /></Button>
                         </div>
                     </Card.ImgOverlay>
                 </Card>

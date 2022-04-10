@@ -33,7 +33,9 @@ code {
 .login-button,
 .signup-button,
 .delete-account-button,
-.search-button {
+.search-button,
+.post-review-button,
+.review-button {
   background-color: #d32322 !important;
   border-color: #d32322 !important;
   box-shadow: none;
@@ -277,4 +279,8 @@ input {
   border-radius: 50%;
   height: 200px;
   width: 200px;
+}
+
+.post-review-button {
+  margin-right: 5px;
 }
