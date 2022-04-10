@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, useHistory } from 'react-router-dom'
+import { useParams, useHistory, Link } from 'react-router-dom'
 import axios from 'axios'
+import Form from "react-bootstrap/Form"
+import Button from "react-bootstrap/Button"
 
 function WriteReview({ user }) {
     const { id } = useParams()
@@ -38,19 +40,28 @@ function WriteReview({ user }) {
     }
 
     return (
-        <div>
+        <div style={{ width: "500px", margin: "auto" }}>
             <h3>{restaurantName}</h3>
             <form onSubmit={postReview}>
-                <select defaultValue={rating} onChange={e => setRating(e.target.value)}>
-                    <option>5</option>
-                    <option>4</option>
-                    <option>3</option>
-                    <option>2</option>
-                    <option>1</option>
-                </select>
-                <textarea placeholder="enter your review" defaultValue={comment} onChange={e => setComment(e.target.value)} />
-                <button type="submit">Post Review</button>
+                Rating
+                <div>
+                    <Form.Select style={{ width: "fit-content" }} defaultValue={rating} onChange={e => setRating(e.target.value)}>
+                        <option>5</option>
+                        <option>4</option>
+                        <option>3</option>
+                        <option>2</option>
+                        <option>1</option>
+                    </Form.Select>
+                </div>
+                <br />
+                Comment
+                <div>
+                    <Form.Control as="textarea" placeholder="Write a review" defaultValue={comment} onChange={e => setComment(e.target.value)} />
+                </div>
+                <br />
+                <Button className="post-review-button" type="submit">Post Review</Button><Button variant="secondary" onClick={e => history.push(`/restaurants/${id}`)}>Cancel</Button>
             </form>
+            
         </div>
     )
 }

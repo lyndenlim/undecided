@@ -5,6 +5,9 @@ import YelpReview from "./YelpReview"
 import UserReview from "./UserReview"
 import Card from "react-bootstrap/Card"
 import ListGroupItem from "react-bootstrap/ListGroupItem"
+import Button from "react-bootstrap/Button"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faFilePen } from "@fortawesome/free-solid-svg-icons"
 
 function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, restaurantPrice, restaurantCategories, restaurantHours, restaurantPhoneNumber, restaurantURL, restaurantAddress, restaurantPhotos, userRestaurantReviews, user, isOpen, id, restaurantReviewCount, removeDeletedReview }) {
     return (
@@ -40,7 +43,7 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                     <hr />
                     <h4 className="restaurant-header">Reviews</h4>
                     {user ? <Link to={`/writereview/${id}`}>
-                        <button className="review-button">Write a Review</button>
+                        <Button className="review-button">Write a Review &nbsp;<FontAwesomeIcon icon={faFilePen} /></Button>
                     </Link> : null}
                     <br />
                     {restaurantReviews.map(review => <YelpReview key={review.id} review={review} />)}
