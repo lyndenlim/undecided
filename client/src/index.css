@@ -28,7 +28,8 @@ code {
   margin: 20px;
 }
 
-.restaurant-search-button {
+.restaurant-search-button,
+.recipe-search-button {
   background-color: #d32322 !important;
   border-color: #d32322 !important;
   box-shadow: none;

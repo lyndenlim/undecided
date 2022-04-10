@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { useHistory, Link } from "react-router-dom"
-import InputGroup from "react-bootstrap/InputGroup"
-import FormControl from "react-bootstrap/FormControl"
 
 function LogIn({ setUser }) {
     const [email, setEmail] = useState("")
