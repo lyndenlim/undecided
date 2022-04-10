@@ -31,9 +31,14 @@ code {
 .restaurant-search-button,
 .recipe-search-button,
 .login-button,
-.signup-button {
+.signup-button,
+.delete-account-button {
   background-color: #d32322 !important;
   border-color: #d32322 !important;
+  box-shadow: none;
+}
+
+.settings-button {
   box-shadow: none;
 }
 
@@ -284,3 +289,19 @@ input {
   text-align: left !important;
 }
 
+.user-container {
+  width: 800px;
+  margin: auto;
+}
+
+.user-info {
+  text-align: center;
+  margin-bottom: 50px;
+  margin-top: 30px;
+}
+
+.user-profile-picture {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+}
