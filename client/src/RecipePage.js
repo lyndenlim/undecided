@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import RecipeCard from './RecipeCard'
+import FormControl from "react-bootstrap/FormControl"
+import Button from "react-bootstrap/Button"
+import InputGroup from "react-bootstrap/InputGroup"
 
 function Recipe() {
   // sanitize search
@@ -18,8 +21,10 @@ function Recipe() {
     <>
       <div className="recipe-search">
         <form onSubmit={searchForRecipes}>
-          <input required placeholder="Enter ingredients" onChange={e => setSearch(e.target.value)} />
-          <button type="submit">Search for recipes</button>
+          <InputGroup>
+            <FormControl required placeholder="Enter ingredients" onChange={e => setSearch(e.target.value)} />
+            <Button type="submit">Search for recipes</Button>
+          </InputGroup>
         </form>
       </div>
       <div className="recipe-container">
