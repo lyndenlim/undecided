@@ -4,6 +4,8 @@ import RecipeCard from './RecipeCard'
 import FormControl from "react-bootstrap/FormControl"
 import Button from "react-bootstrap/Button"
 import InputGroup from "react-bootstrap/InputGroup"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faKitchenSet } from "@fortawesome/free-solid-svg-icons"
 
 function Recipe() {
   // sanitize search
@@ -23,7 +25,7 @@ function Recipe() {
         <form onSubmit={searchForRecipes}>
           <InputGroup>
             <FormControl required placeholder="Enter ingredients" onChange={e => setSearch(e.target.value)} />
-            <Button type="submit">Search for recipes</Button>
+            <Button className="recipe-search-button" type="submit"><FontAwesomeIcon icon={faKitchenSet} /></Button>
           </InputGroup>
         </form>
       </div>
