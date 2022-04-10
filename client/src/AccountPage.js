@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 import AccountReview from "./AccountReview"
 import Accordion from "react-bootstrap/Accordion"
 import Button from "react-bootstrap/Button"
+import default_profile_picture from "./default_profile_picture/default_profile_picture.png"
 
 function AccountPage({ user }) {
-    console.log(user)
     const [reviews, setReviews] = useState([])
 
     useEffect(() => {
@@ -20,7 +20,7 @@ function AccountPage({ user }) {
     return (
         <div className="user-container">
             <div className="user-info">
-                {<img className="user-profile-picture" src={user.profile_picture !== null ? user.profile_picture : "https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png"} alt="profile-picture" />}
+                {<img className="user-profile-picture" src={user.profile_picture !== null ? user.profile_picture : default_profile_picture} alt="profile-picture" />}
                 {user ? <h3><strong>{user.first_name.slice(0, 1).toUpperCase()}{user.first_name.slice(1, user.first_name.length)} {user.last_name.slice(0, 1).toUpperCase()}.</strong></h3> : null}
             </div>
             <Accordion>
