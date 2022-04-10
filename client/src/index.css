@@ -28,6 +28,12 @@ code {
   margin: 20px;
 }
 
+.restaurant-search-button {
+  background-color: #d32322 !important;
+  border-color: #d32322 !important;
+  box-shadow: none;
+}
+
 .link,
 .navbar-navlink {
   text-decoration: none;

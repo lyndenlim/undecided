@@ -3,6 +3,11 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import RestaurantCard from "./RestaurantCard"
 import Card from "react-bootstrap/Card"
+import FormControl from "react-bootstrap/FormControl"
+import Button from "react-bootstrap/Button"
+import InputGroup from "react-bootstrap/InputGroup"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faUtensils } from "@fortawesome/free-solid-svg-icons"
 
 function HomePage() {
     const history = useHistory()
@@ -54,9 +59,11 @@ function HomePage() {
                     <Card.ImgOverlay>
                         <div className="homepage-search">
                             <form onSubmit={handleSubmit}>
-                                <input placeholder="Enter an address" defaultValue={userInput} onChange={e => setUserInput(e.target.value)} required></input>
-                                {/* on submit scroll down to results */}
-                                <button type="submit">Search</button>
+                                <InputGroup>
+                                    <FormControl placeholder="Enter an address" defaultValue={userInput} onChange={e => setUserInput(e.target.value)} required />
+                                    {/* on submit scroll down to results */}
+                                    <Button className="restaurant-search-button" type="submit"><FontAwesomeIcon icon={faUtensils} /></Button>
+                                </InputGroup>
                             </form>
                             {/* placeholder */}
                             OR
@@ -67,6 +74,7 @@ function HomePage() {
             </div>
             <br />
             <div>
+                {/* revisit, where clearing search bar after a search dynamically updates below */}
                 {userInput ? <h4 className="restaurant-result-header">Results for <strong>{userInput}</strong></h4> : null}
                 <div className="restaurant-container">
                     {allRestaurantsInfo.map(restaurant => <RestaurantCard key={restaurant.id} restaurant={restaurant} />)}
