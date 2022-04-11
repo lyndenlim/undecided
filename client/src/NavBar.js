@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { NavLink, useHistory } from "react-router-dom"
 import Navbar from "react-bootstrap/Navbar"
 import Container from "react-bootstrap/Container"
-import { NavLink, useHistory } from "react-router-dom"
-
+import Dropdown from "react-bootstrap/Dropdown"
+import default_profile_picture from "./default_profile_picture/default_profile_picture.png"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons"
+import { faUserGear } from "@fortawesome/free-solid-svg-icons"
+import { faKitchenSet } from "@fortawesome/free-solid-svg-icons"
 
 function NavBar({ user, setUser }) {
+    console.log(user)
     const history = useHistory()
 
     useEffect(() => {
@@ -19,6 +25,7 @@ function NavBar({ user, setUser }) {
         fetch("/logout", { method: "DELETE" }).then((r) => {
             if (r.ok) {
                 setUser(null);
+                history.push("/")
             }
         });
     }
@@ -27,18 +34,27 @@ function NavBar({ user, setUser }) {
         <Navbar>
             <Container>
                 <div>
-                    <NavLink to="/" className="navbar-navlink">Home</NavLink>
-                    <NavLink to="/recipes" className="navbar-navlink">Recipes</NavLink>
+                    <NavLink to="/recipes" className="navbar-navlink"><FontAwesomeIcon className="recipe-icon" icon={faKitchenSet} /></NavLink>
+                </div>
+                <div>
+                    <NavLink to="/" className="navbar-navlink"><span className="logo">Undecided</span></NavLink>
                 </div>
                 <div>
                     {user ?
                         <div>
-                            <NavLink to="/account" className="navbar-navlink">
-                                Account
-                            </NavLink>
-                            <NavLink to="/" onClick={handleLogoutClick} className="navbar-navlink">
-                                Log Out
-                            </NavLink>
+                            <Dropdown>
+                                <Dropdown.Toggle className="account-toggle">
+                                    <img className="navbar-profile-picture" src={user.profile_picture ? user.profile_picture : default_profile_picture} />
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu align="end">
+                                    <Dropdown.Item onClick={e => history.push("/account")}>
+                                        Account &nbsp;<FontAwesomeIcon icon={faUserGear} />
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onClick={handleLogoutClick}>
+                                        Log Out &nbsp;<FontAwesomeIcon icon={faArrowRightFromBracket} />
+                                    </Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </div>
                         :
                         <>

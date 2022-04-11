@@ -284,3 +284,24 @@ input {
 .post-review-button {
   margin-right: 5px;
 }
+
+.navbar-profile-picture {
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+}
+
+.account-toggle {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.recipe-icon {
+  font-size:24px;
+}
