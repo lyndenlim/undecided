@@ -25,7 +25,8 @@ code {
 }
 
 .restaurant-card {
-  margin: 20px;
+  margin: 10px;
+  width: 300px;
 }
 
 .restaurant-search-button,
