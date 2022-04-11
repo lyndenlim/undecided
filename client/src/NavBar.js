@@ -49,7 +49,7 @@ function NavBar({ user, setUser }) {
                                     <Dropdown.Item onClick={e => history.push("/account")}>
                                         Account &nbsp;<FontAwesomeIcon icon={faUserGear} />
                                     </Dropdown.Item>
-                                    <Dropdown.Item onClick={handleLogoutClick}>
+                                    <Dropdown.Item onClick={handleLogoutClick} style={{ color: "red" }}>
                                         Log Out &nbsp;<FontAwesomeIcon icon={faArrowRightFromBracket} />
                                     </Dropdown.Item>
                                 </Dropdown.Menu>
