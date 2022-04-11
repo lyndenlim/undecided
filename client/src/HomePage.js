@@ -1,15 +1,16 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
+import * as Scroll from "react-scroll"
 import RestaurantCard from "./RestaurantCard"
 import Card from "react-bootstrap/Card"
 import FormControl from "react-bootstrap/FormControl"
 import Button from "react-bootstrap/Button"
 import InputGroup from "react-bootstrap/InputGroup"
+import Carousel from "react-bootstrap/Carousel"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUtensils } from "@fortawesome/free-solid-svg-icons"
 import { faShuffle } from "@fortawesome/free-solid-svg-icons"
-import Carousel from "react-bootstrap/Carousel"
 import homepage1 from "./homepageImages/homepage1.jpeg"
 import homepage2 from "./homepageImages/homepage2.png"
 import homepage3 from "./homepageImages/homepage3.jpg"
@@ -21,8 +22,6 @@ function HomePage() {
     const [userInput, setUserInput] = useState("")
     const [background, setBackground] = useState([])
     const [allRestaurantsInfo, setAllRestaurantsInfo] = useState([])
-    let Scroll   = require('react-scroll');
-    let scroller = Scroll.scroller;
 
     useEffect(() => {
         async function setPhotos() {
@@ -48,7 +47,7 @@ function HomePage() {
 
         setAllRestaurantsInfo(allRestaurants)
 
-        scroller.scrollTo("results", {
+        Scroll.scroller.scrollTo("results", {
             smooth: true
         });
     }
