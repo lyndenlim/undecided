@@ -3,7 +3,7 @@ import { NavLink, useHistory } from "react-router-dom"
 import Navbar from "react-bootstrap/Navbar"
 import Container from "react-bootstrap/Container"
 import Dropdown from "react-bootstrap/Dropdown"
-import default_profile_picture from "./default_profile_picture/default_profile_picture.png"
+import defaultProfilePicture from "./defaultProfilePicture/defaultProfilePicture.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons"
 import { faUserGear } from "@fortawesome/free-solid-svg-icons"
@@ -43,7 +43,7 @@ function NavBar({ user, setUser }) {
                         <div>
                             <Dropdown>
                                 <Dropdown.Toggle className="account-toggle">
-                                    <img className="navbar-profile-picture" src={user.profile_picture ? user.profile_picture : default_profile_picture} />
+                                    <img className="navbar-profile-picture" src={user.profile_picture ? user.profile_picture : defaultProfilePicture} />
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu align="end">
                                     <Dropdown.Item onClick={e => history.push("/account")}>

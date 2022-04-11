@@ -10,11 +10,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUtensils } from "@fortawesome/free-solid-svg-icons"
 import { faShuffle } from "@fortawesome/free-solid-svg-icons"
 import Carousel from "react-bootstrap/Carousel"
-import homepage1 from "./homepage_images/homepage1.jpeg"
-import homepage2 from "./homepage_images/homepage2.png"
-import homepage3 from "./homepage_images/homepage3.jpg"
-import homepage4 from "./homepage_images/homepage4.png"
-import homepage5 from "./homepage_images/homepage5.jpg"
+import homepage1 from "./homepageImages/homepage1.jpeg"
+import homepage2 from "./homepageImages/homepage2.png"
+import homepage3 from "./homepageImages/homepage3.jpg"
+import homepage4 from "./homepageImages/homepage4.png"
+import homepage5 from "./homepageImages/homepage5.jpg"
 
 function HomePage() {
     const history = useHistory()
@@ -46,14 +46,12 @@ function HomePage() {
         const allRestaurants = restaurantRequests.data.businesses
 
         setAllRestaurantsInfo(allRestaurants)
-    }
-
-    const scrollDown = (ref) => {
+        
         window.scrollTo({
-            top: ref.current.offsetTop,
+            top: results.current.offsetTop,
             behavior: 'smooth',
         });
-    };
+    }
 
     return (
         <>
@@ -67,7 +65,7 @@ function HomePage() {
                             <form onSubmit={handleSubmit}>
                                 <InputGroup>
                                     <FormControl placeholder="Enter an address" defaultValue={userInput} onChange={e => setUserInput(e.target.value)} required />
-                                    <Button className="restaurant-search-button" type="submit" onClick={() => scrollDown(results)}><FontAwesomeIcon icon={faUtensils} /></Button>
+                                    <Button className="restaurant-search-button" type="submit" ><FontAwesomeIcon icon={faUtensils} /></Button>
                                 </InputGroup>
                             </form>
                             {/* placeholder */}

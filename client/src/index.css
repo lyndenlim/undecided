@@ -259,7 +259,9 @@ input {
 .login-input,
 .login-label,
 .signup-input,
-.signup-label {
+.signup-label,
+.settings-input,
+.settings-label {
   margin: auto;
   width: fit-content !important;
   text-align: left !important;
@@ -304,5 +306,9 @@ input {
 }
 
 .recipe-icon {
-  font-size:24px;
+  font-size: 24px;
+}
+
+.settings-input {
+  text-align: left !important;
 }
