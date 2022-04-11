@@ -120,7 +120,7 @@ function AccountPage({ user, setUser }) {
                 <Accordion>
                     <Accordion.Item eventKey="0">
                         <Accordion.Header>Account Settings</Accordion.Header>
-                        <Accordion.Body style={{ textAlign: "center" }}>
+                        <Accordion.Body className="accordion-setting-buttons">
                             <Button variant="secondary" className="settings-button" onClick={handleProfilePictureShow}>Add/edit profile picture</Button>
                             <hr />
                             <Button variant="secondary" className="settings-button" onClick={handleNameShow}>Change name</Button>
@@ -140,7 +140,7 @@ function AccountPage({ user, setUser }) {
             </div>
 
             <Modal show={profilePictureShow} onHide={handleProfilePictureClose} centered={true} size="sm">
-                <Modal.Header style={{ textAlign: 'center' }} closeButton>
+                <Modal.Header className="add-edit-header" closeButton>
                     <Modal.Title>Add/edit profile picture</Modal.Title>
                 </Modal.Header>
                 <form onSubmit={handleProfilePictureChange}>
@@ -215,11 +215,11 @@ function AccountPage({ user, setUser }) {
                 </form>
             </Modal>
 
-            <Modal show={deleteShow} onHide={handleDeleteClose} centered={true} style={{ textAlign: 'center' }} size="md">
+            <Modal show={deleteShow} onHide={handleDeleteClose} centered={true} className="delete-modal" size="md">
                 <Modal.Header>
                     <Modal.Title>Are you sure you want to deactivate this account?</Modal.Title>
                 </Modal.Header>
-                <Modal.Footer style={{ margin: 'auto' }}>
+                <Modal.Footer className="delete-account-buttons">
                     <Button variant="danger" onClick={handleDeleteAccount}>Yes</Button><Button variant="secondary" onClick={() => setDeleteShow(false)}>No</Button>
                 </Modal.Footer>
             </Modal>
