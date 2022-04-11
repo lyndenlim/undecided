@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom"
 import RestaurantCard from "./RestaurantCard"
 import Card from "react-bootstrap/Card"
@@ -21,7 +21,8 @@ function HomePage() {
     const [userInput, setUserInput] = useState("")
     const [background, setBackground] = useState([])
     const [allRestaurantsInfo, setAllRestaurantsInfo] = useState([])
-    const results = useRef(null);
+    let Scroll   = require('react-scroll');
+    let scroller = Scroll.scroller;
 
     useEffect(() => {
         async function setPhotos() {
@@ -46,10 +47,9 @@ function HomePage() {
         const allRestaurants = restaurantRequests.data.businesses
 
         setAllRestaurantsInfo(allRestaurants)
-        
-        window.scrollTo({
-            top: results.current.offsetTop,
-            behavior: 'smooth',
+
+        scroller.scrollTo("results", {
+            smooth: true
         });
     }
 
@@ -65,7 +65,7 @@ function HomePage() {
                             <form onSubmit={handleSubmit}>
                                 <InputGroup>
                                     <FormControl placeholder="Enter an address" defaultValue={userInput} onChange={e => setUserInput(e.target.value)} required />
-                                    <Button className="restaurant-search-button" type="submit" ><FontAwesomeIcon icon={faUtensils} /></Button>
+                                    <Button className="restaurant-search-button" type="submit"><FontAwesomeIcon icon={faUtensils} /></Button>
                                 </InputGroup>
                             </form>
                             {/* placeholder */}
@@ -78,7 +78,7 @@ function HomePage() {
             <br />
             <div>
                 {/* revisit, where clearing search bar after a search dynamically updates below */}
-                {userInput ? <h4 className="restaurant-result-header" ref={results}>Results for <strong>{userInput}</strong></h4> : null}
+                {userInput ? <h4 className="restaurant-result-header" name="results">Results for <strong>{userInput}</strong></h4> : null}
                 <div className="restaurant-container">
                     {allRestaurantsInfo.map(restaurant => <RestaurantCard key={restaurant.id} restaurant={restaurant} />)}
                 </div>
