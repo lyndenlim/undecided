@@ -3,7 +3,7 @@ import { useHistory, Link } from "react-router-dom"
 import Form from "react-bootstrap/Form"
 import FloatingLabel from "react-bootstrap/FloatingLabel"
 import Button from "react-bootstrap/Button"
-import signup from "./signup_image/signup.jpg"
+import signup from "./signupImage/signup.jpg"
 
 function SignUp({ setUser }) {
     const [firstName, setFirstName] = useState("")
