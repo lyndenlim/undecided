@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Map from './Map'
 import YelpReview from "./YelpReview"
@@ -10,6 +10,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFilePen } from "@fortawesome/free-solid-svg-icons"
 
 function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, restaurantPrice, restaurantCategories, restaurantHours, restaurantPhoneNumber, restaurantURL, restaurantAddress, restaurantPhotos, userRestaurantReviews, user, isOpen, id, restaurantReviewCount, removeDeletedReview }) {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     return (
         <div className="restaurant-centering">
             <Card className="restaurant-info-card">
@@ -37,7 +41,7 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                         <Card>
                             MAKE A RESERVATION
                             <p>CALL AHEAD {restaurantPhoneNumber}</p>
-                    {/* <a href={restaurantURL}>{restaurantURL}</a> */}
+                            {/* <a href={restaurantURL}>{restaurantURL}</a> */}
                         </Card>
                     </div>
                     <hr />
