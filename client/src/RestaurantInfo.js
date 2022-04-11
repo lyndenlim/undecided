@@ -37,9 +37,9 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                         <Card>
                             MAKE A RESERVATION
                             <p>CALL AHEAD {restaurantPhoneNumber}</p>
+                    {/* <a href={restaurantURL}>{restaurantURL}</a> */}
                         </Card>
                     </div>
-                    {/* <a href={restaurantURL}>{restaurantURL}</a> */}
                     <hr />
                     <h4 className="restaurant-header">Reviews</h4>
                     {user ? <Link to={`/writereview/${id}`}>

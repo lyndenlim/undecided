@@ -10,7 +10,6 @@ import { faUserGear } from "@fortawesome/free-solid-svg-icons"
 import { faKitchenSet } from "@fortawesome/free-solid-svg-icons"
 
 function NavBar({ user, setUser }) {
-    console.log(user)
     const history = useHistory()
 
     useEffect(() => {
