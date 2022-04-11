@@ -42,8 +42,11 @@ function NavBar({ user, setUser }) {
                     {user ?
                         <div>
                             <Dropdown>
+                                {/* revisit */}
                                 <Dropdown.Toggle className="account-toggle">
-                                    <img className="navbar-profile-picture" src={user.profile_picture ? user.profile_picture : defaultProfilePicture} />
+                                    <div className="navbar-profile-picture">
+                                        <img width="100%" height="fit-content" src={user.profile_picture ? user.profile_picture : defaultProfilePicture} />
+                                    </div>
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu align="end">
                                     <Dropdown.Item onClick={e => history.push("/account")}>

@@ -11,7 +11,9 @@ function Review({ review }) {
 
   return (
     <div>
-      <img className="profile-picture" src={review.user.image_url !== null ? review.user.image_url : "https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png"} alt="user-avatar" />
+      <div className="profile-picture">
+        <img width="100%" height="fit-content" src={review.user.image_url !== null ? review.user.image_url : "https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png"} alt="user-avatar" />
+      </div>
       <h5>{review.user.name}</h5>
       <p>{dateCreated}</p>
       <p>{review.rating}</p>

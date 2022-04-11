@@ -101,7 +101,9 @@ function AccountPage({ user, setUser }) {
         <>
             <div className="user-container">
                 <div className="user-info">
-                    {<img className="user-profile-picture" src={user.profile_picture !== null ? user.profile_picture : defaultProfilePicture} alt="profile-picture" />}
+                    {<div className="user-profile-picture">
+                        <img width="100%" height="fit-content" src={user.profile_picture !== null ? user.profile_picture : defaultProfilePicture} alt="profile-picture" />
+                    </div>}
                     {user ?
                         <>
                             <h3>
@@ -120,17 +122,13 @@ function AccountPage({ user, setUser }) {
                         <Accordion.Header>Account Settings</Accordion.Header>
                         <Accordion.Body style={{ textAlign: "center" }}>
                             <Button variant="secondary" className="settings-button" onClick={handleProfilePictureShow}>Add/edit profile picture</Button>
-                            <br />
-                            <br />
+                            <hr />
                             <Button variant="secondary" className="settings-button" onClick={handleNameShow}>Change name</Button>
-                            <br />
-                            <br />
+                            <hr />
                             <Button variant="secondary" className="settings-button" onClick={handleEmailShow}>Change email</Button>
-                            <br />
-                            <br />
+                            <hr />
                             <Button variant="secondary" className="settings-button" onClick={handlePasswordShow}>Change password</Button>
-                            <br />
-                            <br />
+                            <hr />
                             <Button className="delete-account-button" onClick={handleDeleteShow}>Deactivate account</Button>
                         </Accordion.Body>
                     </Accordion.Item>
@@ -142,8 +140,8 @@ function AccountPage({ user, setUser }) {
             </div>
 
             <Modal show={profilePictureShow} onHide={handleProfilePictureClose} centered={true} size="sm">
-                <Modal.Header closeButton>
-                    <Modal.Title>Change profile picture</Modal.Title>
+                <Modal.Header style={{ textAlign: 'center' }} closeButton>
+                    <Modal.Title>Add/edit profile picture</Modal.Title>
                 </Modal.Header>
                 <form onSubmit={handleProfilePictureChange}>
                     <Modal.Body>
