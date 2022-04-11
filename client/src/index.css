@@ -36,7 +36,8 @@ code {
 .delete-account-button,
 .search-button,
 .post-review-button,
-.review-button {
+.review-button,
+.review-submit-button {
   background-color: #d32322 !important;
   border-color: #d32322 !important;
   box-shadow: none;
@@ -315,4 +316,24 @@ input {
 
 .settings-input {
   text-align: left !important;
+}
+
+.accordion-setting-buttons,
+.add-edit-header,
+.delete-modal {
+  text-align: center !important;
+}
+
+.map,
+.delete-account-buttons,
+.user-review-container {
+  margin: auto !important;
+}
+
+.logout-navbar {
+  color: red !important;
+}
+
+.user-review-select {
+  width: fit-content !important;
 }

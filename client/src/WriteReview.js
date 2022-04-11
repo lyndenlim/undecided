@@ -40,12 +40,12 @@ function WriteReview({ user }) {
     }
 
     return (
-        <div style={{ width: "500px", margin: "auto" }}>
+        <div className="user-review-container">
             <h3>{restaurantName}</h3>
             <form onSubmit={postReview}>
                 Rating
                 <div>
-                    <Form.Select style={{ width: "fit-content" }} defaultValue={rating} onChange={e => setRating(e.target.value)}>
+                    <Form.Select className="user-review-select" defaultValue={rating} onChange={e => setRating(e.target.value)}>
                         <option>5</option>
                         <option>4</option>
                         <option>3</option>
@@ -61,7 +61,7 @@ function WriteReview({ user }) {
                 <br />
                 <Button className="post-review-button" type="submit">Post Review</Button><Button variant="secondary" onClick={e => history.push(`/restaurants/${id}`)}>Cancel</Button>
             </form>
-            
+
         </div>
     )
 }

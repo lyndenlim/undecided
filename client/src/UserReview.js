@@ -6,6 +6,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
 import { faXmark } from "@fortawesome/free-solid-svg-icons"
 import Tooltip from "react-bootstrap/Tooltip"
 import OverlayTrigger from "react-bootstrap/OverlayTrigger"
+import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import defaultProfilePicture from "./defaultProfilePicture/defaultProfilePicture.png"
 
@@ -76,7 +77,7 @@ function UserReview({ review, user, removeDeletedReview }) {
                 <>
                     <form onSubmit={handleEdit}>
                         <div>
-                            <Form.Select style={{ width: "fit-content" }} defaultValue={newRating} onChange={e => setNewRating(e.target.value)}>
+                            <Form.Select className="user-review-select" defaultValue={newRating} onChange={e => setNewRating(e.target.value)}>
                                 <option>5</option>
                                 <option>4</option>
                                 <option>3</option>
@@ -90,7 +91,7 @@ function UserReview({ review, user, removeDeletedReview }) {
                             <Form.Control as="textarea" className="edit-textarea" value={newComment} onChange={e => setNewComment(e.target.value)}>{review.comment}</Form.Control>
                         </div>
                         <br />
-                        <button type="submit">SUBMIT CHANGES</button>
+                        <Button className="review-submit-button" type="submit">Submit Changes</Button>
                     </form>
                     <br />
                 </>
