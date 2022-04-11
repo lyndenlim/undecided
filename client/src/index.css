@@ -94,6 +94,7 @@ code {
   border-radius: 50%;
   height: 75px;
   width: 75px;
+  overflow: hidden;
 }
 
 .homepage-background {
@@ -282,6 +283,8 @@ input {
   border-radius: 50%;
   height: 200px;
   width: 200px;
+  overflow: hidden;
+  margin: auto;
 }
 
 .post-review-button {
@@ -292,6 +295,7 @@ input {
   border-radius: 50%;
   height: 35px;
   width: 35px;
+  overflow: hidden;
 }
 
 .account-toggle {

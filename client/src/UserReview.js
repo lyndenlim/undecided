@@ -61,12 +61,13 @@ function UserReview({ review, user, removeDeletedReview }) {
 
     return (
         <>
-            <img
-                className="profile-picture"
-                height="75px"
-                width="75px"
-                src={review.user.profile_picture !== null ? review.user.profile_picture : defaultProfilePicture}
-                alt="user-avatar" />
+            <div className="profile-picture">
+                <img
+                    height="fit-content"
+                    width="100%"
+                    src={review.user.profile_picture !== null ? review.user.profile_picture : defaultProfilePicture}
+                    alt="user-avatar" />
+            </div>
             <h5>
                 {review.user.first_name.slice(0, 1).toUpperCase()}{review.user.first_name.slice(1, review.user.first_name.length)} {review.user.last_name.slice(0, 1).toUpperCase()}.
             </h5>
