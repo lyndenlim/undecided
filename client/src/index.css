@@ -130,7 +130,7 @@ code {
   text-align: center;
   justify-content: center;
   display: grid;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   margin-top: 20px;
 }
 
@@ -150,7 +150,8 @@ code {
   display: grid;
 }
 
-input {
+input,
+.recipe-map-container {
   text-align: center;
 }
 
