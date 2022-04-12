@@ -44,7 +44,7 @@ function App() {
           <HomePage />
         </Route>
         <Route exact path="/recipes">
-          <RecipePage />
+          <RecipePage currentLat={currentLat} currentLng={currentLng}/>
         </Route>
         <Route path="/recipes/:id">
           <RecipeInfo />
