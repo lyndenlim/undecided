@@ -302,6 +302,10 @@ input,
   box-shadow: none !important;
 }
 
+.account-toggle:after {
+  display: none !important;
+}
+
 .logo {
   font-size: 30px;
   font-weight: bold;
