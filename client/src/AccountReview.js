@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from "react-router-dom"
+import ReactStarsRating from 'react-awesome-stars-rating';
 
 function AccountReview({ review }) {
     const [name, setName] = useState("")
@@ -29,7 +30,7 @@ function AccountReview({ review }) {
                 <h4>{name}</h4>
             </Link>
             <p>{dateCreated}</p>
-            <p>{review.rating}</p>
+            <p><ReactStarsRating className="star-rating" value={review.rating} isEdit={false} /></p>
             <p>{review.comment}</p>
             <hr />
         </div>

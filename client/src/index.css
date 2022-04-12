@@ -544,7 +544,7 @@ input,
 
 .star-rating {
   cursor: default !important;
-  text-shadow: 2px 2px black !important;
+  /* text-shadow: 2px 2px black !important; */
 }
 
 .ingredient-list {
