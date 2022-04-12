@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import ReactStarsRating from 'react-awesome-stars-rating';
 
 function Review({ review }) {
   const [dateCreated, setDateCreated] = useState("")
@@ -16,10 +17,10 @@ function Review({ review }) {
       </div>
       <h5>{review.user.name}</h5>
       <p>{dateCreated}</p>
-      <p>{review.rating}</p>
+      <p><ReactStarsRating className="star-rating" value={review.rating} isEdit={false} /></p>
       <p>{review.text}</p>
       <hr />
-    </div>
+    </div >
   )
 }
 
