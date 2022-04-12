@@ -25,7 +25,7 @@ function RecipeCard({ recipe }) {
                 <div className="wrapper">
                     <div className="cols">
                         <div className="col">
-                            <div className="container">
+                            <div className="recipe-card-container">
                                 <div className="front" style={{ backgroundImage: `url(${recipe.image})` }}>
                                     <div className="inner">
                                         <p className="recipe-card-recipe-name">{recipe.title}</p>

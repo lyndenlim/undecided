@@ -351,12 +351,11 @@ input,
 }
 
 .col {
-  /* width: calc(25% - 2rem); */
   margin-bottom: 2.5rem;
   cursor: pointer;
 }
 
-.container {
+.recipe-card-container, .restaurant-card-container {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   -webkit-perspective: 1000px;
