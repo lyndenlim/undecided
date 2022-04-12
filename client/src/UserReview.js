@@ -1,9 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons"
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
-import { faXmark } from "@fortawesome/free-solid-svg-icons"
+import { faTrashAlt, faPenToSquare, faXmark } from "@fortawesome/free-solid-svg-icons"
 import Tooltip from "react-bootstrap/Tooltip"
 import OverlayTrigger from "react-bootstrap/OverlayTrigger"
 import Button from "react-bootstrap/Button"
@@ -60,8 +58,6 @@ function UserReview({ review, user, removeDeletedReview }) {
             Cancel
         </Tooltip>
     );
-
-    console.log(newRating)
 
     return (
         <>

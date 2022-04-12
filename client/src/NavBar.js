@@ -5,9 +5,7 @@ import Container from "react-bootstrap/Container"
 import Dropdown from "react-bootstrap/Dropdown"
 import defaultProfilePicture from "./defaultProfilePicture/defaultProfilePicture.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons"
-import { faUserGear } from "@fortawesome/free-solid-svg-icons"
-import { faKitchenSet } from "@fortawesome/free-solid-svg-icons"
+import { faArrowRightFromBracket, faUserGear, faKitchenSet } from "@fortawesome/free-solid-svg-icons"
 
 function NavBar({ user, setUser }) {
     const history = useHistory()
