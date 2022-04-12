@@ -25,8 +25,8 @@ code {
 }
 
 .restaurant-card {
-  margin-bottom: 10px;
-  width: 300px;
+  margin-bottom: 5px;
+  width: 320px;
 }
 
 .restaurant-search-button,
@@ -215,7 +215,8 @@ input,
   color: white;
 }
 
-.status {
+.status,
+.missing-ingredients {
   font-size: 20px;
 }
 
@@ -326,12 +327,13 @@ input,
   margin: auto !important;
 }
 
-.logout-navbar {
-  color: red !important;
+.user-review-container {
+  width: 500px;
 }
 
-.user-review-select {
-  width: fit-content !important;
+.logout-navbar,
+.closed {
+  color: red !important;
 }
 
 .wrapper {
@@ -355,7 +357,8 @@ input,
   cursor: pointer;
 }
 
-.recipe-card-container, .restaurant-card-container {
+.recipe-card-container,
+.restaurant-card-container {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   -webkit-perspective: 1000px;
@@ -388,7 +391,7 @@ input,
   background: -webkit-linear-gradient(45deg, #cedce7 0%, #596a72 100%);
   background: -o-linear-gradient(45deg, #cedce7 0%, #596a72 100%);
   background: linear-gradient(45deg, #cedce7 0%, #596a72 100%);
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: bold;
   position: absolute;
   top: 0;
@@ -412,8 +415,10 @@ input,
   border-radius: 10px;
 }
 
-.container:hover .front,
-.container:hover .back {
+.recipe-card-container:hover .front,
+.restaurant-card-container:hover .front,
+.containrecipe-card-container:hover .back,
+.restaurant-card-containerer:hover .back {
   -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
   transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
   -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
@@ -437,28 +442,32 @@ input,
   z-index: 2;
 }
 
-.container .back {
+.recipe-card-container .back,
+.restaurant-card-container .back {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-.container .front {
+.recipe-card-container .front,
+.restaurant-card-container .front {
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-.container:hover .back {
+.recipe-card-container .back,
+.restaurant-card-container:hover .back {
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-.container:hover .front {
+.recipe-card-container .front,
+.restaurant-card-container:hover .front {
   -webkit-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
   -webkit-transform-style: preserve-3d;
@@ -519,8 +528,21 @@ input,
   font-size: 20px !important;
 }
 
-.recipe-card-back {
+.recipe-card-back,
+.restaurant-card-back {
   overflow-y: scroll;
   max-height: 100%;
   height: fit-content
+}
+
+.star-rating {
+  cursor: default !important;
+}
+
+.ingredient-list {
+  border-radius: 20px;
+}
+
+.open {
+  color: #00a16d;
 }

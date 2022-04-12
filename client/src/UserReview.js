@@ -9,6 +9,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import defaultProfilePicture from "./defaultProfilePicture/defaultProfilePicture.png"
+import ReactStarsRating from 'react-awesome-stars-rating';
 
 function UserReview({ review, user, removeDeletedReview }) {
     const [dateCreated, setDateCreated] = useState("")
@@ -37,7 +38,7 @@ function UserReview({ review, user, removeDeletedReview }) {
         // get to rerender without this 
         // e.preventDefault()
         axios.patch(`/reviews/${review.id}`, {
-            rating: parseInt(newRating),
+            rating: newRating,
             comment: newComment
         })
     }
@@ -60,6 +61,8 @@ function UserReview({ review, user, removeDeletedReview }) {
         </Tooltip>
     );
 
+    console.log(newRating)
+
     return (
         <>
             <div className="profile-picture">
@@ -77,13 +80,7 @@ function UserReview({ review, user, removeDeletedReview }) {
                 <>
                     <form onSubmit={handleEdit}>
                         <div>
-                            <Form.Select className="user-review-select" defaultValue={newRating} onChange={e => setNewRating(e.target.value)}>
-                                <option>5</option>
-                                <option>4</option>
-                                <option>3</option>
-                                <option>2</option>
-                                <option>1</option>
-                            </Form.Select>
+                            <ReactStarsRating value={newRating} onChange={e => setNewRating(e)} />
                         </div>
                         <br />
                         <div>
@@ -97,7 +94,7 @@ function UserReview({ review, user, removeDeletedReview }) {
                 </>
                 :
                 <>
-                    <p>{review.rating}</p>
+                    <p><ReactStarsRating className="star-rating" value={review.rating} isEdit={false} /></p>
                     <p>{review.comment}</p>
                 </>
             }

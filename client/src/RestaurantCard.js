@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import ReactStarsRating from 'react-awesome-stars-rating';
 
 function RestaurantCard({ restaurant }) {
     return (
@@ -15,10 +16,11 @@ function RestaurantCard({ restaurant }) {
                                     </div>
                                 </div>
                                 <div className="back">
-                                    <div className="inner">
+                                    <div className="inner restaurant-card-back">
                                         <p>{restaurant.location.display_address[0]} {restaurant.location.display_address[1]}</p>
                                         <p>{(restaurant.distance / 1609).toFixed(2)} miles</p>
-                                        <p>{restaurant.rating} {restaurant.review_count} reviews</p>
+                                        <p><ReactStarsRating value={restaurant.rating} isEdit={false} /> </p>
+                                        <p>{restaurant.review_count} reviews</p>
                                         <div>{restaurant.price} • {restaurant.categories.map(category => <p key={category.title} className="category">{category.title}</p>)}</div>
                                     </div>
                                 </div>

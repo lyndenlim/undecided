@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from "react-router-dom"
-import Card from "react-bootstrap/Card"
 import ListGroup from "react-bootstrap/ListGroup"
 import ListGroupItem from 'react-bootstrap/esm/ListGroupItem'
 
@@ -36,8 +35,8 @@ function RecipeCard({ recipe }) {
                                 </div>
                                 <div className="back">
                                     <div className="inner recipe-card-back">
-                                        <p style={{fontSize: "20px"}}>Missing ingredients:</p>
-                                        <ListGroup className="list-group-flush" style={{ borderRadius: "20px" }} >
+                                        <p className="missing-ingredients">Missing ingredients:</p>
+                                        <ListGroup className="list-group-flush ingredient-list">
                                             {recipe.missedIngredients.map((ingredient, index) => <ListGroupItem key={index}>{ingredient.original}</ListGroupItem>)}
                                         </ListGroup>
                                     </div>

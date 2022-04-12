@@ -8,6 +8,7 @@ import ListGroupItem from "react-bootstrap/ListGroupItem"
 import Button from "react-bootstrap/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFilePen } from "@fortawesome/free-solid-svg-icons"
+import ReactStarsRating from 'react-awesome-stars-rating';
 
 function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, restaurantPrice, restaurantCategories, restaurantHours, restaurantPhoneNumber, restaurantURL, restaurantAddress, restaurantPhotos, userRestaurantReviews, user, isOpen, id, restaurantReviewCount, removeDeletedReview }) {
     useEffect(() => {
@@ -24,10 +25,10 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                     {/* revisit for positioning */}
                     <Card.ImgOverlay className="restaurant-overlay">
                         <h1 className="bold">{restaurantName}</h1>
-                        <div>{restaurantRating} <span className="bold">{restaurantReviewCount} reviews</span></div>
+                        <div><ReactStarsRating className="star-rating" value={restaurantRating} isEdit={false} />&nbsp;<span className="bold">{restaurantReviewCount} reviews</span></div>
                         <div className="bold">{restaurantPrice} • {restaurantCategories.map(category => <p key={category.title} className="category">{category.title} </p>)}</div>
                         {/* revisit for category separation */}
-                        <div className="status">{isOpen ? <strong style={{ color: "#00a16d" }}>OPEN</strong> : <strong style={{ color: "red" }}>CLOSED</strong>}</div>
+                        <div className="status">{isOpen ? <strong>OPEN</strong> : <strong>CLOSED</strong>}</div>
                     </Card.ImgOverlay>
                     <hr />
                     <h4 className="restaurant-header">Location & Hours</h4>
