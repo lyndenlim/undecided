@@ -20,15 +20,16 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
             <Card className="restaurant-info-card">
                 <div className="restaurant-info-container">
                     <div className="restaurant-photos">
-                        {restaurantPhotos.map(photo => <img key={photo} src={photo} alt="restaurant" />)}
+                        {restaurantPhotos.map(photo => <img style={{ width: "100%" }} key={photo} src={photo} alt="restaurant" />)}
                     </div>
                     {/* revisit for positioning */}
                     <Card.ImgOverlay className="restaurant-overlay">
                         <h1 className="bold">{restaurantName}</h1>
-                        <div><ReactStarsRating className="star-rating" value={restaurantRating} isEdit={false} />&nbsp;<span className="bold">{restaurantReviewCount} reviews</span></div>
+                        <div><ReactStarsRating className="star-rating" value={restaurantRating} isEdit={false} /></div>
+                        <div><span className="bold">{restaurantReviewCount} reviews</span></div>
                         <div className="bold">{restaurantPrice} • {restaurantCategories.map(category => <p key={category.title} className="category">{category.title} </p>)}</div>
                         {/* revisit for category separation */}
-                        <div className="status">{isOpen ? <strong>OPEN</strong> : <strong>CLOSED</strong>}</div>
+                        <div className="status">{isOpen ? <strong className="open">OPEN</strong> : <strong className="closed">CLOSED</strong>}</div>
                     </Card.ImgOverlay>
                     <hr />
                     <h4 className="restaurant-header">Location & Hours</h4>

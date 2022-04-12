@@ -23,7 +23,6 @@ function RecipeInfo() {
     }, [])
 
     return (
-        // Fix uneven sizing of cards due to different img szs
         <div className="recipe-info">
             <Card className="recipe-info">
                 <Card.Header className="recipe-header">{title}</Card.Header>

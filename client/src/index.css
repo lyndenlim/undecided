@@ -84,6 +84,7 @@ code {
 
 .restaurant-photos {
   display: flex;
+  width: 100%;
   height: 300px;
 }
 
@@ -211,8 +212,9 @@ input,
 .restaurant-overlay {
   height: fit-content;
   width: fit-content;
-  transform: translate(0%, 65%);
+  transform: translate(0%, 35%);
   color: white;
+  font-size: 20px;
 }
 
 .status,
@@ -523,7 +525,8 @@ input,
 }
 
 .restaurant-card-restaurant-name,
-.recipe-card-recipe-name {
+.recipe-card-recipe-name,
+.restaurant-overlay {
   text-shadow: 2px 2px black;
 }
 
@@ -541,6 +544,7 @@ input,
 
 .star-rating {
   cursor: default !important;
+  text-shadow: 2px 2px black !important;
 }
 
 .ingredient-list {
