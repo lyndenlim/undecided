@@ -97,6 +97,10 @@ function AccountPage({ user, setUser }) {
             })
     }
 
+    function removeDeletedReview(reviewID) {
+        setReviews(reviews.filter(review => review.id !== reviewID))
+    }
+
     return (
         <>
             <div className="user-container">
@@ -115,7 +119,6 @@ function AccountPage({ user, setUser }) {
                         </>
                         :
                         null}
-
                 </div>
                 <Accordion>
                     <Accordion.Item eventKey="0">
@@ -134,7 +137,7 @@ function AccountPage({ user, setUser }) {
                     </Accordion.Item>
                     <Accordion.Item eventKey="1">
                         <Accordion.Header>All Reviews ({user ? user.reviews.length : null})</Accordion.Header>
-                        <Accordion.Body>{reviews.map((review, index) => <AccountReview key={index} review={review} />)}</Accordion.Body>
+                        <Accordion.Body>{reviews.map((review, index) => <AccountReview key={index} review={review} removeDeletedReview={removeDeletedReview} user={user} />)}</Accordion.Body>
                     </Accordion.Item>
                 </Accordion>
             </div>
