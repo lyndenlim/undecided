@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import Map from './Map'
 import YelpReview from "./YelpReview"
 import UserReview from "./UserReview"
+import Hours from "./Hours"
 import Card from "react-bootstrap/Card"
-import ListGroupItem from "react-bootstrap/ListGroupItem"
 import Button from "react-bootstrap/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFilePen } from "@fortawesome/free-solid-svg-icons"
@@ -22,7 +22,6 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                     <div className="restaurant-photos">
                         {restaurantPhotos.map(photo => <img style={{ width: "100%" }} key={photo} src={photo} alt="restaurant" />)}
                     </div>
-                    {/* revisit for positioning */}
                     <Card.ImgOverlay className="restaurant-overlay">
                         <h1 className="bold">{restaurantName}</h1>
                         <div><ReactStarsRating className="star-rating" value={restaurantRating} isEdit={false} /></div>
@@ -38,7 +37,8 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                             <Map restaurantAddress={restaurantAddress} />
                         </div>
                         <div className="hours">
-                            {restaurantHours.map(day => <ListGroupItem key={day.day} className="hour-list">{day.day} {day.start} - {day.end}</ListGroupItem>)}
+                            {restaurantHours.map(day => <Hours key={day.day} day={day} />)}
+                            <small>Hours subject to change. For more accuracy, check the restaurant's website.</small>
                         </div>
                         <Card>
                             MAKE A RESERVATION
