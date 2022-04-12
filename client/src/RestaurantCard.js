@@ -8,7 +8,7 @@ function RestaurantCard({ restaurant }) {
                 <div className="wrapper">
                     <div className="cols">
                         <div className="col">
-                            <div className="container">
+                            <div className="restaurant-card-container">
                                 <div className="front" style={{ backgroundImage: `url(${restaurant.image_url})` }}>
                                     <div className="inner">
                                         <p className="restaurant-card-restaurant-name">{restaurant.name}</p>
