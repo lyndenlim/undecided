@@ -117,7 +117,7 @@ code {
   justify-content: center;
   display: grid;
   z-index: 1;
-  transform: translate(0%, 160%);
+  transform: translate(0%, 100%);
 }
 
 .recipe-container {
@@ -568,5 +568,14 @@ input,
 
 .open {
   color: #00a16d;
+  text-shadow: 1px 1px black;
+}
+
+.hr {
+  border: 1px solid white;
+}
+
+.or {
+  color: white;
   text-shadow: 1px 1px black;
 }
