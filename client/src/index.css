@@ -37,7 +37,8 @@ code {
 .search-button,
 .post-review-button,
 .review-button,
-.review-submit-button {
+.review-submit-button,
+.loading-button {
   background-color: #d32322 !important;
   border-color: #d32322 !important;
   box-shadow: none;
@@ -152,7 +153,7 @@ code {
 }
 
 input,
-.recipe-map-container {
+.recipe-map-container, .no-recipes {
   text-align: center;
 }
 
@@ -193,6 +194,7 @@ input,
 
 .hours {
   width: 300px;
+  text-align: center;
 }
 
 .location-hours {
@@ -253,7 +255,8 @@ input,
 }
 
 .login-column,
-.signup-column {
+.signup-column,
+.spinner {
   text-align: center;
 }
 
@@ -423,8 +426,8 @@ input,
 
 .recipe-card-container:hover .front,
 .restaurant-card-container:hover .front,
-.containrecipe-card-container:hover .back,
-.restaurant-card-containerer:hover .back {
+.recipe-card-container:hover .back,
+.restaurant-card-container:hover .back {
   -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
   transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
   -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
@@ -464,7 +467,7 @@ input,
   transform-style: preserve-3d;
 }
 
-.recipe-card-container .back,
+.recipe-card-container:hover .back,
 .restaurant-card-container:hover .back {
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
@@ -472,7 +475,7 @@ input,
   transform-style: preserve-3d;
 }
 
-.recipe-card-container .front,
+.recipe-card-container:hover .front,
 .restaurant-card-container:hover .front {
   -webkit-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
@@ -544,13 +547,13 @@ input,
 
 .star-rating {
   cursor: default !important;
-  /* text-shadow: 2px 2px black !important; */
 }
 
 .ingredient-list {
-  border-radius: 20px;
+  border-radius: 20px !important;
 }
 
 .open {
   color: #00a16d;
+  text-shadow: 1px 1px black;
 }

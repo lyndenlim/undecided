@@ -5,6 +5,8 @@ function Hours({ day }) {
     const [dayOfWeek, setDayOfWeek] = useState("")
     const [openHour, setOpenHour] = useState("")
     const [closeHour, setCloseHour] = useState("")
+    
+    console.log(day)
 
     useEffect(() => {
         function convertDay() {
@@ -42,6 +44,8 @@ function Hours({ day }) {
                 setOpenHour(`${day.start.slice(0, 2)}:${day.start.slice(2, 4)} AM`)
             } else if (day.start === "0000") {
                 setOpenHour("12:00 AM")
+            } else if (day.start === "1200") {
+                setOpenHour("12:00 PM")
             }
 
             if (parseInt(day.end) > 12) {
@@ -50,6 +54,8 @@ function Hours({ day }) {
                 setCloseHour(`${day.end.slice(0, 2)}:${day.end.slice(2, 4)} AM`)
             } else if (day.end === "0000") {
                 setCloseHour("12:00 AM")
+            } else if (day.end === "1200") {
+                setOpenHour("12:00 PM")
             }
         }
 

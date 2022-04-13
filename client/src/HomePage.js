@@ -8,6 +8,7 @@ import FormControl from "react-bootstrap/FormControl"
 import Button from "react-bootstrap/Button"
 import InputGroup from "react-bootstrap/InputGroup"
 import Carousel from "react-bootstrap/Carousel"
+import Spinner from "react-bootstrap/Spinner"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUtensils, faShuffle } from "@fortawesome/free-solid-svg-icons"
 import homepage1 from "./homepageImages/homepage1.jpeg"
@@ -21,6 +22,7 @@ function HomePage() {
     const [userInput, setUserInput] = useState("")
     const [background, setBackground] = useState([])
     const [allRestaurantsInfo, setAllRestaurantsInfo] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         async function setPhotos() {
@@ -33,6 +35,7 @@ function HomePage() {
 
     async function handleSubmit(e) {
         e.preventDefault()
+        setIsLoading(true)
         const axiosInstance = axios.create({
             headers: {
                 Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
@@ -41,10 +44,11 @@ function HomePage() {
         const geocodedResult = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${userInput}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
         const locationLat = geocodedResult.data.results[0].geometry.location.lat
         const locationLng = geocodedResult.data.results[0].geometry.location.lng
-        const restaurantRequests = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=10&latitude=${locationLat}&longitude=${locationLng}&radius=805&open_now=true&categories=restaurants`)
-        const allRestaurants = restaurantRequests.data.businesses
-
-        setAllRestaurantsInfo(allRestaurants)
+        axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=10&latitude=${locationLat}&longitude=${locationLng}&radius=805&open_now=true&categories=restaurants`)
+            .then(res => {
+                setAllRestaurantsInfo(res.data.businesses)
+                setIsLoading(false)
+            })
 
         Scroll.scroller.scrollTo("results", {
             smooth: true
@@ -63,12 +67,39 @@ function HomePage() {
                             <form onSubmit={handleSubmit}>
                                 <InputGroup>
                                     <FormControl placeholder="Enter an address" defaultValue={userInput} onChange={e => setUserInput(e.target.value)} required />
-                                    <Button className="restaurant-search-button" type="submit"><FontAwesomeIcon icon={faUtensils} /></Button>
+                                    {isLoading ?
+                                        <Button className="loading-button" disabled>
+                                            <Spinner
+                                                as="span"
+                                                animation="border"
+                                                size="sm"
+                                                role="status"
+                                                aria-hidden="true"
+                                            />
+                                            <span className="visually-hidden">Loading...</span>
+                                        </Button>
+                                        :
+                                        <Button className="restaurant-search-button" type="submit">
+                                            <FontAwesomeIcon icon={faUtensils} />
+                                        </Button>}
                                 </InputGroup>
                             </form>
                             {/* placeholder */}
                             <span style={{ color: "white" }}>OR</span>
-                            <Button size="lg" className="search-button bouncy" onClick={() => history.push("/random")}>CHOOSE FOR ME &nbsp;<FontAwesomeIcon icon={faShuffle} /></Button>
+                            {isLoading ?
+                                <Button className="loading-button" disabled>
+                                    <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="lg"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />
+                                    <span className="visually-hidden">Loading...</span>
+                                </Button> :
+                                <Button size="lg" className="search-button bouncy" onClick={() => history.push("/random")}>
+                                    CHOOSE FOR ME &nbsp;<FontAwesomeIcon icon={faShuffle} />
+                                </Button>}
                         </div>
                     </Card.ImgOverlay>
                 </Card>
