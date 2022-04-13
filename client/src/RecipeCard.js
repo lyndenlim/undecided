@@ -4,19 +4,22 @@ import { Link } from "react-router-dom"
 import ListGroup from "react-bootstrap/ListGroup"
 import ListGroupItem from 'react-bootstrap/esm/ListGroupItem'
 
-function RecipeCard({ recipe }) {
+function RecipeCard({ recipe, setIsLoading }) {
     const [recipeInfo, setRecipeInfo] = useState([])
     const [recipeCuisines, setRecipeCuisines] = useState([])
 
     useEffect(() => {
         async function getRecipeInfo() {
-            const recipeInformation = await axios.get(`https://api.spoonacular.com/recipes/${recipe.id}/information?apiKey=${process.env.REACT_APP_SPOONACULAR}`)
-            setRecipeInfo(recipeInformation.data)
-            setRecipeCuisines(recipeInformation.data.cuisines)
+            axios.get(`https://api.spoonacular.com/recipes/${recipe.id}/information?apiKey=${process.env.REACT_APP_SPOONACULAR}`)
+                .then(recipeInformation => {
+                    setRecipeInfo(recipeInformation.data)
+                    setRecipeCuisines(recipeInformation.data.cuisines)
+                    setTimeout(setIsLoading, 1000, false)
+                })
         }
 
         getRecipeInfo()
-    }, [])
+    }, [recipe])
 
     return (
         <div className="recipe-card">

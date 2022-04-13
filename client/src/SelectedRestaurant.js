@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom"
 import axios from 'axios'
 import RestaurantInfo from './RestaurantInfo'
 
-
 function SelectedRestaurant({ user }) {
     const { id } = useParams()
     const [restaurantName, setRestaurantName] = useState("")
@@ -19,6 +18,7 @@ function SelectedRestaurant({ user }) {
     const [restaurantHours, setRestaurantHours] = useState([])
     const [restaurantReviews, setRestaurantReviews] = useState([])
     const [userRestaurantReviews, setUserRestaurantReviews] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         // const today = new Date
@@ -37,23 +37,22 @@ function SelectedRestaurant({ user }) {
                 }
             })
 
-            const restaurantData = await axios.all([axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${id}`),
+            axios.all([axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${id}`),
             axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${id}/reviews`)])
-            const restaurantInfo = restaurantData[0]
-            const restaurantReviews = restaurantData[1]
-
-            setRestaurantReviews(restaurantReviews.data.reviews)
-            setRestaurantName(restaurantInfo.data.name)
-            setRestaurantRating(restaurantInfo.data.rating)
-            setRestaurantAddress(restaurantInfo.data.location.display_address.toString())
-            setRestaurantReviewCount(restaurantInfo.data.review_count)
-            setRestaurantPrice(restaurantInfo.data.price)
-            setRestaurantCategories(restaurantInfo.data.categories)
-            setRestaurantHours(restaurantInfo.data.hours[0].open)
-            setRestaurantPhoneNumber(restaurantInfo.data.display_phone)
-            setIsOpen(restaurantInfo.data.hours[0].is_open_now)
-            setRestaurantPhotos(restaurantInfo.data.photos)
-            setRestaurantURL(restaurantInfo.data.url)
+                .then(restaurantData => {
+                    setRestaurantReviews(restaurantData[1].data.reviews)
+                    setRestaurantName(restaurantData[0].data.name)
+                    setRestaurantRating(restaurantData[0].data.rating)
+                    setRestaurantAddress(restaurantData[0].data.location.display_address.toString())
+                    setRestaurantReviewCount(restaurantData[0].data.review_count)
+                    setRestaurantPrice(restaurantData[0].data.price)
+                    setRestaurantCategories(restaurantData[0].data.categories)
+                    setRestaurantHours(restaurantData[0].data.hours[0].open)
+                    setRestaurantPhoneNumber(restaurantData[0].data.display_phone)
+                    setIsOpen(restaurantData[0].data.hours[0].is_open_now)
+                    setRestaurantPhotos(restaurantData[0].data.photos)
+                    setRestaurantURL(restaurantData[0].data.url)
+                })
         }
 
         getUserReviews()
@@ -83,6 +82,8 @@ function SelectedRestaurant({ user }) {
                 isOpen={isOpen}
                 user={user}
                 id={id}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
             />
         </>
     )

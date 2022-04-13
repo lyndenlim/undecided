@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from "react-router-dom"
 import RestaurantInfo from "./RestaurantInfo"
+import Spinner from "react-bootstrap/Spinner"
 
 function RandomRestaurant({ user }) {
     const { id } = useParams()
@@ -19,6 +20,7 @@ function RandomRestaurant({ user }) {
     const [restaurantReviews, setRestaurantReviews] = useState([])
     const [userRestaurantReviews, setUserRestaurantReviews] = useState([])
     const [randomRestaurantID, setRandomRestaurantID] = useState("")
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         async function getRestaurantData() {
@@ -37,22 +39,23 @@ function RandomRestaurant({ user }) {
             const restaurantRequests = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=50&latitude=${locationLat}&longitude=${locationLng}&radius=805&open_now=true&categories=restaurants`)
             const allRestaurants = restaurantRequests.data.businesses
             const randomRestaurant = allRestaurants[Math.ceil(Math.random() * allRestaurants.length)]
-            const randomRestaurantInfo = await axios.all ([axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${randomRestaurant.id}`), 
+            axios.all([axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${randomRestaurant.id}`),
             axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${randomRestaurant.id}/reviews`)])
-
-            setRandomRestaurantID(randomRestaurant.id)
-            setRestaurantReviews(randomRestaurantInfo[1].data.reviews)
-            setRestaurantPhoneNumber(randomRestaurantInfo[0].data.display_phone)
-            setIsOpen(randomRestaurantInfo[0].data.hours[0].is_open_now)
-            setRestaurantName(randomRestaurantInfo[0].data.name)
-            setRestaurantAddress(randomRestaurantInfo[0].data.location.display_address)
-            setRestaurantPrice(randomRestaurantInfo[0].data.price)
-            setRestaurantRating(randomRestaurantInfo[0].data.rating)
-            setRestaurantReviewCount(randomRestaurantInfo[0].data.review_count)
-            setRestaurantHours(randomRestaurantInfo[0].data.hours[0].open)
-            setRestaurantCategories(randomRestaurantInfo[0].data.categories)
-            setRestaurantPhotos(randomRestaurantInfo[0].data.photos)
-            setRestaurantURL(randomRestaurantInfo[0].data.url)
+                .then(randomRestaurantInfo => {
+                    setRandomRestaurantID(randomRestaurant.id)
+                    setRestaurantReviews(randomRestaurantInfo[1].data.reviews)
+                    setRestaurantPhoneNumber(randomRestaurantInfo[0].data.display_phone)
+                    setIsOpen(randomRestaurantInfo[0].data.hours[0].is_open_now)
+                    setRestaurantName(randomRestaurantInfo[0].data.name)
+                    setRestaurantAddress(randomRestaurantInfo[0].data.location.display_address)
+                    setRestaurantPrice(randomRestaurantInfo[0].data.price)
+                    setRestaurantRating(randomRestaurantInfo[0].data.rating)
+                    setRestaurantReviewCount(randomRestaurantInfo[0].data.review_count)
+                    setRestaurantHours(randomRestaurantInfo[0].data.hours[0].open)
+                    setRestaurantCategories(randomRestaurantInfo[0].data.categories)
+                    setRestaurantPhotos(randomRestaurantInfo[0].data.photos)
+                    setRestaurantURL(randomRestaurantInfo[0].data.url)
+                })
         }
         getRestaurantData()
     }, [])
@@ -62,7 +65,7 @@ function RandomRestaurant({ user }) {
     }
 
     return (
-        <div>
+        <>
             <RestaurantInfo
                 removeDeletedReview={removeDeletedReview}
                 restaurantName={restaurantName}
@@ -80,8 +83,10 @@ function RandomRestaurant({ user }) {
                 isOpen={isOpen}
                 user={user}
                 id={randomRestaurantID}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
             />
-        </div>
+        </>
     )
 }
 
