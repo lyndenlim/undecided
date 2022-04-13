@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form"
 import FloatingLabel from "react-bootstrap/FloatingLabel"
 import Button from "react-bootstrap/Button"
 import signup from "./signupImage/signup.jpg"
+import { ToastContainer, toast } from 'react-toastify';
 
 function SignUp({ setUser }) {
     const [firstName, setFirstName] = useState("")
@@ -11,6 +12,7 @@ function SignUp({ setUser }) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
+    const [showError, setShowError] = useState(false);
     const history = useHistory()
 
     function handleSubmit(e) {
@@ -25,6 +27,19 @@ function SignUp({ setUser }) {
             if (r.ok) {
                 r.json().then((user) => setUser(user))
                 history.push("/")
+            } else {
+                r.json().then((err) => {
+                    setShowError(true)
+                    toast.error(err.errors[0], {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    })
+                })
             }
         });
     }
@@ -34,7 +49,7 @@ function SignUp({ setUser }) {
             <div className="col-8"><img height="100%" width="100%" src={signup} alt="signup-display" /></div>
             <div className="col-4 signup-column">
                 <h4>Sign Up</h4>
-                <br/>
+                <br />
                 <form onSubmit={handleSubmit} >
                     <FloatingLabel label="First Name" className="signup-label">
                         <Form.Control className="signup-input" placeholder="first name" required autoComplete="new-password" defaultValue={firstName} onChange={e => setFirstName(e.target.value)} />
@@ -60,6 +75,20 @@ function SignUp({ setUser }) {
                 </form>
                 Already have an account? <Link to="/login">Log in</Link>
             </div>
+            {showError ?
+                <ToastContainer
+                    position="bottom-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
+                :
+                null}
         </div>
     )
 }

@@ -4,10 +4,12 @@ import Form from "react-bootstrap/Form"
 import FloatingLabel from "react-bootstrap/FloatingLabel"
 import Button from "react-bootstrap/Button"
 import login from "./loginImage/login.jpg"
+import { ToastContainer, toast } from 'react-toastify';
 
 function LogIn({ setUser }) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [showError, setShowError] = useState(false);
     const history = useHistory()
 
     function handleSubmit(e) {
@@ -22,6 +24,19 @@ function LogIn({ setUser }) {
             if (r.ok) {
                 r.json().then((user) => setUser(user))
                 history.push("/")
+            } else {
+                r.json().then((err) => {
+                    setShowError(true)
+                    toast.error(err.errors[0], {
+                        position: "bottom-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    })
+                })
             }
         });
     }
@@ -32,6 +47,8 @@ function LogIn({ setUser }) {
             <div className="col-8"><img height="100%" width="100%" src={login} alt="login-display" /> </div>
             <div className="col-4 login-column">
                 <h4>Log In</h4>
+                <div style={{ width: "fit-content", margin: "auto" }}>
+                </div>
                 <br />
                 <form onSubmit={handleSubmit}>
                     <FloatingLabel label="Email" className="login-label">
@@ -46,6 +63,20 @@ function LogIn({ setUser }) {
                 </form>
                 Don't have an account? <Link to="/signup">Sign up</Link>
             </div>
+            {showError ?
+                <ToastContainer
+                    position="bottom-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
+                :
+                null}
         </div>
     )
 }
