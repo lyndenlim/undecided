@@ -13,7 +13,7 @@ function WriteReview({ user }) {
     const [rating, setRating] = useState(0)
     const [comment, setComment] = useState("")
     const [isLoading, setIsLoading] = useState(true)
-
+    
     useEffect(() => {
         async function getRestaurantName() {
             const axiosInstance = axios.create({
@@ -27,7 +27,6 @@ function WriteReview({ user }) {
                     setRestaurantName(restaurantData.data.name)
                     setTimeout(setIsLoading, 1000, false)
                 })
-
         }
         getRestaurantName()
     }, [])
@@ -65,7 +64,6 @@ function WriteReview({ user }) {
                 <br />
                 <Button className="post-review-button" type="submit">Post Review</Button><Button variant="secondary" onClick={e => history.push(`/restaurants/${id}`)}>Cancel</Button>
             </form>
-
         </div>
     )
 }

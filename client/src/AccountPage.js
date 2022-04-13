@@ -96,11 +96,11 @@ function AccountPage({ user, setUser }) {
                             <form onSubmit={changeUserInfo}>
                                 <div style={{ display: "grid", gridTemplateColumns: "auto auto", justifyContent: "center" }}>
                                     <div style={{ paddingRight: "10px" }}>
-                                        <FloatingLabel label="First name" className="settings-label">
+                                        <FloatingLabel label="First Name" className="settings-label">
                                             <Form.Control className="settings-input" required defaultValue={user.first_name} onChange={e => setInputFirstName(e.target.value)} />
                                         </FloatingLabel>
                                         <br />
-                                        <FloatingLabel label="Last name" className="settings-label">
+                                        <FloatingLabel label="Last Name" className="settings-label">
                                             <Form.Control className="settings-input" required defaultValue={user.last_name} onChange={e => setInputLastName(e.target.value)} />
                                         </FloatingLabel>
                                         <br />
@@ -113,15 +113,15 @@ function AccountPage({ user, setUser }) {
                                         </FloatingLabel>
                                     </div>
                                     <div style={{ paddingLeft: "10px" }}>
-                                        <FloatingLabel label="Old password" className="settings-label">
+                                        <FloatingLabel label="Old Password" className="settings-label">
                                             <Form.Control type="password" className="settings-input" onChange={e => setOldPassword(e.target.value)} />
                                         </FloatingLabel>
                                         <br />
-                                        <FloatingLabel label="New password" className="settings-label">
+                                        <FloatingLabel label="New Password" className="settings-label">
                                             <Form.Control type="password" className="settings-input" onChange={e => setInputPassword(e.target.value)} />
                                         </FloatingLabel>
                                         <br />
-                                        <FloatingLabel label="Confirm password" className="settings-label">
+                                        <FloatingLabel label="Confirm Password" className="settings-label">
                                             <Form.Control type="password" className="settings-input" onChange={e => setConfirmPassword(e.target.value)} />
                                         </FloatingLabel>
                                     </div>
