@@ -11,28 +11,16 @@ import defaultProfilePicture from "./defaultProfilePicture/defaultProfilePicture
 
 function AccountPage({ user, setUser }) {
     const [reviews, setReviews] = useState([])
-    const [profilePictureShow, setProfilePictureShow] = useState(false)
-    const [inputProfilePicture, setInputProfilePicture] = useState("")
-    const [nameShow, setNameShow] = useState(false)
-    const [inputFirstName, setInputFirstName] = useState("")
-    const [inputLastName, setInputLastName] = useState("")
-    const [passwordShow, setPasswordShow] = useState(false)
+    const [inputProfilePicture, setInputProfilePicture] = useState(user.profile_picture)
+    const [inputFirstName, setInputFirstName] = useState(user.first_name)
+    const [inputLastName, setInputLastName] = useState(user.last_name)
     const [oldPassword, setOldPassword] = useState("")
     const [inputPassword, setInputPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
-    const [emailShow, setEmailShow] = useState(false)
-    const [inputEmail, setInputEmail] = useState("")
+    const [inputEmail, setInputEmail] = useState(user.email)
     const [deleteShow, setDeleteShow] = useState(false)
     const history = useHistory()
 
-    const handleProfilePictureClose = () => setProfilePictureShow(false)
-    const handleProfilePictureShow = () => setProfilePictureShow(true)
-    const handleNameClose = () => setNameShow(false)
-    const handleNameShow = () => setNameShow(true)
-    const handlePasswordClose = () => setPasswordShow(false)
-    const handlePasswordShow = () => setPasswordShow(true)
-    const handleEmailClose = () => setEmailShow(false)
-    const handleEmailShow = () => setEmailShow(true)
     const handleDeleteClose = () => setDeleteShow(false)
     const handleDeleteShow = () => setDeleteShow(true)
 
@@ -45,45 +33,26 @@ function AccountPage({ user, setUser }) {
         getUserReviews()
     }, [])
 
-    function handleProfilePictureChange(e) {
+    function changeUserInfo(e) {
         // e.preventDefault()
-        axios.patch(`/users/${user.id}`, {
-            profile_picture: inputProfilePicture
-        })
-    }
-
-    function handleNameChange(e) {
-        // e.preventDefault()
-        if (inputFirstName && inputLastName) {
+        if (oldPassword.length === 0 || inputPassword.length === 0 || confirmPassword.length === 0) {
             axios.patch(`/users/${user.id}`, {
                 first_name: inputFirstName,
-                last_name: inputLastName
+                last_name: inputLastName,
+                email: inputEmail,
+                profile_picture: inputProfilePicture,
             })
-        } else if (inputFirstName && !inputLastName) {
+        } else {
             axios.patch(`/users/${user.id}`, {
-                first_name: inputFirstName
-            })
-        } else if (!inputFirstName && inputLastName) {
-            axios.patch(`/users/${user.id}`, {
-                last_name: inputLastName
+                first_name: inputFirstName,
+                last_name: inputLastName,
+                email: inputEmail,
+                profile_picture: inputProfilePicture,
+                old_password: oldPassword,
+                password: inputPassword,
+                password_confirmation: confirmPassword
             })
         }
-    }
-
-    function handlePasswordChange(e) {
-        // e.preventDefault()
-        axios.patch(`/users/${user.id}`, {
-            old_password: oldPassword,
-            password: inputPassword,
-            password_confirmation: confirmPassword
-        })
-    }
-
-    function handleEmailChange(e) {
-        // e.preventDefault()
-        axios.patch(`/users/${user.id}`, {
-            email: inputEmail
-        })
     }
 
     function handleDeleteAccount() {
@@ -122,16 +91,45 @@ function AccountPage({ user, setUser }) {
                 </div>
                 <Accordion>
                     <Accordion.Item eventKey="0">
-                        <Accordion.Header>Account Settings</Accordion.Header>
+                        <Accordion.Header>Account</Accordion.Header>
                         <Accordion.Body className="accordion-setting-buttons">
-                            <Button variant="secondary" className="settings-button" onClick={handleProfilePictureShow}>Add/edit profile picture</Button>
-                            <hr />
-                            <Button variant="secondary" className="settings-button" onClick={handleNameShow}>Change name</Button>
-                            <hr />
-                            <Button variant="secondary" className="settings-button" onClick={handleEmailShow}>Change email</Button>
-                            <hr />
-                            <Button variant="secondary" className="settings-button" onClick={handlePasswordShow}>Change password</Button>
-                            <hr />
+                            <form onSubmit={changeUserInfo}>
+                                <div style={{ display: "grid", gridTemplateColumns: "auto auto", justifyContent: "center" }}>
+                                    <div style={{ paddingRight: "10px" }}>
+                                        <FloatingLabel label="First name" className="settings-label">
+                                            <Form.Control className="settings-input" required defaultValue={user.first_name} onChange={e => setInputFirstName(e.target.value)} />
+                                        </FloatingLabel>
+                                        <br />
+                                        <FloatingLabel label="Last name" className="settings-label">
+                                            <Form.Control className="settings-input" required defaultValue={user.last_name} onChange={e => setInputLastName(e.target.value)} />
+                                        </FloatingLabel>
+                                        <br />
+                                        <FloatingLabel label="Email" className="settings-label">
+                                            <Form.Control className="settings-input" required defaultValue={user.email} onChange={e => setInputEmail(e.target.value)} />
+                                        </FloatingLabel>
+                                        <br />
+                                        <FloatingLabel label="Image URL" className="settings-label">
+                                            <Form.Control className="settings-input" defaultValue={user.profile_picture} onChange={e => setInputProfilePicture(e.target.value)} />
+                                        </FloatingLabel>
+                                    </div>
+                                    <div style={{ paddingLeft: "10px" }}>
+                                        <FloatingLabel label="Old password" className="settings-label">
+                                            <Form.Control type="password" className="settings-input" onChange={e => setOldPassword(e.target.value)} />
+                                        </FloatingLabel>
+                                        <br />
+                                        <FloatingLabel label="New password" className="settings-label">
+                                            <Form.Control type="password" className="settings-input" onChange={e => setInputPassword(e.target.value)} />
+                                        </FloatingLabel>
+                                        <br />
+                                        <FloatingLabel label="Confirm password" className="settings-label">
+                                            <Form.Control type="password" className="settings-input" onChange={e => setConfirmPassword(e.target.value)} />
+                                        </FloatingLabel>
+                                    </div>
+                                </div>
+                                <br />
+                                <Button type="submit" variant="secondary">Save changes</Button>
+                            </form>
+                            <br />
                             <Button className="delete-account-button" onClick={handleDeleteShow}>Deactivate account</Button>
                         </Accordion.Body>
                     </Accordion.Item>
@@ -141,82 +139,6 @@ function AccountPage({ user, setUser }) {
                     </Accordion.Item>
                 </Accordion>
             </div>
-
-            <Modal show={profilePictureShow} onHide={handleProfilePictureClose} centered={true} size="sm">
-                <Modal.Header className="add-edit-header" closeButton>
-                    <Modal.Title>Add/edit profile picture</Modal.Title>
-                </Modal.Header>
-                <form onSubmit={handleProfilePictureChange}>
-                    <Modal.Body>
-                        <FloatingLabel label="Image URL" className="settings-label">
-                            <Form.Control className="settings-input" required onChange={e => setInputProfilePicture(e.target.value)} />
-                        </FloatingLabel>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button type="submit">Save Changes</Button>
-                    </Modal.Footer>
-                </form>
-            </Modal>
-
-            <Modal show={nameShow} onHide={handleNameClose} centered={true} size="sm">
-                <Modal.Header closeButton>
-                    <Modal.Title>Change name</Modal.Title>
-                </Modal.Header>
-                <form onSubmit={handleNameChange}>
-                    <Modal.Body>
-                        <FloatingLabel label="First name" className="settings-label">
-                            <Form.Control className="settings-input" onChange={e => setInputFirstName(e.target.value)} />
-                        </FloatingLabel>
-                        <br />
-                        <FloatingLabel label="Last name" className="login-label">
-                            <Form.Control className="settings-input" onChange={e => setInputLastName(e.target.value)} />
-                        </FloatingLabel>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button type="submit">Save Changes</Button>
-                    </Modal.Footer>
-                </form>
-            </Modal>
-
-            <Modal show={emailShow} onHide={handleEmailClose} centered={true} size="sm">
-                <Modal.Header closeButton>
-                    <Modal.Title>Change email</Modal.Title>
-                </Modal.Header>
-                <form onSubmit={handleEmailChange}>
-                    <Modal.Body>
-                        <FloatingLabel label="Email" className="settings-label">
-                            <Form.Control type="email" required className="settings-input" onChange={e => setInputEmail(e.target.value)} />
-                        </FloatingLabel>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button type="submit">Save Changes</Button>
-                    </Modal.Footer>
-                </form>
-            </Modal>
-
-            <Modal show={passwordShow} onHide={handlePasswordClose} centered={true} size="sm">
-                <Modal.Header closeButton>
-                    <Modal.Title>Change password</Modal.Title>
-                </Modal.Header>
-                <form onSubmit={handlePasswordChange}>
-                    <Modal.Body>
-                        <FloatingLabel label="Old password" className="settings-label">
-                            <Form.Control type="password" className="settings-input" required onChange={e => setOldPassword(e.target.value)} />
-                        </FloatingLabel>
-                        <br />
-                        <FloatingLabel label="New password" className="settings-label">
-                            <Form.Control type="password" className="settings-input" required onChange={e => setInputPassword(e.target.value)} />
-                        </FloatingLabel>
-                        <br />
-                        <FloatingLabel label="Confirm password" className="settings-label">
-                            <Form.Control type="password" className="settings-input" required onChange={e => setConfirmPassword(e.target.value)} />
-                        </FloatingLabel>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button type="submit">Save Changes</Button>
-                    </Modal.Footer>
-                </form>
-            </Modal>
 
             <Modal show={deleteShow} onHide={handleDeleteClose} centered={true} className="delete-modal" size="md">
                 <Modal.Header>
