@@ -52,6 +52,7 @@ function SelectedRestaurant({ user }) {
                     setIsOpen(restaurantData[0].data.hours[0].is_open_now)
                     setRestaurantPhotos(restaurantData[0].data.photos)
                     setRestaurantURL(restaurantData[0].data.url)
+                    setTimeout(setIsLoading, 1000, false)
                 })
         }
 

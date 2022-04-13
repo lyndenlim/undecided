@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useParams } from "react-router-dom"
 import RestaurantInfo from "./RestaurantInfo"
-import Spinner from "react-bootstrap/Spinner"
 
 function RandomRestaurant({ user }) {
     const { id } = useParams()
@@ -55,6 +54,7 @@ function RandomRestaurant({ user }) {
                     setRestaurantCategories(randomRestaurantInfo[0].data.categories)
                     setRestaurantPhotos(randomRestaurantInfo[0].data.photos)
                     setRestaurantURL(randomRestaurantInfo[0].data.url)
+                    setTimeout(setIsLoading, 1000, false)
                 })
         }
         getRestaurantData()

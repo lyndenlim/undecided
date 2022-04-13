@@ -39,7 +39,6 @@ function WriteReview({ user }) {
         alert("Thanks for your review!")
         history.push(`/restaurants/${id}`)
     }
-    console.log(rating)
 
     return (
         <div className="user-review-container">
