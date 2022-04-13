@@ -153,7 +153,8 @@ code {
 }
 
 input,
-.recipe-map-container, .no-recipes {
+.recipe-map-container,
+.no-recipes {
   text-align: center;
 }
 
@@ -263,16 +264,21 @@ input,
 .login-input,
 .login-label,
 .signup-input,
-.signup-label,
-.settings-input,
-.settings-label {
+.signup-label {
   margin: auto;
   width: fit-content !important;
   text-align: left !important;
 }
 
+.settings-input,
+.settings-label {
+  /* margin: auto; */
+  width: fit-content !important;
+  text-align: left !important;
+}
+
 .user-container {
-  width: 800px;
+  width: 750px;
   margin: auto;
 }
 
