@@ -6,6 +6,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/esm/OverlayTrigger';
+import Placeholder from 'react-bootstrap/Placeholder';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faXmark, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 
@@ -15,6 +16,7 @@ function AccountReview({ user, review, removeDeletedReview }) {
     const [isEditable, setIsEditable] = useState(false)
     const [newRating, setNewRating] = useState(review.rating)
     const [newComment, setNewComment] = useState(review.text)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         async function getRestaurantName() {
@@ -23,12 +25,14 @@ function AccountReview({ user, review, removeDeletedReview }) {
                     Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
                 }
             })
-            const restaurantInfo = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${review.restaurant_id}`)
             const dateSplit = review.created_at.split("T")[0].split("-")
             const reformattedDate = `${dateSplit[1]}/${dateSplit[2]}/${dateSplit[0]}`
-
-            setName(restaurantInfo.data.name)
-            setDateCreated(reformattedDate)
+            axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${review.restaurant_id}`)
+                .then(restaurantInfo => {
+                    setName(restaurantInfo.data.name)
+                    setDateCreated(reformattedDate)
+                    setTimeout(setIsLoading, 1000, false)
+                })
         }
         getRestaurantName()
     }, [])
@@ -74,7 +78,12 @@ function AccountReview({ user, review, removeDeletedReview }) {
     return (
         <div>
             <Link to={`/restaurants/${review.restaurant_id}`} className="link">
-                <h4>{name}</h4>
+                {isLoading ?
+                    <Placeholder as="p" animation="glow" style={{ width: "25%" }}>
+                        <Placeholder xs={12} />
+                    </Placeholder>
+                    :
+                    <h4>{name}</h4>}
             </Link>
             <p>{dateCreated}</p>
             {isEditable ?
