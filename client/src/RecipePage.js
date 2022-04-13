@@ -65,7 +65,7 @@ function Recipe({ currentLat, currentLng }) {
           </iframe>
         </div>
         :
-        null}
+        <div style={{textAlign: 'center'}}><h3>Find recipes with any ingredients you have on hand</h3></div>}
       <br />
       <div className="recipe-container">
         {recipes.map(recipe => <RecipeCard key={recipe.id} recipe={recipe} setIsLoading={setIsLoading} />)}

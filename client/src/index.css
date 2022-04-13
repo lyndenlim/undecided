@@ -147,8 +147,7 @@ code {
   font-weight: bold;
 }
 
-.recipe-info {
-  text-align: center;
+.recipe-centering {
   justify-content: center;
   display: grid;
 }
@@ -577,5 +576,23 @@ input,
 
 .or {
   color: white;
+  text-shadow: 1px 1px black;
+}
+
+.recipe-info-card {
+  margin: 20px;
+}
+
+.recipe-info-container {
+  width: 600px;
+}
+
+.recipe-photo {
+  overflow: hidden;
+} 
+
+.recipe-overlay {
+  color: white;
+  text-align: center;
   text-shadow: 1px 1px black;
 }
