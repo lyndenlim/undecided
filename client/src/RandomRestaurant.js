@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useParams } from "react-router-dom"
 import RestaurantInfo from "./RestaurantInfo"
 
-function RandomRestaurant({ user }) {
+function RandomRestaurant({ user, currentLat, currentLng }) {
     const { id } = useParams()
     const [restaurantAddress, setRestaurantAddress] = useState("")
     const [restaurantName, setRestaurantName] = useState("")
@@ -32,10 +32,10 @@ function RandomRestaurant({ user }) {
                     Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
                 }
             })
-            const geocodedResult = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=9-Maiden-Ln-New-York,NY-10038-Broadway-&-Cortlandt-St&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
-            const locationLat = geocodedResult.data.results[0].geometry.location.lat
-            const locationLng = geocodedResult.data.results[0].geometry.location.lng
-            const restaurantRequests = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=50&latitude=${locationLat}&longitude=${locationLng}&radius=805&open_now=true&categories=restaurants`)
+            // const geocodedResult = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=9-Maiden-Ln-New-York,NY-10038-Broadway-&-Cortlandt-St&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
+            // const locationLat = geocodedResult.data.results[0].geometry.location.lat
+            // const locationLng = geocodedResult.data.results[0].geometry.location.lng
+            const restaurantRequests = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=50&latitude=${currentLat}&longitude=${currentLng}&radius=1610&open_now=true&categories=restaurants`)
             const allRestaurants = restaurantRequests.data.businesses
             const randomRestaurant = allRestaurants[Math.ceil(Math.random() * allRestaurants.length)]
             axios.all([axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${randomRestaurant.id}`),

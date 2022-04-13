@@ -12,7 +12,6 @@ import RecipePage from "./RecipePage";
 import RecipeInfo from "./RecipeInfo"
 
 function App() {
-  const [address, setAddress] = useState("")
   const [user, setUser] = useState("")
   const [currentLat, setCurrentLat] = useState("")
   const [currentLng, setCurrentLng] = useState("")
