@@ -19,8 +19,10 @@ function AccountPage({ user, setUser }) {
     const [confirmPassword, setConfirmPassword] = useState("")
     const [inputEmail, setInputEmail] = useState(user.email)
     const [deleteShow, setDeleteShow] = useState(false)
+    const [showError, setShowError] = useState(false)
     const history = useHistory()
 
+    console.log(inputProfilePicture)
     const handleDeleteClose = () => setDeleteShow(false)
     const handleDeleteShow = () => setDeleteShow(true)
 
@@ -35,12 +37,19 @@ function AccountPage({ user, setUser }) {
 
     function changeUserInfo(e) {
         // e.preventDefault()
-        if (oldPassword.length === 0 || inputPassword.length === 0 || confirmPassword.length === 0) {
+        if (oldPassword.length === 0 && inputPassword.length === 0 && confirmPassword.length === 0 && inputProfilePicture === undefined) {
             axios.patch(`/users/${user.id}`, {
                 first_name: inputFirstName,
                 last_name: inputLastName,
                 email: inputEmail,
-                profile_picture: inputProfilePicture,
+                profile_picture: null
+            })
+        } else if (oldPassword.length === 0 && inputPassword.length === 0 && confirmPassword.length === 0) {
+            axios.patch(`/users/${user.id}`, {
+                first_name: inputFirstName,
+                last_name: inputLastName,
+                email: inputEmail,
+                profile_picture: inputProfilePicture
             })
         } else {
             axios.patch(`/users/${user.id}`, {
