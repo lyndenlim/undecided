@@ -41,7 +41,6 @@ function WriteReview({ user }) {
         })
         setRating("")
         setComment("")
-        alert("Thanks for your review!")
         history.push(`/restaurants/${id}`)
     }
 
