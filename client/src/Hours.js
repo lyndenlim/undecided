@@ -5,8 +5,6 @@ function Hours({ day }) {
     const [dayOfWeek, setDayOfWeek] = useState("")
     const [openHour, setOpenHour] = useState("")
     const [closeHour, setCloseHour] = useState("")
-    
-    console.log(day)
 
     useEffect(() => {
         function convertDay() {

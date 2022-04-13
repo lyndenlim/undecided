@@ -10,21 +10,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFilePen } from "@fortawesome/free-solid-svg-icons"
 import ReactStarsRating from 'react-awesome-stars-rating';
 import Spinner from "react-bootstrap/Spinner"
+import ReactLoading from 'react-loading';
 
 function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, restaurantPrice, restaurantCategories, restaurantHours, restaurantPhoneNumber, restaurantURL, restaurantAddress, restaurantPhotos, userRestaurantReviews, user, isOpen, id, restaurantReviewCount, removeDeletedReview, isLoading, setIsLoading }) {
     useEffect(() => {
         window.scrollTo(0, 0)
-        setTimeout(setIsLoading, 1000, false)
-    }, [restaurantName, restaurantReviews, restaurantRating, restaurantPrice, restaurantCategories, restaurantHours, restaurantPhoneNumber, restaurantURL, restaurantAddress, restaurantPhotos, userRestaurantReviews, isOpen, restaurantReviewCount])
+    }, [])
 
     return (
         <>
             {isLoading ?
-                <div className="spinner">
-                    <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                </div>
+                <ReactLoading type="spinningBubbles" color="black" className="spinner-bubbles" />
                 :
                 <div className="restaurant-centering">
                     <Card className="restaurant-info-card">
@@ -50,7 +46,7 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                                     {restaurantHours.map(day => <Hours key={day.day} day={day} />)}
                                     <small>Hours subject to change. For more accuracy, check the restaurant's website.</small>
                                 </div>
-                                <Card style={{width: "300px"}}>
+                                <Card style={{ width: "300px" }}>
                                     MAKE A RESERVATION
                                     <p>CALL AHEAD {restaurantPhoneNumber}</p>
                                     <a href={restaurantURL}>{restaurantURL}</a>
