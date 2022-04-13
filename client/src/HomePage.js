@@ -84,8 +84,9 @@ function HomePage() {
                                         </Button>}
                                 </InputGroup>
                             </form>
-                            {/* placeholder */}
-                            <span style={{ color: "white" }}>OR</span>
+                            <hr className="hr"/>
+                            <span className="or">OR</span>
+                            <hr className="hr"/>
                             {isLoading ?
                                 <Button className="loading-button" disabled>
                                     <Spinner
