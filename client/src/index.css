@@ -253,6 +253,7 @@ input,
 .login-container,
 .signup-container {
   display: flex;
+  align-items: center;
 }
 
 .login-column,
@@ -262,9 +263,9 @@ input,
 }
 
 .spinner-bubbles {
-  margin: auto ;
+  margin: auto;
   height: 100px;
-  width: 100px ;
+  width: 100px;
 }
 
 .login-input,
@@ -589,7 +590,7 @@ input,
 
 .recipe-photo {
   overflow: hidden;
-} 
+}
 
 .recipe-overlay {
   color: white;
