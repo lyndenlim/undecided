@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import axios from 'axios'
 import Form from "react-bootstrap/Form"
+import Placeholder from "react-bootstrap/Placeholder"
 import Button from "react-bootstrap/Button"
 import ReactStarsRating from 'react-awesome-stars-rating';
 
@@ -11,6 +12,7 @@ function WriteReview({ user }) {
     const [restaurantName, setRestaurantName] = useState("")
     const [rating, setRating] = useState(0)
     const [comment, setComment] = useState("")
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         async function getRestaurantName() {
@@ -20,8 +22,12 @@ function WriteReview({ user }) {
                 }
             })
 
-            const restaurantData = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${id}`)
-            setRestaurantName(restaurantData.data.name)
+            axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${id}`)
+                .then(restaurantData => {
+                    setRestaurantName(restaurantData.data.name)
+                    setTimeout(setIsLoading, 1000, false)
+                })
+
         }
         getRestaurantName()
     }, [])
@@ -42,7 +48,12 @@ function WriteReview({ user }) {
 
     return (
         <div className="user-review-container">
-            <h3>{restaurantName}</h3>
+            {isLoading ?
+                <Placeholder as="p" animation="glow" style={{ width: "25%" }}>
+                    <Placeholder xs={12} />
+                </Placeholder>
+                :
+                <h3>{restaurantName}</h3>}
             <form onSubmit={postReview}>
                 <div>
                     <ReactStarsRating value={rating} onChange={e => setRating(e)} />
