@@ -19,10 +19,8 @@ function AccountPage({ user, setUser }) {
     const [confirmPassword, setConfirmPassword] = useState("")
     const [inputEmail, setInputEmail] = useState(user.email)
     const [deleteShow, setDeleteShow] = useState(false)
-    const [showError, setShowError] = useState(false)
     const history = useHistory()
 
-    console.log(inputProfilePicture)
     const handleDeleteClose = () => setDeleteShow(false)
     const handleDeleteShow = () => setDeleteShow(true)
 

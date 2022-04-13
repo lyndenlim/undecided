@@ -47,12 +47,11 @@ function HomePage() {
         axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=10&latitude=${locationLat}&longitude=${locationLng}&radius=805&open_now=true&categories=restaurants`)
             .then(res => {
                 setAllRestaurantsInfo(res.data.businesses)
+                Scroll.scroller.scrollTo("results", {
+                    smooth: true
+                });
                 setIsLoading(false)
             })
-
-        Scroll.scroller.scrollTo("results", {
-            smooth: true
-        });
     }
 
     return (
@@ -84,9 +83,9 @@ function HomePage() {
                                         </Button>}
                                 </InputGroup>
                             </form>
-                            <hr className="hr"/>
+                            <hr className="hr" />
                             <span className="or">OR</span>
-                            <hr className="hr"/>
+                            <hr className="hr" />
                             {isLoading ?
                                 <Button className="loading-button" disabled>
                                     <Spinner
