@@ -9,7 +9,6 @@ import Button from "react-bootstrap/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFilePen } from "@fortawesome/free-solid-svg-icons"
 import ReactStarsRating from 'react-awesome-stars-rating';
-import Spinner from "react-bootstrap/Spinner"
 import ReactLoading from 'react-loading';
 
 function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, restaurantPrice, restaurantCategories, restaurantHours, restaurantPhoneNumber, restaurantURL, restaurantAddress, restaurantPhotos, userRestaurantReviews, user, isOpen, id, restaurantReviewCount, removeDeletedReview, isLoading, setIsLoading }) {

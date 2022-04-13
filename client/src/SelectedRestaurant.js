@@ -58,7 +58,7 @@ function SelectedRestaurant({ user }) {
 
         getUserReviews()
         getRestaurantData()
-    }, [])
+    }, [isLoading])
 
     function removeDeletedReview(reviewID) {
         setUserRestaurantReviews(userRestaurantReviews.filter(review => review.id !== reviewID))
