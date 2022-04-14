@@ -198,6 +198,23 @@ input,
   text-align: center;
 }
 
+.hours-container {
+  display: flex;
+  align-items: center;
+}
+
+.contact-container {
+  width: 300px;
+}
+
+.overall-contact-container {
+  height: 100%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin: auto;
+}
+
 .location-hours {
   display: grid;
   grid-template-columns: auto auto auto;

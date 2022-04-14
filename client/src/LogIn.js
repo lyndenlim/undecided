@@ -47,8 +47,6 @@ function LogIn({ setUser }) {
             <div className="col-8"><img height="100%" width="100%" src={login} alt="login-display" /> </div>
             <div className="col-4 login-column">
                 <h4>Log In</h4>
-                <div style={{ width: "fit-content", margin: "auto" }}>
-                </div>
                 <br />
                 <form onSubmit={handleSubmit}>
                     <FloatingLabel label="Email" className="login-label">

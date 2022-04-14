@@ -30,6 +30,7 @@ function AccountPage({ user, setUser }) {
 
             setReviews(userReviews.data.reviews)
         }
+
         getUserReviews()
     }, [])
 

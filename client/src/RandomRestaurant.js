@@ -12,12 +12,12 @@ function RandomRestaurant({ user, currentLat, currentLng }) {
     const [restaurantRating, setRestaurantRating] = useState("")
     const [restaurantReviewCount, setRestaurantReviewCount] = useState("")
     const [isOpen, setIsOpen] = useState("")
-    const [restaurantURL, setRestaurantURL] = useState("")
     const [restaurantHours, setRestaurantHours] = useState([])
     const [restaurantCategories, setRestaurantCategories] = useState([])
     const [restaurantPhotos, setRestaurantPhotos] = useState([])
     const [restaurantReviews, setRestaurantReviews] = useState([])
     const [userRestaurantReviews, setUserRestaurantReviews] = useState([])
+    const [restaurantTransactions, setRestaurantTransactions] = useState([])
     const [randomRestaurantID, setRandomRestaurantID] = useState("")
     const [isLoading, setIsLoading] = useState(true)
 
@@ -43,6 +43,7 @@ function RandomRestaurant({ user, currentLat, currentLng }) {
                 .then(randomRestaurantInfo => {
                     setRandomRestaurantID(randomRestaurant.id)
                     setRestaurantReviews(randomRestaurantInfo[1].data.reviews)
+                    setRestaurantTransactions(randomRestaurantInfo[0].data.transactions)
                     setRestaurantPhoneNumber(randomRestaurantInfo[0].data.display_phone)
                     setIsOpen(randomRestaurantInfo[0].data.hours[0].is_open_now)
                     setRestaurantName(randomRestaurantInfo[0].data.name)
@@ -53,7 +54,6 @@ function RandomRestaurant({ user, currentLat, currentLng }) {
                     setRestaurantHours(randomRestaurantInfo[0].data.hours[0].open)
                     setRestaurantCategories(randomRestaurantInfo[0].data.categories)
                     setRestaurantPhotos(randomRestaurantInfo[0].data.photos)
-                    setRestaurantURL(randomRestaurantInfo[0].data.url)
                     setTimeout(setIsLoading, 1000, false)
                 })
         }
@@ -79,7 +79,7 @@ function RandomRestaurant({ user, currentLat, currentLng }) {
                 restaurantPhoneNumber={restaurantPhoneNumber}
                 userRestaurantReviews={userRestaurantReviews}
                 restaurantPhotos={restaurantPhotos}
-                restaurantURL={restaurantURL}
+                restaurantTransactions={restaurantTransactions}
                 isOpen={isOpen}
                 user={user}
                 id={randomRestaurantID}

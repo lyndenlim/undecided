@@ -11,13 +11,13 @@ function SelectedRestaurant({ user }) {
     const [restaurantPrice, setRestaurantPrice] = useState("")
     const [restaurantAddress, setRestaurantAddress] = useState("")
     const [isOpen, setIsOpen] = useState("")
-    const [restaurantURL, setRestaurantURL] = useState("")
     const [restaurantPhoneNumber, setRestaurantPhoneNumber] = useState("")
     const [restaurantCategories, setRestaurantCategories] = useState([])
     const [restaurantPhotos, setRestaurantPhotos] = useState([])
     const [restaurantHours, setRestaurantHours] = useState([])
     const [restaurantReviews, setRestaurantReviews] = useState([])
     const [userRestaurantReviews, setUserRestaurantReviews] = useState([])
+    const [restaurantTransactions, setRestaurantTransactions] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
@@ -40,7 +40,9 @@ function SelectedRestaurant({ user }) {
             axios.all([axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${id}`),
             axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${id}/reviews`)])
                 .then(restaurantData => {
+                    console.log(restaurantData)
                     setRestaurantReviews(restaurantData[1].data.reviews)
+                    setRestaurantTransactions(restaurantData[0].data.transactions)
                     setRestaurantName(restaurantData[0].data.name)
                     setRestaurantRating(restaurantData[0].data.rating)
                     setRestaurantAddress(restaurantData[0].data.location.display_address.toString())
@@ -51,7 +53,6 @@ function SelectedRestaurant({ user }) {
                     setRestaurantPhoneNumber(restaurantData[0].data.display_phone)
                     setIsOpen(restaurantData[0].data.hours[0].is_open_now)
                     setRestaurantPhotos(restaurantData[0].data.photos)
-                    setRestaurantURL(restaurantData[0].data.url)
                     setTimeout(setIsLoading, 1000, false)
                 })
         }
@@ -79,7 +80,7 @@ function SelectedRestaurant({ user }) {
                 restaurantPhoneNumber={restaurantPhoneNumber}
                 userRestaurantReviews={userRestaurantReviews}
                 restaurantPhotos={restaurantPhotos}
-                restaurantURL={restaurantURL}
+                restaurantTransactions={restaurantTransactions}
                 isOpen={isOpen}
                 user={user}
                 id={id}
