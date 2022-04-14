@@ -40,7 +40,6 @@ function NavBar({ user, setUser }) {
                     {user ?
                         <div>
                             <Dropdown>
-                                {/* revisit */}
                                 <Dropdown.Toggle className="account-toggle">
                                     <div className="navbar-profile-picture">
                                         <img width="100%" height="fit-content" src={user.profile_picture ? user.profile_picture : defaultProfilePicture} />
