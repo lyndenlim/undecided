@@ -49,7 +49,6 @@ function AccountReview({ user, review, removeDeletedReview }) {
     }
 
     function handleEdit(e) {
-        // get to rerender without this 
         // e.preventDefault()
         axios.patch(`/reviews/${review.id}`, {
             rating: newRating,
