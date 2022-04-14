@@ -6,7 +6,6 @@ function Transaction({ transaction }) {
     useEffect(() => {
         function splitTransaction() {
             const splitItems = transaction.split("_")
-            console.log(splitItems)
             setFormattedTransactions(splitItems.map(item => `${item.slice(0, 1).toUpperCase()}${item.slice(1, item.length)}`))
         }
 

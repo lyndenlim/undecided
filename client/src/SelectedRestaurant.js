@@ -40,7 +40,6 @@ function SelectedRestaurant({ user }) {
             axios.all([axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${id}`),
             axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${id}/reviews`)])
                 .then(restaurantData => {
-                    console.log(restaurantData)
                     setRestaurantReviews(restaurantData[1].data.reviews)
                     setRestaurantTransactions(restaurantData[0].data.transactions)
                     setRestaurantName(restaurantData[0].data.name)
