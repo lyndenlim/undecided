@@ -32,8 +32,6 @@ function RecipeInfo() {
         getRecipeInstructions()
     }, [])
 
-    console.log(recipeSteps)
-
     return (
         <>
             {isLoading ?

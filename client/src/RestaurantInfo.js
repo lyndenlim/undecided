@@ -31,7 +31,9 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                             <Card.ImgOverlay className="restaurant-overlay">
                                 <h1 className="bold">{restaurantName}</h1>
                                 <div><ReactStarsRating className="star-rating" value={restaurantRating} isEdit={false} /></div>
-                                <div><span className="bold">{restaurantReviewCount} reviews</span></div>
+                                <div>
+                                    <span className="bold">{restaurantReviewCount} reviews</span>
+                                </div>
                                 <div className="bold">{restaurantPrice ? `${restaurantPrice} •` : null} {restaurantCategories.map(category => <p key={category.title} className="category">{category.title} </p>)}</div>
                                 {/* revisit for category separation */}
                                 <div className="status">{isOpen ? <strong className="open">OPEN</strong> : <strong className="closed">CLOSED</strong>}</div>
