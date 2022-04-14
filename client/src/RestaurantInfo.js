@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Map from './Map'
 import YelpReview from "./YelpReview"
@@ -13,9 +13,45 @@ import ReactStarsRating from 'react-awesome-stars-rating';
 import ReactLoading from 'react-loading';
 
 function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, restaurantPrice, restaurantCategories, restaurantHours, restaurantPhoneNumber, restaurantAddress, restaurantPhotos, userRestaurantReviews, user, isOpen, id, restaurantReviewCount, removeDeletedReview, isLoading, restaurantTransactions }) {
+    const [openHour, setOpenHour] = useState("")
+    const [closeHour, setCloseHour] = useState("")
+
     useEffect(() => {
+        const todaysDate = new Date()
+        const todaysDay = todaysDate.getDay()
+
+        function getTodayHours() {
+
+
+            const todaysHours = restaurantHours.filter(hours => hours.day === todaysDay)[0]
+
+            if (parseInt(todaysHours.start) > 1200) {
+                setOpenHour(`${todaysHours.start.slice(0, 2) - 12}:${todaysHours.start.slice(2, 4)} PM`)
+            } else if (parseInt(todaysHours.start) < 1200 && parseInt(todaysHours.start) !== 0) {
+                setOpenHour(`${todaysHours.start.slice(0, 2)}:${todaysHours.start.slice(2, 4)} AM`)
+            } else if (todaysHours.start === "0000") {
+                setOpenHour("12:00 AM")
+            } else if (todaysHours.start === "1200") {
+                setOpenHour("12:00 PM")
+            }
+
+            if (parseInt(todaysHours.end) > 12) {
+                setCloseHour(`${todaysHours.end.slice(0, 2) - 12}:${todaysHours.end.slice(2, 4)} PM`)
+            } else if (parseInt(todaysHours.end) < 12 && parseInt(todaysHours.end) !== 0) {
+                setCloseHour(`${todaysHours.end.slice(0, 2)}:${todaysHours.end.slice(2, 4)} AM`)
+            } else if (todaysHours.end === "0000") {
+                setCloseHour("12:00 AM")
+            } else if (todaysHours.end === "1200") {
+                setOpenHour("12:00 PM")
+            }
+        }
+
         window.scrollTo(0, 0)
+
+        getTodayHours()
     }, [])
+
+    console.log(openHour)
 
     return (
         <>
@@ -36,7 +72,7 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                                 </div>
                                 <div className="bold">{restaurantPrice ? `${restaurantPrice} •` : null} {restaurantCategories.map(category => <p key={category.title} className="category">{category.title} </p>)}</div>
                                 {/* revisit for category separation */}
-                                <div className="status">{isOpen ? <strong className="open">OPEN</strong> : <strong className="closed">CLOSED</strong>}</div>
+                                <div className="status">{isOpen ? <strong className="open">OPEN</strong> : <strong className="closed">CLOSED</strong>} &nbsp;&nbsp;<span className="bold">{openHour} - {closeHour}</span></div>
                             </Card.ImgOverlay>
                             <hr />
                             <h4 className="restaurant-header">Location & Hours</h4>

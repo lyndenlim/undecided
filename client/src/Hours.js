@@ -5,8 +5,19 @@ function Hours({ day }) {
     const [dayOfWeek, setDayOfWeek] = useState("")
     const [openHour, setOpenHour] = useState("")
     const [closeHour, setCloseHour] = useState("")
+    const [colored, setColored] = useState(false)
+    const green = colored ? "#00a16d" : ""
 
     useEffect(() => {
+        const todaysDate = new Date()
+        const todaysDay = todaysDate.getDay()
+
+        function colorDate() {
+            if (todaysDay === day.day) {
+                setColored(true)
+            }
+        }
+
         function convertDay() {
             switch (day.day) {
                 case 0:
@@ -59,13 +70,14 @@ function Hours({ day }) {
 
         convertDay()
         convertHours()
+        colorDate()
     }, [])
 
 
     return (
         <div className="hour-list">
             <ListGroupItem>
-                <strong>{dayOfWeek}</strong> &nbsp;{openHour} - {closeHour}
+                <strong style={{color: green}}>{dayOfWeek}</strong> &nbsp;{openHour} - {closeHour}
             </ListGroupItem>
         </div>
     )
