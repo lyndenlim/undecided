@@ -20,10 +20,8 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
         const todaysDate = new Date()
         const todaysDay = todaysDate.getDay()
 
-        function getTodayHours() {
-
-
-            const todaysHours = restaurantHours.filter(hours => hours.day === todaysDay)[0]
+        async function getTodayHours() {
+            const todaysHours = await restaurantHours.filter(hour => hour.day === todaysDay)[0]
 
             if (parseInt(todaysHours.start) > 1200) {
                 setOpenHour(`${todaysHours.start.slice(0, 2) - 12}:${todaysHours.start.slice(2, 4)} PM`)
@@ -49,9 +47,7 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
         window.scrollTo(0, 0)
 
         getTodayHours()
-    }, [])
-
-    console.log(openHour)
+    }, [isLoading])
 
     return (
         <>
