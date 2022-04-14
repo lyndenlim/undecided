@@ -21,9 +21,6 @@ function SelectedRestaurant({ user }) {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        // const today = new Date
-        // console.log(today.getDay())
-
         async function getUserReviews() {
             const userReviews = await axios.get("/reviews")
             setUserRestaurantReviews(userReviews.data.filter(review => review.restaurant_id === id)
