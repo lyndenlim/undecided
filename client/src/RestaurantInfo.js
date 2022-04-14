@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom'
 import Map from './Map'
 import YelpReview from "./YelpReview"
 import UserReview from "./UserReview"
+import Transaction from "./Transaction"
 import Hours from "./Hours"
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faFilePen } from "@fortawesome/free-solid-svg-icons"
+import { faFilePen, faPhone } from "@fortawesome/free-solid-svg-icons"
 import ReactStarsRating from 'react-awesome-stars-rating';
 import ReactLoading from 'react-loading';
 
-function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, restaurantPrice, restaurantCategories, restaurantHours, restaurantPhoneNumber, restaurantURL, restaurantAddress, restaurantPhotos, userRestaurantReviews, user, isOpen, id, restaurantReviewCount, removeDeletedReview, isLoading, setIsLoading }) {
+function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, restaurantPrice, restaurantCategories, restaurantHours, restaurantPhoneNumber, restaurantAddress, restaurantPhotos, userRestaurantReviews, user, isOpen, id, restaurantReviewCount, removeDeletedReview, isLoading, restaurantTransactions }) {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -31,7 +32,7 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                                 <h1 className="bold">{restaurantName}</h1>
                                 <div><ReactStarsRating className="star-rating" value={restaurantRating} isEdit={false} /></div>
                                 <div><span className="bold">{restaurantReviewCount} reviews</span></div>
-                                <div className="bold">{restaurantPrice} • {restaurantCategories.map(category => <p key={category.title} className="category">{category.title} </p>)}</div>
+                                <div className="bold">{restaurantPrice ? `${restaurantPrice} •` : null} {restaurantCategories.map(category => <p key={category.title} className="category">{category.title} </p>)}</div>
                                 {/* revisit for category separation */}
                                 <div className="status">{isOpen ? <strong className="open">OPEN</strong> : <strong className="closed">CLOSED</strong>}</div>
                             </Card.ImgOverlay>
@@ -41,15 +42,23 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                                 <div>
                                     <Map restaurantAddress={restaurantAddress} />
                                 </div>
-                                <div className="hours">
-                                    {restaurantHours.map(day => <Hours key={day.day} day={day} />)}
-                                    <small>Hours subject to change. For more accuracy, check the restaurant's website.</small>
+                                <div className="hours-container">
+                                    <div className="hours">
+                                        {restaurantHours.map(day => <Hours key={day.day} day={day} />)}
+                                        <small>Hours subject to change. For more accuracy, check the restaurant's website.</small>
+                                    </div>
                                 </div>
-                                <Card style={{ width: "300px" }}>
-                                    MAKE A RESERVATION
-                                    <p>CALL AHEAD {restaurantPhoneNumber}</p>
-                                    <a href={restaurantURL}>{restaurantURL}</a>
-                                </Card>
+                                <div className="overall-contact-container">
+                                    <div className="contact-container">
+                                        <p>
+                                            <FontAwesomeIcon icon={faPhone} />
+                                            &nbsp;
+                                            <strong>{restaurantPhoneNumber ? restaurantPhoneNumber : "No phone number provided"}</strong>
+                                        </p>
+                                        <br />
+                                        {restaurantTransactions.map(transaction => <Transaction key={transaction} transaction={transaction} />)}
+                                    </div>
+                                </div>
                             </div>
                             <hr />
                             <h4 className="restaurant-header">Reviews</h4>
