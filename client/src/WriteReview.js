@@ -40,24 +40,26 @@ function WriteReview({ user }) {
     }
 
     return (
-        <div className="user-review-container">
-            {isLoading ?
-                <Placeholder as="p" animation="glow" style={{ width: "25%" }}>
-                    <Placeholder xs={12} />
-                </Placeholder>
-                :
-                <h3>{restaurantName}</h3>}
-            <form onSubmit={postReview}>
-                <div>
-                    <ReactStarsRating value={rating} onChange={e => setRating(e)} />
-                </div>
-                <br />
-                <div>
-                    <Form.Control as="textarea" placeholder="Write a review" defaultValue={comment} onChange={e => setComment(e.target.value)} />
-                </div>
-                <br />
-                <Button className="post-review-button" type="submit">Post Review</Button><Button variant="secondary" onClick={e => history.push(`/restaurants/${id}`)}>Cancel</Button>
-            </form>
+        <div className="overall-user-review-container">
+            <div className="user-review-container">
+                {isLoading ?
+                    <Placeholder as="p" animation="glow" style={{ width: "25%" }}>
+                        <Placeholder xs={12} />
+                    </Placeholder>
+                    :
+                    <h3>{restaurantName}</h3>}
+                <form onSubmit={postReview}>
+                    <div>
+                        <ReactStarsRating value={rating} onChange={e => setRating(e)} />
+                    </div>
+                    <br />
+                    <div>
+                        <Form.Control className="write-review-textarea" as="textarea" placeholder="Write a review" defaultValue={comment} onChange={e => setComment(e.target.value)} />
+                    </div>
+                    <br />
+                    <Button className="post-review-button" type="submit">Post Review</Button><Button variant="secondary" onClick={e => history.push(`/restaurants/${id}`)}>Cancel</Button>
+                </form>
+            </div>
         </div>
     )
 }

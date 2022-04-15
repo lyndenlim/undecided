@@ -36,7 +36,8 @@ code {
 .post-review-button,
 .review-button,
 .review-submit-button,
-.loading-button, .send-email-button {
+.loading-button,
+.send-email-button {
   background-color: #d32322 !important;
   border-color: #d32322 !important;
   box-shadow: none;
@@ -256,7 +257,6 @@ input,
   font-weight: bold;
 }
 
-
 .review-button {
   margin-bottom: 30px;
   margin-top: 10px;
@@ -264,7 +264,18 @@ input,
 
 .edit-textarea {
   box-sizing: content-box;
+  height: 100px;
   width: 100%;
+}
+
+.write-review-textarea {
+  height: 150px;
+}
+
+.overall-user-review-container {
+  display: flex;
+  align-items: center;
+  height: 50vh;
 }
 
 .edit-button,
