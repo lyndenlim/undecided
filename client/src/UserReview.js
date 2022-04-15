@@ -33,16 +33,10 @@ function UserReview({ review, user, removeDeletedReview }) {
     }
 
     function handleEdit(e) {
-        // e.preventDefault()
         axios.patch(`/reviews/${review.id}`, {
             rating: newRating,
             comment: newComment
         })
-
-        // setIsEditable(false)
-        // setIsEdited(true)
-        // setNewRating(newRating)
-        // setNewComment(newComment)
     }
 
     const renderTooltipDelete = (props) => (
