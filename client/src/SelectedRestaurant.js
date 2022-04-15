@@ -28,14 +28,8 @@ function SelectedRestaurant({ user }) {
         }
 
         async function getRestaurantData() {
-            const axiosInstance = axios.create({
-                headers: {
-                    Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
-                }
-            })
-
-            axios.all([axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${id}`),
-            axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${id}/reviews`)])
+            axios.all([axios.get(`/yelp_restaurant?restaurant_id=${id}&api_key=${process.env.REACT_APP_YELP_API_KEY}`),
+            axios.get(`/yelp_reviews?restaurant_id=${id}&api_key=${process.env.REACT_APP_YELP_API_KEY}`)])
                 .then(restaurantData => {
                     setRestaurantReviews(restaurantData[1].data.reviews)
                     setRestaurantTransactions(restaurantData[0].data.transactions)

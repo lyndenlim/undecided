@@ -27,17 +27,11 @@ function RandomRestaurant({ user, currentLat, currentLng }) {
             setUserRestaurantReviews(userReviews.data.filter(review => review.restaurant_id === id)
             )
 
-            const axiosInstance = axios.create({
-                headers: {
-                    Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
-                }
-            })
-
-            const restaurantRequests = await axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=50&latitude=${currentLat}&longitude=${currentLng}&radius=1610&open_now=true&categories=restaurants`)
+            const restaurantRequests = await axios.get(`/yelp_random_restaurant?currentLat=${currentLat}&currentLng=${currentLng}&api_key=${process.env.REACT_APP_YELP_API_KEY}`)
             const allRestaurants = restaurantRequests.data.businesses
             const randomRestaurant = allRestaurants[Math.ceil(Math.random() * allRestaurants.length)]
-            axios.all([axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${randomRestaurant.id}`),
-            axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${randomRestaurant.id}/reviews`)])
+            axios.all([axios.get(`/yelp_restaurant?restaurant_id=${randomRestaurant.id}&api_key=${process.env.REACT_APP_YELP_API_KEY}`),
+            axios.get(`/yelp_reviews?restaurant_id=${randomRestaurant.id}&api_key=${process.env.REACT_APP_YELP_API_KEY}`)])
                 .then(randomRestaurantInfo => {
                     setRandomRestaurantID(randomRestaurant.id)
                     setRestaurantReviews(randomRestaurantInfo[1].data.reviews)
@@ -56,7 +50,7 @@ function RandomRestaurant({ user, currentLat, currentLng }) {
                 })
         }
         getRestaurantData()
-    }, [])
+    }, [currentLng, currentLat])
 
     function removeDeletedReview(reviewID) {
         setUserRestaurantReviews(userRestaurantReviews.filter(review => review.id !== reviewID))

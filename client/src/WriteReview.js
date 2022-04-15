@@ -13,16 +13,11 @@ function WriteReview({ user }) {
     const [rating, setRating] = useState(0)
     const [comment, setComment] = useState("")
     const [isLoading, setIsLoading] = useState(true)
-    
+
     useEffect(() => {
         async function getRestaurantName() {
-            const axiosInstance = axios.create({
-                headers: {
-                    Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
-                }
-            })
 
-            axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${id}`)
+            axios.get(`/yelp_restaurant?restaurant_id=${id}&api_key=${process.env.REACT_APP_YELP}`)
                 .then(restaurantData => {
                     setRestaurantName(restaurantData.data.name)
                     setTimeout(setIsLoading, 1000, false)
