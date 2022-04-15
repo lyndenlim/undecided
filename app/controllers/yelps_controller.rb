@@ -4,7 +4,7 @@ require "json"
 
 class YelpsController < ApplicationController
   def yelp_restaurants
-    url = URI("https://api.yelp.com/v3/businesses/search?limit=10&latitude=#{params[:locationLat]}&longitude=#{params[:locationLng]}&radius=1610&open_now=true&categories=restaurants")
+    url = URI("https://api.yelp.com/v3/businesses/search?limit=16&latitude=#{params[:locationLat]}&longitude=#{params[:locationLng]}&radius=1610&open_now=true&categories=restaurants")
 
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true

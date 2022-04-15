@@ -19,7 +19,7 @@ function Recipe({ currentLat, currentLng }) {
   async function searchForRecipes(e) {
     e.preventDefault()
     setIsLoading(true)
-    const findRecipe = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR}&includeIngredients=${search}&fillIngredients=true&number=3`)
+    const findRecipe = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_SPOONACULAR}&includeIngredients=${search}&fillIngredients=true&number=10`)
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${currentLat},${currentLng}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
       .then(response => {
         setShowMap(true)
