@@ -31,10 +31,10 @@ function NavBar({ user, setUser }) {
         <Navbar>
             <Container>
                 <div>
-                    <NavLink to="/recipes" className="navbar-navlink"><FontAwesomeIcon className="recipe-icon" icon={faKitchenSet} /></NavLink>
+                    {user ? <NavLink to="/recipes" className="navbar-navlink"><FontAwesomeIcon className="recipe-icon" icon={faKitchenSet} /></NavLink> : <FontAwesomeIcon className="recipe-icon-disabled" icon={faKitchenSet} />}
                 </div>
                 <div>
-                    {user ? <NavLink to="/homepage" className="navbar-navlink"><span className="logo">Undec¿ded</span></NavLink> : <span className="logo">Undec¿ded</span>}
+                    {user ? <NavLink to="/homepage" className="navbar-navlink"><span className="logo">Undec¿ded</span></NavLink> : <span className="logo-disabled">Undec¿ded</span>}
                 </div>
                 <div>
                     {user ?

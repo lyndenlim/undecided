@@ -355,8 +355,21 @@ input,
   font-weight: bold;
 }
 
+.logo-disabled {
+  font-size: 30px;
+  font-weight: bold;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .recipe-icon {
   font-size: 24px;
+}
+
+.recipe-icon-disabled {
+  font-size: 24px;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .settings-input,
