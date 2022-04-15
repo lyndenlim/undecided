@@ -84,7 +84,6 @@ function UserReview({ review, user, removeDeletedReview }) {
                         </div>
                         <br />
                         <div>
-                            {/* revisit for height autosizing to content */}
                             <Form.Control as="textarea" className="edit-textarea" value={newComment} onChange={e => setNewComment(e.target.value)}>{review.comment}</Form.Control>
                         </div>
                         <br />
