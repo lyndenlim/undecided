@@ -46,7 +46,7 @@ function SignUp({ setUser }) {
 
     return (
         <div className="signup-container">
-            <div className="col-8"><img height="100%" width="100%" src={signup} alt="signup-display" /></div>
+            <div className="col-8"><img height="fit-container" width="100%" src={signup} alt="signup-display" /></div>
             <div className="col-4 signup-column">
                 <h4>Sign Up</h4>
                 <br />
