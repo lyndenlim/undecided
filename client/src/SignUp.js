@@ -28,7 +28,7 @@ function SignUp({ setUser }) {
                 r.json().then((user) => setUser(user))
                 history.push("/")
             } else {
-                r.json().then((err) => {
+                r.json().then(err => {
                     setShowError(true)
                     toast.error(err.errors[0], {
                         position: "bottom-right",

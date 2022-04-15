@@ -102,8 +102,8 @@ function AccountPage({ user, setUser }) {
                         <Accordion.Header>Account</Accordion.Header>
                         <Accordion.Body className="accordion-setting-buttons">
                             <form onSubmit={changeUserInfo}>
-                                <div style={{ display: "grid", gridTemplateColumns: "auto auto", justifyContent: "center" }}>
-                                    <div style={{ paddingRight: "10px" }}>
+                                <div className="overall-account-container">
+                                    <div className="account-container">
                                         <FloatingLabel label="First Name" className="settings-label">
                                             <Form.Control className="settings-input" required defaultValue={user.first_name} onChange={e => setInputFirstName(e.target.value)} />
                                         </FloatingLabel>
@@ -120,7 +120,7 @@ function AccountPage({ user, setUser }) {
                                             <Form.Control className="settings-input" defaultValue={user.profile_picture} onChange={e => setInputProfilePicture(e.target.value)} />
                                         </FloatingLabel>
                                     </div>
-                                    <div style={{ paddingLeft: "10px" }}>
+                                    <div className="password-container">
                                         <FloatingLabel label="Old Password" className="settings-label">
                                             <Form.Control type="password" className="settings-input" onChange={e => setOldPassword(e.target.value)} />
                                         </FloatingLabel>

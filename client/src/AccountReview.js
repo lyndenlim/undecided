@@ -27,7 +27,7 @@ function AccountReview({ user, review, removeDeletedReview }) {
             })
             const dateSplit = review.created_at.split("T")[0].split("-")
             const reformattedDate = `${dateSplit[1]}/${dateSplit[2]}/${dateSplit[0]}`
-            axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/${review.restaurant_id}`)
+            axiosInstance.get(`/yelp_restaurant?restaurant_id=${review.restaurant_id}&api_key=${process.env.REACT_APP_YELP_API_KEY}`)
                 .then(restaurantInfo => {
                     setName(restaurantInfo.data.name)
                     setDateCreated(reformattedDate)

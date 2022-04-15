@@ -36,7 +36,7 @@ code {
 .post-review-button,
 .review-button,
 .review-submit-button,
-.loading-button {
+.loading-button, .send-email-button {
   background-color: #d32322 !important;
   border-color: #d32322 !important;
   box-shadow: none;
@@ -152,7 +152,8 @@ code {
 
 input,
 .recipe-map-container,
-.no-recipes {
+.no-recipes,
+.recipe-subtitle {
   text-align: center;
 }
 
@@ -211,6 +212,17 @@ input,
   text-align: center;
   align-items: center;
   margin: auto;
+}
+
+.overall-account-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+}
+
+.account-container,
+.password-container {
+  padding-right: 10px;
 }
 
 .location-hours {
@@ -294,7 +306,6 @@ input,
 
 .settings-input,
 .settings-label {
-  /* margin: auto; */
   width: fit-content !important;
   text-align: left !important;
 }
@@ -348,7 +359,8 @@ input,
   font-size: 24px;
 }
 
-.settings-input {
+.settings-input,
+.email-inputs {
   text-align: left !important;
 }
 
@@ -611,4 +623,8 @@ input,
   color: white;
   text-align: center;
   text-shadow: 1px 1px black;
+}
+
+.email-message {
+  height: 150px !important;
 }
