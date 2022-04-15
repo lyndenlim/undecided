@@ -87,7 +87,6 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
             process.env.REACT_APP_EMAIL_PUBLIC_KEY
         )
             .then((r) => {
-                console.log(r)
                 if (r.status === 200) {
                     setEmail("")
                     setToName("")

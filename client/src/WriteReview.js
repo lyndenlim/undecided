@@ -17,7 +17,7 @@ function WriteReview({ user }) {
     useEffect(() => {
         async function getRestaurantName() {
 
-            axios.get(`/yelp_restaurant?restaurant_id=${id}&api_key=${process.env.REACT_APP_YELP}`)
+            axios.get(`/yelp_restaurant?restaurant_id=${id}&api_key=${process.env.REACT_APP_YELP_API_KEY}`)
                 .then(restaurantData => {
                     setRestaurantName(restaurantData.data.name)
                     setTimeout(setIsLoading, 1000, false)
