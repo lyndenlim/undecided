@@ -4,10 +4,10 @@ Hosted with Heroku: https://undecided-application.herokuapp.com/
 
 Otherwise:
 
-bundle install to install dependencies
+bundle install to install dependencies <br/>
 npm i --prefix client to install dependencies
 
-FEATURES
+<strong>FEATURES</strong>
 
 - User authentication
 - Ability to search restaurants using an address/name (more specific the address the more accurate the search)
