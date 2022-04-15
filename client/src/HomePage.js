@@ -36,21 +36,16 @@ function HomePage() {
     async function handleSubmit(e) {
         e.preventDefault()
         setIsLoading(true)
-        const axiosInstance = axios.create({
-            headers: {
-                Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
-            }
-        })
         const geocodedResult = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${userInput}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
         const locationLat = geocodedResult.data.results[0].geometry.location.lat
         const locationLng = geocodedResult.data.results[0].geometry.location.lng
-        axiosInstance.get(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?limit=10&latitude=${locationLat}&longitude=${locationLng}&radius=805&open_now=true&categories=restaurants`)
+        axios.get(`/yelp_restaurants?locationLat=${locationLat}&locationLng=${locationLng}&api_key=${process.env.REACT_APP_YELP_API_KEY}`)
             .then(res => {
                 setAllRestaurantsInfo(res.data.businesses)
                 Scroll.scroller.scrollTo("results", {
                     smooth: true
                 });
-                setIsLoading(false)
+                setTimeout(setIsLoading, 1000, false)
             })
     }
 
