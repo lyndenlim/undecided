@@ -114,7 +114,7 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                     })
                 }
             })
-            .catch(error => {
+            .catch(() => {
                 setShowError(true)
                 toast.error("Something went wrong, try again later.", {
                     position: "bottom-right",

@@ -35,7 +35,6 @@ function AccountPage({ user, setUser }) {
     }, [])
 
     function changeUserInfo(e) {
-        // e.preventDefault()
         if (oldPassword.length === 0 && inputPassword.length === 0 && confirmPassword.length === 0 && inputProfilePicture === undefined) {
             axios.patch(`/users/${user.id}`, {
                 first_name: inputFirstName,

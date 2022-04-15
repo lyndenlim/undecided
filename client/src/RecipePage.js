@@ -34,7 +34,7 @@ function Recipe({ currentLat, currentLng }) {
       <div className="recipe-search">
         <form onSubmit={searchForRecipes}>
           <InputGroup>
-            <FormControl required placeholder="Enter ingredients" onChange={e => setSearch(e.target.value)} />
+            <FormControl required placeholder="(tomato,potato,etc.)" onChange={e => setSearch(e.target.value)} />
             {isLoading ?
               <Button className="loading-button" disabled>
                 <Spinner
@@ -53,7 +53,7 @@ function Recipe({ currentLat, currentLng }) {
       </div>
       {showMap && recipes.length > 0 ?
         <div className="recipe-map-container">
-          <h3>Potential places where you can find missing ingredients</h3>
+          <h3>Nearby places where you can find missing ingredients</h3>
           <iframe
             width="100%"
             height="300px"
