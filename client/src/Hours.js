@@ -49,22 +49,26 @@ function Hours({ day }) {
         function convertHours() {
             if (parseInt(day.start) > 1200) {
                 setOpenHour(`${day.start.slice(0, 2) - 12}:${day.start.slice(2, 4)} PM`)
-            } else if (parseInt(day.start) < 1200 && parseInt(day.start) !== 0) {
+            } else if (parseInt(day.start) >= 1000 && parseInt(day.start) < 1200 && parseInt(day.start) !== 0) {
                 setOpenHour(`${day.start.slice(0, 2)}:${day.start.slice(2, 4)} AM`)
+            } else if (parseInt(day.start) < 1000 && parseInt(day.start) !== 0) {
+                setOpenHour(`${day.start.slice(1, 2)}:${day.start.slice(2, 4)} AM`)
             } else if (day.start === "0000") {
                 setOpenHour("12:00 AM")
             } else if (day.start === "1200") {
                 setOpenHour("12:00 PM")
             }
 
-            if (parseInt(day.end) > 12) {
+            if (parseInt(day.end) > 1200) {
                 setCloseHour(`${day.end.slice(0, 2) - 12}:${day.end.slice(2, 4)} PM`)
-            } else if (parseInt(day.end) < 12 && parseInt(day.end) !== 0) {
+            } else if (parseInt(day.end) >= 1000 && parseInt(day.end) < 1200 && parseInt(day.end) !== 0) {
                 setCloseHour(`${day.end.slice(0, 2)}:${day.end.slice(2, 4)} AM`)
+            } else if (parseInt(day.end) < 1000 && parseInt(day.end) !== 0) {
+                setCloseHour(`${day.end.slice(1, 2)}:${day.end.slice(2, 4)} AM`)
             } else if (day.end === "0000") {
                 setCloseHour("12:00 AM")
             } else if (day.end === "1200") {
-                setOpenHour("12:00 PM")
+                setCloseHour("12:00 PM")
             }
         }
 
@@ -77,7 +81,7 @@ function Hours({ day }) {
     return (
         <div className="hour-list">
             <ListGroupItem>
-                <strong style={{color: green}}>{dayOfWeek}</strong> &nbsp;{openHour} - {closeHour}
+                <strong style={{ color: green }}>{dayOfWeek}</strong> &nbsp;{openHour} - {closeHour}
             </ListGroupItem>
         </div>
     )
