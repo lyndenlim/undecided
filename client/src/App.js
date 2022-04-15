@@ -40,10 +40,13 @@ function App() {
           <h1>Test Route</h1>
         </Route>
         <Route exact path="/">
+          <SignUp />
+        </Route>
+        <Route path="/homepage">
           <HomePage />
         </Route>
         <Route exact path="/recipes">
-          <RecipePage currentLat={currentLat} currentLng={currentLng}/>
+          <RecipePage currentLat={currentLat} currentLng={currentLng} />
         </Route>
         <Route path="/recipes/:id">
           <RecipeInfo />
@@ -59,9 +62,6 @@ function App() {
         </Route>
         <Route path="/login" >
           <LogIn setUser={setUser} />
-        </Route>
-        <Route path="/signup"  >
-          <SignUp setUser={setUser} />
         </Route>
         <Route path="/writereview/:id">
           <WriteReview user={user} />

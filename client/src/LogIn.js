@@ -23,7 +23,7 @@ function LogIn({ setUser }) {
         }).then((r) => {
             if (r.ok) {
                 r.json().then((user) => setUser(user))
-                history.push("/")
+                history.push("/homepage")
             } else {
                 r.json().then((err) => {
                     setShowError(true)
@@ -59,7 +59,7 @@ function LogIn({ setUser }) {
                     <br />
                     <Button size="lg" className="login-button" type="submit">Log In</Button>
                 </form>
-                Don't have an account? <Link to="/signup">Sign up</Link>
+                Don't have an account? <Link to="/">Sign up</Link>
             </div>
             {showError ?
                 <ToastContainer

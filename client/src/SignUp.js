@@ -26,7 +26,7 @@ function SignUp({ setUser }) {
         }).then((r) => {
             if (r.ok) {
                 r.json().then((user) => setUser(user))
-                history.push("/")
+                history.push("/homepage")
             } else {
                 r.json().then(err => {
                     setShowError(true)

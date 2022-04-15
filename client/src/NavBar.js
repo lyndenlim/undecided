@@ -34,7 +34,7 @@ function NavBar({ user, setUser }) {
                     <NavLink to="/recipes" className="navbar-navlink"><FontAwesomeIcon className="recipe-icon" icon={faKitchenSet} /></NavLink>
                 </div>
                 <div>
-                    <NavLink to="/" className="navbar-navlink"><span className="logo">Undec¿ded</span></NavLink>
+                    {user ? <NavLink to="/homepage" className="navbar-navlink"><span className="logo">Undec¿ded</span></NavLink> : <span className="logo">Undec¿ded</span>}
                 </div>
                 <div>
                     {user ?
@@ -60,7 +60,7 @@ function NavBar({ user, setUser }) {
                             <NavLink to="/login" className="navbar-navlink">
                                 Log In
                             </NavLink>
-                            <NavLink to="/signup" className="navbar-navlink">
+                            <NavLink to="/" className="navbar-navlink">
                                 Sign Up
                             </NavLink>
                         </>
