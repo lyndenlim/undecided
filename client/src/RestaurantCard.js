@@ -21,7 +21,7 @@ function RestaurantCard({ restaurant }) {
                                         <p>{(restaurant.distance / 1609).toFixed(2)} miles</p>
                                         <p><ReactStarsRating value={restaurant.rating} isEdit={false} /> </p>
                                         <p>{restaurant.review_count} reviews</p>
-                                        <div>{restaurant.price} • {restaurant.categories.map(category => <p key={category.title} className="category">{category.title}</p>)}</div>
+                                        <div>{restaurant.price ? `${restaurant.price} •` : null} {restaurant.categories.map(category => <p key={category.title} className="category">{category.title}</p>)}</div>
                                     </div>
                                 </div>
                             </div>

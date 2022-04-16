@@ -77,7 +77,6 @@ code {
   content: ",\00a0";
 }
 
-
 .restaurant-info-container {
   width: 1200px;
 }
@@ -658,11 +657,11 @@ input,
 }
 
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: slategray; 
+  background: slategray;
   border-radius: 10px;
 }
