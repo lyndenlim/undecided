@@ -12,6 +12,7 @@ function RecipeCard({ recipe, setIsLoading }) {
         async function getRecipeInfo() {
             axios.get(`https://api.spoonacular.com/recipes/${recipe.id}/information?apiKey=${process.env.REACT_APP_SPOONACULAR}`)
                 .then(recipeInformation => {
+                    console.log(recipeInformation)
                     setRecipeInfo(recipeInformation.data)
                     setRecipeCuisines(recipeInformation.data.cuisines)
                     setTimeout(setIsLoading, 1000, false)
@@ -33,7 +34,6 @@ function RecipeCard({ recipe, setIsLoading }) {
                                         <p className="recipe-card-recipe-name">{recipe.title}</p>
                                         <div className="recipe-card-info">Takes <strong>{recipeInfo.readyInMinutes}</strong> minutes to make</div>
                                         <strong className="recipe-card-info">Cuisine(s):</strong> {recipeCuisines.map((cuisine, index) => <p key={index} className="category recipe-card-info">{cuisine}</p>)}
-                                        <br />
                                     </div>
                                 </div>
                                 <div className="back">

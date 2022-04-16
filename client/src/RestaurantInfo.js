@@ -147,7 +147,7 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                                 <div>
                                     <span className="bold">{restaurantReviewCount} reviews</span>
                                 </div>
-                                <div className="bold">{restaurantPrice ? `${restaurantPrice} •` : null} {restaurantCategories.map(category => <p key={category.title} className="category">{category.title} </p>)}</div>
+                                <div className="bold">{restaurantPrice ? `${restaurantPrice} •` : null} {restaurantCategories.map(category => <p key={category.title} className="category">{category.title}</p>)}</div>
                                 {/* revisit for category separation */}
                                 <div className="status">{isOpen ? <strong className="open">OPEN</strong> : <strong className="closed">CLOSED</strong>} &nbsp;&nbsp;<span className="bold">{openHour} - {closeHour}</span></div>
                             </Card.ImgOverlay>
