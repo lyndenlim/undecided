@@ -188,7 +188,7 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                         </div>
                     </Card>
 
-                    <Modal show={show} onHide={handleClose}>
+                    <Modal show={show} onHide={handleClose} centered>
                         <Modal.Header closeButton>
                             <Modal.Title>Share this restaurant</Modal.Title>
                         </Modal.Header>
