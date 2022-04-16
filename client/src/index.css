@@ -652,3 +652,17 @@ input,
 .email-message {
   height: 150px !important;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: slategray; 
+  border-radius: 10px;
+}
