@@ -13,13 +13,17 @@ import RecipeInfo from "./RecipeInfo"
 
 function App() {
   const [user, setUser] = useState("")
+  const [reviewCount, setReviewCount] = useState(null)
   const [currentLat, setCurrentLat] = useState("")
   const [currentLng, setCurrentLng] = useState("")
 
   useEffect(() => {
     fetch("/me").then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((user) => {
+          setUser(user)
+          setReviewCount(user.reviews.length)
+        });
       }
     });
 
@@ -52,19 +56,19 @@ function App() {
           <RecipeInfo />
         </Route>
         <Route path="/restaurants/:id">
-          <SelectedRestaurant user={user} />
+          <SelectedRestaurant user={user} reviewCount={reviewCount} setReviewCount={setReviewCount} />
         </Route>
         <Route path="/random">
           <RandomRestaurant currentLat={currentLat} currentLng={currentLng} user={user} />
         </Route>
         <Route path="/account">
-          <AccountPage user={user} setUser={setUser} />
+          <AccountPage user={user} setUser={setUser} reviewCount={reviewCount} setReviewCount={setReviewCount} />
         </Route>
         <Route path="/login" >
           <LogIn setUser={setUser} />
         </Route>
         <Route path="/writereview/:id">
-          <WriteReview user={user} />
+          <WriteReview user={user} setReviewCount={setReviewCount} />
         </Route>
       </Switch >
     </>

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import axios from 'axios'
 import RestaurantInfo from './RestaurantInfo'
 
-function SelectedRestaurant({ user }) {
+function SelectedRestaurant({ user, reviewCount, setReviewCount }) {
     const { id } = useParams()
     const [restaurantName, setRestaurantName] = useState("")
     const [restaurantRating, setRestaurantRating] = useState("")
@@ -52,6 +52,7 @@ function SelectedRestaurant({ user }) {
     }, [isLoading])
 
     function removeDeletedReview(reviewID) {
+        setReviewCount(reviewCount => reviewCount - 1)
         setUserRestaurantReviews(userRestaurantReviews.filter(review => review.id !== reviewID))
     }
 

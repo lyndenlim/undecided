@@ -6,7 +6,7 @@ import Placeholder from "react-bootstrap/Placeholder"
 import Button from "react-bootstrap/Button"
 import ReactStarsRating from 'react-awesome-stars-rating';
 
-function WriteReview({ user }) {
+function WriteReview({ user, setReviewCount }) {
     const { id } = useParams()
     const history = useHistory()
     const [restaurantName, setRestaurantName] = useState("")
@@ -34,9 +34,13 @@ function WriteReview({ user }) {
             rating: rating,
             comment: comment
         })
-        setRating("")
-        setComment("")
-        history.push(`/restaurants/${id}`)
+            .then(() => {
+                setReviewCount(reviewCount => reviewCount + 1)
+                setRating("")
+                setComment("")
+                history.push(`/restaurants/${id}`)
+            })
+
     }
 
     return (
