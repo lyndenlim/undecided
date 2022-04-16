@@ -9,7 +9,7 @@ import Form from "react-bootstrap/Form"
 import FloatingLabel from "react-bootstrap/FloatingLabel"
 import defaultProfilePicture from "./defaultProfilePicture/defaultProfilePicture.png"
 
-function AccountPage({ user, setUser }) {
+function AccountPage({ user, setUser, reviewCount, setReviewCount }) {
     const [reviews, setReviews] = useState([])
     const [inputProfilePicture, setInputProfilePicture] = useState(user.profile_picture)
     const [inputFirstName, setInputFirstName] = useState(user.first_name)
@@ -32,7 +32,7 @@ function AccountPage({ user, setUser }) {
         }
 
         getUserReviews()
-    }, [])
+    }, [reviewCount])
 
     function changeUserInfo(e) {
         if (oldPassword.length === 0 && inputPassword.length === 0 && confirmPassword.length === 0 && inputProfilePicture === undefined) {
@@ -74,6 +74,7 @@ function AccountPage({ user, setUser }) {
     }
 
     function removeDeletedReview(reviewID) {
+        setReviewCount(reviewCount => reviewCount - 1)
         setReviews(reviews.filter(review => review.id !== reviewID))
     }
 
@@ -141,7 +142,7 @@ function AccountPage({ user, setUser }) {
                         </Accordion.Body>
                     </Accordion.Item>
                     <Accordion.Item eventKey="1">
-                        <Accordion.Header>All Reviews ({user ? user.reviews.length : null})</Accordion.Header>
+                        <Accordion.Header>All Reviews ({user ? reviewCount : null})</Accordion.Header>
                         <Accordion.Body>{reviews.map((review, index) => <AccountReview key={index} review={review} removeDeletedReview={removeDeletedReview} user={user} />)}</Accordion.Body>
                     </Accordion.Item>
                 </Accordion>
