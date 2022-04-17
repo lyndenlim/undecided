@@ -39,7 +39,7 @@ function AccountReview({ user, review, removeDeletedReview }) {
 
     function handleDelete() {
         axios.delete(`/reviews/${review.id}`)
-        removeDeletedReview(review.id)
+            .then(() => removeDeletedReview(review.id))
     }
 
     function handleCancel() {

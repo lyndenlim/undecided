@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import axios from 'axios'
 import RestaurantInfo from './RestaurantInfo'
 
-function SelectedRestaurant({ user, reviewCount, setReviewCount }) {
+function SelectedRestaurant({ user, setReviewCount }) {
     const { id } = useParams()
     const [restaurantName, setRestaurantName] = useState("")
     const [restaurantRating, setRestaurantRating] = useState("")
@@ -19,6 +19,7 @@ function SelectedRestaurant({ user, reviewCount, setReviewCount }) {
     const [userRestaurantReviews, setUserRestaurantReviews] = useState([])
     const [restaurantTransactions, setRestaurantTransactions] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const history = useHistory()
 
     useEffect(() => {
         async function getUserReviews() {
@@ -45,6 +46,7 @@ function SelectedRestaurant({ user, reviewCount, setReviewCount }) {
                     setRestaurantPhotos(restaurantData[0].data.photos)
                     setTimeout(setIsLoading, 1000, false)
                 })
+                .catch(() => history.go(0))
         }
 
         getUserReviews()

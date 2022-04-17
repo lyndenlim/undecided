@@ -26,9 +26,10 @@ function AccountPage({ user, setUser, reviewCount, setReviewCount }) {
 
     useEffect(() => {
         async function getUserReviews() {
-            const userReviews = await axios.get(`/users/${user.id}`)
-
-            setReviews(userReviews.data.reviews)
+            axios.get(`/users/${user.id}`)
+                .then(userReviews => {
+                    setReviews(userReviews.data.reviews)
+                })
         }
 
         getUserReviews()
@@ -74,8 +75,8 @@ function AccountPage({ user, setUser, reviewCount, setReviewCount }) {
     }
 
     function removeDeletedReview(reviewID) {
-        setReviewCount(reviewCount => reviewCount - 1)
         setReviews(reviews.filter(review => review.id !== reviewID))
+        setReviewCount(reviewCount => reviewCount - 1)
     }
 
     return (
