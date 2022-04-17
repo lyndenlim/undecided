@@ -29,7 +29,7 @@ function NavBar({ user, setUser }) {
 
     return (
         <Navbar>
-            <Container>
+            <Container fluid>
                 <div>
                     {user ? <NavLink to="/recipes" className="navbar-navlink"><FontAwesomeIcon className="recipe-icon" icon={faKitchenSet} /></NavLink> : <FontAwesomeIcon className="recipe-icon-disabled" icon={faKitchenSet} />}
                 </div>
