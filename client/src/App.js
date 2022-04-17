@@ -44,7 +44,7 @@ function App() {
           <h1>Test Route</h1>
         </Route>
         <Route exact path="/">
-          <SignUp />
+          <SignUp setUser={setUser} user={user} />
         </Route>
         <Route path="/homepage">
           <HomePage />
