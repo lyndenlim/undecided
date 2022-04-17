@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button"
 import login from "./loginImage/login.jpg"
 import { ToastContainer, toast } from 'react-toastify';
 
-function LogIn({ setUser }) {
+function LogIn({ setUser, setReviewCount }) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [showError, setShowError] = useState(false);
@@ -22,7 +22,11 @@ function LogIn({ setUser }) {
             body: JSON.stringify({ email, password }),
         }).then((r) => {
             if (r.ok) {
-                r.json().then((user) => setUser(user))
+                r.json().then(user => 
+                {
+                    setUser(user)
+                    setReviewCount(user.reviews.length)
+                })
                 history.push("/homepage")
             } else {
                 r.json().then((err) => {

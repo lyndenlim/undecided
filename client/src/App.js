@@ -22,7 +22,6 @@ function App() {
       if (r.ok) {
         r.json().then((user) => {
           setUser(user)
-          setReviewCount(user.reviews.length)
         });
       }
     });
@@ -65,7 +64,7 @@ function App() {
           <AccountPage user={user} setUser={setUser} reviewCount={reviewCount} setReviewCount={setReviewCount} />
         </Route>
         <Route path="/login" >
-          <LogIn setUser={setUser} />
+          <LogIn setUser={setUser} setReviewCount={setReviewCount}/>
         </Route>
         <Route path="/writereview/:id">
           <WriteReview user={user} setReviewCount={setReviewCount} />
