@@ -1,3 +1,7 @@
+:root {
+  scroll-behavior: auto !important;
+}
+
 body {
   margin: 0;
   font-family: 'Barlow', sans-serif !important;
