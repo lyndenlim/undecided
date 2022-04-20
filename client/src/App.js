@@ -10,6 +10,7 @@ import WriteReview from "./WriteReview"
 import AccountPage from "./AccountPage"
 import RecipePage from "./RecipePage";
 import RecipeInfo from "./RecipeInfo"
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const [user, setUser] = useState("")
@@ -40,35 +41,46 @@ function App() {
     <>
       <NavBar user={user} setUser={setUser} />
       <Switch>
-        <Route path="/testing">
-          <h1>Test Route</h1>
-        </Route>
         <Route exact path="/">
           <SignUp setUser={setUser} user={user} />
         </Route>
         <Route path="/homepage">
-          <HomePage />
+          <ProtectedRoute user={user}>
+            <HomePage />
+          </ProtectedRoute>
         </Route>
         <Route exact path="/recipes">
-          <RecipePage currentLat={currentLat} currentLng={currentLng} />
+          <ProtectedRoute user={user}>
+            <RecipePage currentLat={currentLat} currentLng={currentLng} />
+          </ProtectedRoute>
         </Route>
         <Route path="/recipes/:id">
-          <RecipeInfo />
+          <ProtectedRoute user={user}>
+            <RecipeInfo />
+          </ProtectedRoute>
         </Route>
         <Route path="/restaurants/:id">
-          <SelectedRestaurant user={user} reviewCount={reviewCount} setReviewCount={setReviewCount} />
+          <ProtectedRoute user={user}>
+            <SelectedRestaurant user={user} reviewCount={reviewCount} setReviewCount={setReviewCount} />
+          </ProtectedRoute>
         </Route>
         <Route path="/random">
-          <RandomRestaurant currentLat={currentLat} currentLng={currentLng} user={user} />
+          <ProtectedRoute user={user}>
+            <RandomRestaurant currentLat={currentLat} currentLng={currentLng} user={user} />
+          </ProtectedRoute>
         </Route>
         <Route path="/account">
-          <AccountPage user={user} setUser={setUser} reviewCount={reviewCount} setReviewCount={setReviewCount} />
+          <ProtectedRoute user={user}>
+            <AccountPage user={user} setUser={setUser} reviewCount={reviewCount} setReviewCount={setReviewCount} />
+          </ProtectedRoute>
         </Route>
         <Route path="/login" >
-          <LogIn setUser={setUser} setReviewCount={setReviewCount}/>
+          <LogIn setUser={setUser} setReviewCount={setReviewCount} />
         </Route>
         <Route path="/writereview/:id">
-          <WriteReview user={user} setReviewCount={setReviewCount} />
+          <ProtectedRoute user={user}>
+            <WriteReview user={user} setReviewCount={setReviewCount} />
+          </ProtectedRoute>
         </Route>
       </Switch >
     </>

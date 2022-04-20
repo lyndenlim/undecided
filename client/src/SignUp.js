@@ -45,55 +45,55 @@ function SignUp({ setUser, user }) {
     }
 
     if (user) {
-        return (<Redirect to="/homepage" />)
-    } else
-        return (
-            <div className="signup-container">
-                <div className="col-8"><img height="fit-container" width="100%" src={signup} alt="signup-display" /></div>
-                <div className="col-4 signup-column">
-                    <h4>Sign Up</h4>
+        return <Redirect to="/homepage" />
+    }
+    return (
+        <div className="signup-container">
+            <div className="col-8"><img height="fit-container" width="100%" src={signup} alt="signup-display" /></div>
+            <div className="col-4 signup-column">
+                <h4>Sign Up</h4>
+                <br />
+                <form onSubmit={handleSubmit} >
+                    <FloatingLabel label="First Name" className="signup-label">
+                        <Form.Control className="signup-input" placeholder="first name" required autoComplete="new-password" defaultValue={firstName} onChange={e => setFirstName(e.target.value)} />
+                    </FloatingLabel>
                     <br />
-                    <form onSubmit={handleSubmit} >
-                        <FloatingLabel label="First Name" className="signup-label">
-                            <Form.Control className="signup-input" placeholder="first name" required autoComplete="new-password" defaultValue={firstName} onChange={e => setFirstName(e.target.value)} />
-                        </FloatingLabel>
-                        <br />
-                        <FloatingLabel label="Last Name" className="signup-label">
-                            <Form.Control className="signup-input" placeholder="last name" required autoComplete="new-password" defaultValue={lastName} onChange={e => setLastName(e.target.value)} />
-                        </FloatingLabel>
-                        <br />
-                        <FloatingLabel label="Email" className="signup-label">
-                            <Form.Control className="signup-input" placeholder="email" type="email" required autoComplete="new-password" defaultValue={email} onChange={e => setEmail(e.target.value)} />
-                        </FloatingLabel>
-                        <br />
-                        <FloatingLabel label="Password" className="signup-label">
-                            <Form.Control className="signup-input" placeholder="password" required type="password" autoComplete="new-password" defaultValue={password} onChange={e => setPassword(e.target.value)} />
-                        </FloatingLabel>
-                        <br />
-                        <FloatingLabel label="Confirm Password" className="signup-label">
-                            <Form.Control className="signup-input" placeholder="confirm password" required type="password" autoComplete="new-password" defaultValue={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
-                        </FloatingLabel>
-                        <br />
-                        <Button size="lg" className="signup-button" type="submit">Sign Up</Button>
-                    </form>
-                    Already have an account? <Link to="/login">Log in</Link>
-                </div>
-                {showError ?
-                    <ToastContainer
-                        position="bottom-right"
-                        autoClose={5000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                    />
-                    :
-                    null}
+                    <FloatingLabel label="Last Name" className="signup-label">
+                        <Form.Control className="signup-input" placeholder="last name" required autoComplete="new-password" defaultValue={lastName} onChange={e => setLastName(e.target.value)} />
+                    </FloatingLabel>
+                    <br />
+                    <FloatingLabel label="Email" className="signup-label">
+                        <Form.Control className="signup-input" placeholder="email" type="email" required autoComplete="new-password" defaultValue={email} onChange={e => setEmail(e.target.value)} />
+                    </FloatingLabel>
+                    <br />
+                    <FloatingLabel label="Password" className="signup-label">
+                        <Form.Control className="signup-input" placeholder="password" required type="password" autoComplete="new-password" defaultValue={password} onChange={e => setPassword(e.target.value)} />
+                    </FloatingLabel>
+                    <br />
+                    <FloatingLabel label="Confirm Password" className="signup-label">
+                        <Form.Control className="signup-input" placeholder="confirm password" required type="password" autoComplete="new-password" defaultValue={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+                    </FloatingLabel>
+                    <br />
+                    <Button size="lg" className="signup-button" type="submit">Sign Up</Button>
+                </form>
+                Already have an account? <Link to="/login">Log in</Link>
             </div>
-        )
+            {showError ?
+                <ToastContainer
+                    position="bottom-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
+                :
+                null}
+        </div>
+    )
 }
 
 export default SignUp
