@@ -16,6 +16,7 @@ import ReactStarsRating from 'react-awesome-stars-rating';
 import ReactLoading from 'react-loading';
 import { send } from "@emailjs/browser"
 import { ToastContainer, toast } from 'react-toastify';
+import { motion } from "framer-motion"
 
 function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, restaurantPrice, restaurantCategories, restaurantHours, restaurantPhoneNumber, restaurantAddress, restaurantPhotos, userRestaurantReviews, user, isOpen, id, restaurantReviewCount, removeDeletedReview, isLoading, restaurantTransactions }) {
     const [openHour, setOpenHour] = useState("")
@@ -135,7 +136,7 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
             {isLoading ?
                 <ReactLoading type="spinningBubbles" color="black" className="spinner-bubbles" />
                 :
-                <div className="restaurant-centering">
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="restaurant-centering">
                     <Card className="restaurant-info-card">
                         <div className="restaurant-info-container">
                             <div className="restaurant-photos">
@@ -148,7 +149,6 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                                     <span className="bold">{restaurantReviewCount} reviews</span>
                                 </div>
                                 <div className="bold">{restaurantPrice ? `${restaurantPrice} •` : null} {restaurantCategories.map(category => <p key={category.title} className="category">{category.title}</p>)}</div>
-                                {/* revisit for category separation */}
                                 <div className="status">{isOpen ? <strong className="open">OPEN</strong> : <strong className="closed">CLOSED</strong>} &nbsp;&nbsp;<span className="bold">{openHour} - {closeHour}</span></div>
                             </Card.ImgOverlay>
                             <hr />
@@ -245,7 +245,7 @@ function RestaurantInfo({ restaurantName, restaurantReviews, restaurantRating, r
                         />
                         :
                         null}
-                </div>
+                </motion.div>
             }
         </>
     )

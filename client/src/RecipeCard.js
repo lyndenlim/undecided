@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from "react-router-dom"
 import ListGroup from "react-bootstrap/ListGroup"
 import ListGroupItem from 'react-bootstrap/esm/ListGroupItem'
+import { motion } from "framer-motion"
 
 function RecipeCard({ recipe, setIsLoading }) {
     const [recipeInfo, setRecipeInfo] = useState([])
@@ -12,7 +13,6 @@ function RecipeCard({ recipe, setIsLoading }) {
         async function getRecipeInfo() {
             axios.get(`https://api.spoonacular.com/recipes/${recipe.id}/information?apiKey=${process.env.REACT_APP_SPOONACULAR}`)
                 .then(recipeInformation => {
-                    console.log(recipeInformation)
                     setRecipeInfo(recipeInformation.data)
                     setRecipeCuisines(recipeInformation.data.cuisines)
                     setTimeout(setIsLoading, 1000, false)
@@ -23,7 +23,7 @@ function RecipeCard({ recipe, setIsLoading }) {
     }, [recipe])
 
     return (
-        <div className="recipe-card">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.75 }} className="recipe-card">
             <Link to={`/recipes/${recipe.id}`} className="link">
                 <div className="wrapper">
                     <div className="cols">
@@ -49,7 +49,7 @@ function RecipeCard({ recipe, setIsLoading }) {
                     </div>
                 </div>
             </Link>
-        </div >
+        </motion.div >
     )
 }
 

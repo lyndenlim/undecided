@@ -7,6 +7,7 @@ import InputGroup from "react-bootstrap/InputGroup"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faUtensils } from "@fortawesome/free-solid-svg-icons"
 import Spinner from "react-bootstrap/Spinner"
+import { motion } from "framer-motion"
 
 function Recipe({ currentLat, currentLng }) {
   // sanitize search
@@ -52,7 +53,7 @@ function Recipe({ currentLat, currentLng }) {
         </form>
       </div>
       {showMap && recipes.length > 0 ?
-        <div className="recipe-map-container">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="recipe-map-container">
           <h3>Nearby places where you can find missing ingredients</h3>
           <iframe
             width="100%"
@@ -63,11 +64,11 @@ function Recipe({ currentLat, currentLng }) {
             src={`https://www.google.com/maps/embed/v1/search?key=${process.env.REACT_APP_GOOGLE_API_KEY}&q=supermarkets+near+${address}&zoom=15&center=${currentLat},${currentLng}`}
           >
           </iframe>
-        </div>
+        </motion.div>
         :
         <div className="recipe-subtitle"><h3>Find recipes with any ingredients you have on hand</h3></div>}
       <br />
-      <div className="recipe-container">
+      <div  className="recipe-container">
         {recipes.map(recipe => <RecipeCard key={recipe.id} recipe={recipe} setIsLoading={setIsLoading} />)}
       </div>
     </>

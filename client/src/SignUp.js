@@ -5,6 +5,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel"
 import Button from "react-bootstrap/Button"
 import signup from "./signupImage/signup.jpg"
 import { ToastContainer, toast } from 'react-toastify';
+import { motion } from "framer-motion"
 
 function SignUp({ setUser, user }) {
     const [firstName, setFirstName] = useState("")
@@ -50,7 +51,7 @@ function SignUp({ setUser, user }) {
     return (
         <div className="signup-container">
             <div className="col-8"><img height="fit-container" width="100%" src={signup} alt="signup-display" /></div>
-            <div className="col-4 signup-column">
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="col-4 signup-column">
                 <h4>Sign Up</h4>
                 <br />
                 <form onSubmit={handleSubmit} >
@@ -77,7 +78,7 @@ function SignUp({ setUser, user }) {
                     <Button size="lg" className="signup-button" type="submit">Sign Up</Button>
                 </form>
                 Already have an account? <Link to="/login">Log in</Link>
-            </div>
+            </motion.div>
             {showError ?
                 <ToastContainer
                     position="bottom-right"

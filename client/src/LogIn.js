@@ -5,6 +5,7 @@ import FloatingLabel from "react-bootstrap/FloatingLabel"
 import Button from "react-bootstrap/Button"
 import login from "./loginImage/login.jpg"
 import { ToastContainer, toast } from 'react-toastify';
+import { motion } from "framer-motion"
 
 function LogIn({ setUser, setReviewCount }) {
     const [email, setEmail] = useState("")
@@ -22,8 +23,7 @@ function LogIn({ setUser, setReviewCount }) {
             body: JSON.stringify({ email, password }),
         }).then((r) => {
             if (r.ok) {
-                r.json().then(user => 
-                {
+                r.json().then(user => {
                     setUser(user)
                     setReviewCount(user.reviews.length)
                 })
@@ -48,7 +48,7 @@ function LogIn({ setUser, setReviewCount }) {
     return (
         <div className="login-container">
             <div className="col-8"><img height="fit-container" width="100%" src={login} alt="login-display" /> </div>
-            <div className="col-4 login-column">
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} className="col-4 login-column">
                 <h4>Log In</h4>
                 <br />
                 <form onSubmit={handleSubmit}>
@@ -63,22 +63,24 @@ function LogIn({ setUser, setReviewCount }) {
                     <Button size="lg" className="login-button" type="submit">Log In</Button>
                 </form>
                 Don't have an account? <Link to="/">Sign up</Link>
-            </div>
-            {showError ?
-                <ToastContainer
-                    position="bottom-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                />
-                :
-                null}
-        </div>
+            </motion.div>
+            {
+                showError ?
+                    <ToastContainer
+                        position="bottom-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
+                    :
+                    null
+            }
+        </div >
     )
 }
 
