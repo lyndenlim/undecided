@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import ReactStarsRating from 'react-awesome-stars-rating';
+import { motion } from "framer-motion"
 
 function RestaurantCard({ restaurant }) {
     return (
-        <div className="restaurant-card">
+        <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1.75 }} className="restaurant-card">
             <Link to={`/restaurants/${restaurant.id}`} className="link">
                 <div className="wrapper">
                     <div className="cols">
@@ -29,7 +30,7 @@ function RestaurantCard({ restaurant }) {
                     </div>
                 </div>
             </Link>
-        </div>
+        </motion.div>
     )
 }
 

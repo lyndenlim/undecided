@@ -101,7 +101,6 @@ function HomePage() {
             </div>
             <br />
             <div>
-                {/* revisit, where clearing search bar after a search dynamically updates below */}
                 {userInput ? <h4 className="restaurant-result-header" name="results">Results for <strong>{userInput}</strong></h4> : null}
                 <div className="restaurant-container">
                     {allRestaurantsInfo.map(restaurant => <RestaurantCard key={restaurant.id} restaurant={restaurant} />)}
