@@ -1,8 +1,12 @@
-# README
+# Undec¿ded
 
 Hosted on Heroku: https://undecided-application.herokuapp.com/
 
-# FEATURES
+# Technologies used
+
+React JS, Ruby on Rails, PostgreSQL, and HTML/CSS
+
+# Features
 
 - User authentication
 - Ability to search restaurants using an address/name (more specific the address the more accurate the search)
@@ -10,6 +14,3 @@ Hosted on Heroku: https://undecided-application.herokuapp.com/
 - Can view recipes by inputting ingredients that user currently has on hand
 - Can write/delete/edit a review for restaurant of choice
 - Able to send email with selected restaurant's information to any email of choice along with a personal message
-
-# TO DO
-- Add localStorage since using protected routes
