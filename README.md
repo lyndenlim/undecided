@@ -4,13 +4,13 @@ Hosted on Heroku: https://undecided-application.herokuapp.com/
 
 
 # Previews
-### Using the search function and the random restaurant button
+### Search for a restaurant or use random button
 <img height="350px" src="https://media.giphy.com/media/9ATuiS6bB38NEKC5V0/giphy.gif" alt="demo1">
 
 ### Sending a friend an email
 <img height="350px" src="https://media.giphy.com/media/g0BwfzJqKNlYRFhtYH/giphy.gif" alt="demo2">
 
-### Leaving/editing/deleting a review for a restaurant
+### Write/edit/delete a review
 <img height="350px" src="https://media.giphy.com/media/qRPz7RIMVkWMs16uKj/giphy.gif" alt="demo3">
 
 ### Using the recipe function
