@@ -1,6 +1,9 @@
 # Undec¿ded
-### Hosted on Heroku: https://undecided-application.herokuapp.com/
+Restaurant/recipe assistant with randomizer feature that returns a restaurant within a mile radius of your current location. <br/>
+Hosted on Heroku: https://undecided-application.herokuapp.com/
 
+
+# Previews
 ### Using the search function and the random restaurant button
 <img height="350px" src="https://media.giphy.com/media/9ATuiS6bB38NEKC5V0/giphy.gif" alt="demo1">
 
@@ -13,7 +16,7 @@
 ### Using the recipe function
 <img height="350px" src="https://media.giphy.com/media/yyMO7zQHewepSpWKh8/giphy.gif" alt="demo4">
 
-# Technologies used
+# Technologies Used
 
 React JS, Ruby on Rails, PostgreSQL, and HTML/CSS
 
